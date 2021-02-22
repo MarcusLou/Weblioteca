@@ -1,0 +1,14 @@
+package org.weblioteca.application.service;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.weblioteca.application.model.Cliente;
+
+public interface ClienteService {
+	List<Cliente> getAllClientes();
+	void salvarCliente(Cliente cliente);
+	Cliente getClienteById(Long id);
+	void deletarClienteById(Long id);
+	Page<Cliente> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
+}
