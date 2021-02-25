@@ -6,10 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.weblioteca.application.model.Cliente;
 
-
 @Service
 public interface ClienteService {
 	List<Cliente> getAllClientes();
+
+	List<Cliente> findByNomeContainingIgnoreCase(String nome);
 
 	void salvarCliente(Cliente cliente);
 
