@@ -33,15 +33,3 @@ class DemoCommandLineRunner implements CommandLineRunner {
 //		clienteRepository.save(cliente);
 	}
 }
-
-/*
- * 
- * Tutoriais
- * https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#reference
- * https://www.baeldung.com/spring-boot-crud-thymeleaf
- * 
- * 
- * 
- * 
- * 
- */

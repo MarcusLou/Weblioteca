@@ -19,7 +19,7 @@ public class FuncionarioController {
 	@Autowired
 	FuncionarioService funcionarioService;
 	
-	@GetMapping("/")
+	@GetMapping("/funcionario")
 	public String viewHomePage(Model model) {
 		return funcionarioPaginacao(1, "nome", "asc", model);
 	}
@@ -32,7 +32,7 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/salvarFuncionario")
-	public String salvarCliente(@ModelAttribute("funcionario") Funcionario funcionario) {
+	public String salvarFuncionario(@ModelAttribute("funcionario") Funcionario funcionario) {
 		funcionarioService.salvarFuncionario(funcionario);
 		return "redirect:/";
 	}
@@ -50,11 +50,11 @@ public class FuncionarioController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/page/{pageNo}")
+	@GetMapping("/pageFuncionario/{pageNo}")
 	public String funcionarioPaginacao(@PathVariable (value = "pageNo") int pageNo, 
-			                        @RequestParam("sortField") String sortField,
-		                        	@RequestParam("sortDir") String sortDir,
-		                         	Model model) {
+			                           @RequestParam("sortField") String sortField,
+		                        	   @RequestParam("sortDir") String sortDir,
+		                         	   Model model) {
 		int pageSize = 5;
 		
 		Page<Funcionario> page = funcionarioService.findPaginated(pageNo, pageSize, sortField, sortDir);
