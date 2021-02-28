@@ -57,7 +57,7 @@
 				<hr>
 				<h2>Atualizar Cliente</h2>
 				<form action="#" th:action="@{/salvarCliente}" th:object="${cliente}" method="POST">
-				    <input type="hidden" th:field="*{idCliente}" />
+				    <input type="hidden" th:field="*{clienteId}" />
 					<input type="text" th:field="*{nome}" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{sexo}" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{cpf}" class="form-control mb-4 col-4">
