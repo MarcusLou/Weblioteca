@@ -34,7 +34,7 @@ public class AutorController {
 	@PostMapping("/salvarAutor")
 	public String salvarAutor(@ModelAttribute("autor") Autor autor) {
 		autorService.salvarAutor(autor);
-		return "redirect:/";
+		return "redirect:/autor";
 	}
 	
 	@GetMapping("/atualizarAutor/{id}")
@@ -47,28 +47,28 @@ public class AutorController {
 	@GetMapping("/deletarAutor/{id}")
 	public String deletarAutor(@PathVariable (value = "id") Long id) {
 		autorService.deletarAutorById(id);
-		return "redirect:/";
+		return "redirect:/autor";
 	}
 	
-	@GetMapping("/page/{pageNo}")
-	public String autoresPaginacao(@PathVariable (value = "pageNo") int pageNo, 
-			                        @RequestParam("sortField") String sortField,
-		                        	@RequestParam("sortDir") String sortDir,
+	@GetMapping("/pageAutor/{pageNo}")
+	public String autoresPaginacao(@PathVariable (value = "pageNo") int pageNoAutor, 
+			                        @RequestParam("sortField") String sortFieldAutor,
+		                        	@RequestParam("sortDir") String sortDirAutor,
 		                         	Model model) {
-		int pageSize = 5;
+		int pageSizeAutor = 5;
 		
-		Page<Autor> page = autorService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<Autor> listaAutores = page.getContent();
+		Page<Autor> pageAutor = autorService.findPaginated(pageNoAutor, pageSizeAutor, sortFieldAutor, sortDirAutor);
+		List<Autor> listaAutores = pageAutor.getContent();
 		
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("currentPage", pageNoAutor);
+		model.addAttribute("totalPages", pageAutor.getTotalPages());
+		model.addAttribute("totalItems", pageAutor.getTotalElements());
 		
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		model.addAttribute("sortField", sortFieldAutor);
+		model.addAttribute("sortDir", sortDirAutor);
+		model.addAttribute("reverseSortDir", sortDirAutor.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaAutores", listaAutores);
-		return "index";
+		return "autor";
 	}
 }

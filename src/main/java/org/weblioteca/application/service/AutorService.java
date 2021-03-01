@@ -4,19 +4,19 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import org.weblioteca.application.model.Cliente;
+import org.weblioteca.application.model.Autor;
 
 @Service
 public interface AutorService {
-	List<Cliente> getAllClientes();
+	List<Autor> getAllAutores();
 
-	List<Cliente> findByNomeContainingIgnoreCase(String nome);
+	List<Autor> findByNomeContainingIgnoreCase(String nome);
 
-	void salvarCliente(Cliente cliente);
+	void salvarAutor(Autor autor);
 
-	Cliente getClienteById(Long id);
+	Autor getAutorById(Long id);
 
-	void deletarClienteById(Long id);
+	void deletarAutorById(Long id);
 
-	Page<Cliente> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
+	Page<Autor> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

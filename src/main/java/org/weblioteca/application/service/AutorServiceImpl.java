@@ -9,53 +9,53 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.weblioteca.application.model.Cliente;
-import org.weblioteca.application.repository.ClienteRepository;
+import org.weblioteca.application.model.Autor;
+import org.weblioteca.application.repository.AutorRepository;
 
 @Service
-public class AutorServiceImpl implements ClienteService {
+public class AutorServiceImpl implements AutorService {
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private AutorRepository autorRepository;
 
 	@Override
-	public List<Cliente> getAllClientes() {
-		return clienteRepository.findAll();
+	public List<Autor> getAllAutores() {
+		return autorRepository.findAll();
 	}
 	
 	@Override
-	public List<Cliente> findByNomeContainingIgnoreCase(String nome) {
-		List<Cliente> cliente = clienteRepository.findByNomeContainingIgnoreCase(nome);
-		return cliente;
+	public List<Autor> findByNomeContainingIgnoreCase(String nome) {
+		List<Autor> autor = autorRepository.findByNomeContainingIgnoreCase(nome);
+		return autor;
 	}
 	
 	@Override
-	public void salvarCliente(Cliente cliente) {
-		clienteRepository.save(cliente);
+	public void salvarAutor(Autor autor) {
+		autorRepository.save(autor);
 	}
 
 	@Override
-	public Cliente getClienteById(Long id) {
-		Optional<Cliente> optional = clienteRepository.findById(id);
-		Cliente cliente = null;
+	public Autor getAutorById(Long id) {
+		Optional<Autor> optional = autorRepository.findById(id);
+		Autor autor = null;
 		if (optional.isPresent()) {
-			cliente = optional.get();
+			autor = optional.get();
 		} else {
-			throw new RuntimeException("Cliente nao encontrado com id = " + id);
+			throw new RuntimeException("Autor nao encontrado com id = " + id);
 		}
-		return cliente;
+		return autor;
 	}
 
 	@Override
-	public void deletarClienteById(Long id) {
-		clienteRepository.deleteById(id);
+	public void deletarAutorById(Long id) {
+		autorRepository.deleteById(id);
 	}
 
 	@Override
-	public Page<Cliente> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Autor> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
 
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-		return this.clienteRepository.findAll(pageable);
+		return this.autorRepository.findAll(pageable);
 	}
 }
