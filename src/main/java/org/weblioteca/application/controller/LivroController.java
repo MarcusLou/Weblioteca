@@ -21,7 +21,7 @@ public class LivroController {
 	
 	@GetMapping("/livro")
 	public String viewHomePage(Model model) {
-		return livrosPaginacao(1, "nome", "asc", model);
+		return livrosPaginacao(1, "tituloLivro", "asc", model);
 	}
 	
 	@GetMapping("/novoLivro") 
@@ -34,7 +34,7 @@ public class LivroController {
 	@PostMapping("/salvarLivro")
 	public String salvarLivro(@ModelAttribute("livro") Livro livro) {
 		livroService.salvarLivro(livro);
-		return "redirect:/";
+		return "redirect:/livro";
 	}	
 	
 	@GetMapping("/atualizarLivro/{id}")
@@ -47,7 +47,7 @@ public class LivroController {
 	@GetMapping("/deletarLivro/{id}")
 	public String deletarLivro(@PathVariable (value = "id") Long id) {
 		livroService.deletarLivroById(id);
-		return "redirect:/";
+		return "redirect:/livro";
 	}
 	
 	@GetMapping("/pageLivro/{pageNo}")
@@ -69,6 +69,6 @@ public class LivroController {
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaLivros", listaLivros);
-		return "index";
+		return "livro";
 	}
 }
