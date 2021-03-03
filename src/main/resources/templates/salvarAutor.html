@@ -62,15 +62,15 @@
 			<div class="col-sm-12">
 				<h1>Weblioteca Management System</h1>
 				<hr>
-				<h2>Salvar Cliente</h2>
-				<form action="#" th:action="@{/salvarCliente}" th:object="${cliente}" method="POST">
+				<h2>Salvar Autor</h2>
+				<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">
 					<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{sexo}" placeholder="Sexo" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{cpf}" placeholder="Cpf"   class="form-control mb-4 col-4">
-					<button type="submit" class="btn btn-info col-2">Salvar Cliente</button>
+					<input type="text" th:field="*{nascimento}" placeholder="Nascimento" class="form-control mb-4 col-4">
+					<input type="text" th:field="*{origem}" placeholder="Origem"   class="form-control mb-4 col-4">
+					<button type="submit" class="btn btn-info col-2">Salvar Autor</button>
 				</form>
 				<hr>
-				<a th:href="@{/}">Voltar lista de clientes</a>
+				<a th:href="@{/autor}">Voltar lista de autores</a>
 			</div>
 		</div>
 

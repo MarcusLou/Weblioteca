@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 import org.weblioteca.application.model.Cliente;
+import org.weblioteca.application.repository.AutorRepository;
 import org.weblioteca.application.repository.ClienteRepository;
 
 @SpringBootApplication
@@ -21,6 +22,9 @@ class DemoCommandLineRunner implements CommandLineRunner {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private AutorRepository autorRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -33,15 +37,3 @@ class DemoCommandLineRunner implements CommandLineRunner {
 //		clienteRepository.save(cliente);
 	}
 }
-
-/*
- * 
- * Tutoriais
- * https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#reference
- * https://www.baeldung.com/spring-boot-crud-thymeleaf
- * 
- * 
- * 
- * 
- * 
- */

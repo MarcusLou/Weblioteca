@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.weblioteca.application.model.Cliente;
+import org.weblioteca.application.model.Autor;
 
 @Repository                              
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-	List<Cliente> findByNomeContainingIgnoreCase(String nome);
+public interface AutorRepository extends JpaRepository<Autor, Long> {
+	List<Autor> findByNomeContainingIgnoreCase(String nome);
 }

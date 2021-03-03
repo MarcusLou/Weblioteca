@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.weblioteca.application.model.Cliente;
-import org.weblioteca.application.repository.ClienteRepository;
 import org.weblioteca.application.service.ClienteService;
 
 @Controller
@@ -22,7 +19,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
-	@GetMapping("/")
+	@GetMapping("/cliente")
 	public String viewHomePage(Model model) {
 		return clientesPaginacao(1, "nome", "asc", model);
 	}
@@ -37,7 +34,7 @@ public class ClienteController {
 	@PostMapping("/salvarCliente")
 	public String salvarCliente(@ModelAttribute("cliente") Cliente cliente) {
 		clienteService.salvarCliente(cliente);
-		return "redirect:/";
+		return "redirect:/cliente";
 	}
 	
 	@GetMapping("/atualizarCliente/{id}")
@@ -50,28 +47,28 @@ public class ClienteController {
 	@GetMapping("/deletarCliente/{id}")
 	public String deletarCliente(@PathVariable (value = "id") Long id) {
 		clienteService.deletarClienteById(id);
-		return "redirect:/";
+		return "redirect:/cliente";
 	}
 	
-	@GetMapping("/page/{pageNo}")
-	public String clientesPaginacao(@PathVariable (value = "pageNo") int pageNo, 
-			                        @RequestParam("sortField") String sortField,
-		                        	@RequestParam("sortDir") String sortDir,
+	@GetMapping("/pageCliente/{pageNo}")
+	public String clientesPaginacao(@PathVariable (value = "pageNo") int pageNoCliente, 
+			                        @RequestParam("sortField") String sortFieldCliente,
+		                        	@RequestParam("sortDir") String sortDirCliente,
 		                         	Model model) {
-		int pageSize = 5;
+		int pageSizeCliente = 5;
 		
-		Page<Cliente> page = clienteService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<Cliente> listaClientes = page.getContent();
+		Page<Cliente> pageCliente = clienteService.findPaginated(pageNoCliente, pageSizeCliente, sortFieldCliente, sortDirCliente);
+		List<Cliente> listaClientes = pageCliente.getContent();
 		
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("currentPage", pageNoCliente);
+		model.addAttribute("totalPages", pageCliente.getTotalPages());
+		model.addAttribute("totalItems", pageCliente.getTotalElements());
 		
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		model.addAttribute("sortField", sortFieldCliente);
+		model.addAttribute("sortDir", sortDirCliente);
+		model.addAttribute("reverseSortDir", sortDirCliente.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaClientes", listaClientes);
-		return "index";
+		return "cliente";
 	}
 }
