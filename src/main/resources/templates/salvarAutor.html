@@ -65,7 +65,7 @@
 				<h2>Salvar Autor</h2>
 				<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">
 					<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{nascimento}" placeholder="Nascimento" class="form-control mb-4 col-4">
+					<input type="date" th:field="*{nascimento}" placeholder="Nascimento" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{origem}" placeholder="Origem"   class="form-control mb-4 col-4">
 					<button type="submit" class="btn btn-info col-2">Salvar Autor</button>
 				</form>
