@@ -75,7 +75,12 @@
 							<th><a
 								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=localizacao&sortDir=' + ${reverseSortDir}}">
 									Localizacao</a></th>
-							
+							<th><a
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=origem&sortDir=' + ${reverseSortDir}}">
+									Autor</a></th>
+							<th><a
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=origem&sortDir=' + ${reverseSortDir}}">
+									Editora</a></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
@@ -84,6 +89,8 @@
 						<td th:text="${livro.tituloLivro}"></td>
 						<td th:text="${livro.quantidade}"></td>
 						<td th:text="${livro.localizacao}"></td>
+						<td th:text="autor"></td>
+						<td th:text="editora"></td>
 					    <td> <a th:href="@{/atualizarLivro/{id}(id=${livro.livroId})}" class="btn btn-primary">Atualizar</a>
 					         <a th:href="@{/deletarLivro/{id}(id=${livro.livroId})}" class="btn btn-danger">Deletar</a>
 					    </td>

@@ -68,6 +68,14 @@
 					<input type="text" th:field="*{tituloLivro}" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{quantidade}" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{localizacao}" class="form-control mb-4 col-4">
+					<select th:field="*{editora.editoraId}" class="form-control mb-4 col-4">
+                            <option value="">Selecione uma editora</option>
+    						<option th:each="editora : ${listaEditoras}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
+    				</select>
+					<select th:field="*{autor.autorId}" class="form-control mb-4 col-4">
+                            <option value="">Selecione um autor</option>
+    						<option th:each="autor : ${listaAutores}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
+    				</select>
 					<button type="submit" class="btn btn-info col-2">Atualizar Livro</button>
 				</form>
 				<hr>

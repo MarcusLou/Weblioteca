@@ -67,10 +67,19 @@
 					<input type="text" th:field="*{tituloLivro}" placeholder="Titulo" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{quantidade}" placeholder="Quantidade" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{localizacao}" placeholder="Localizacao"   class="form-control mb-4 col-4">
+					<select th:field="*{editora.editoraId}" class="form-control mb-4 col-4">
+                            <option value="">Selecione uma editora</option>
+    						<option th:each="editora : ${listaEditoras}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
+    				</select>
+					<select th:field="*{autor.autorId}" class="form-control mb-4 col-4">
+                            <option value="">Selecione um autor</option>
+    						<option th:each="autor : ${listaAutores}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
+    				</select>
+    				
 					<button type="submit" class="btn btn-info col-2">Salvar Livro</button>
 				</form>
 				<hr>
-				<a th:href="@{/autor}">Voltar lista de livros</a>
+				<a th:href="@{/livro}">Voltar lista de livros</a>
 			</div>
 		</div>
 
