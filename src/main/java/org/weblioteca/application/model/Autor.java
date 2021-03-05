@@ -1,13 +1,13 @@
 package org.weblioteca.application.model;
 
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.util.Date;
 
 @Entity
 @Table(name = "AUTOR")
@@ -17,13 +17,25 @@ public class Autor {
 	private Long autorId;
 	private String nome;
 	private String origem;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date nascimento;
+	//private boolean ativo = true;
 	
 
 	public Autor() {
 	}
+/*
+    public boolean isActivo() {
+        return this.ativo;
+    }
 
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public void inativato() {
+        this.ativo = false;
+    }
+	*/
 	public Long getAutorId() {
 		return autorId;
 	}

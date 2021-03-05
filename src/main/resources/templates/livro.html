@@ -76,10 +76,10 @@
 								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=localizacao&sortDir=' + ${reverseSortDir}}">
 									Localizacao</a></th>
 							<th><a
-								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=origem&sortDir=' + ${reverseSortDir}}">
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=autora&sortDir=' + ${reverseSortDir}}">
 									Autor</a></th>
 							<th><a
-								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=origem&sortDir=' + ${reverseSortDir}}">
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=editora&sortDir=' + ${reverseSortDir}}">
 									Editora</a></th>
 							<th>Ações</th>
 						</tr>
@@ -89,8 +89,9 @@
 						<td th:text="${livro.tituloLivro}"></td>
 						<td th:text="${livro.quantidade}"></td>
 						<td th:text="${livro.localizacao}"></td>
-						<td th:text="autor"></td>
-						<td th:text="editora"></td>
+						<td th:text="${livro.autor.nome}"></td>
+						<td th:text="${livro.editora.nome}"></td>
+						
 					    <td> <a th:href="@{/atualizarLivro/{id}(id=${livro.livroId})}" class="btn btn-primary">Atualizar</a>
 					         <a th:href="@{/deletarLivro/{id}(id=${livro.livroId})}" class="btn btn-danger">Deletar</a>
 					    </td>

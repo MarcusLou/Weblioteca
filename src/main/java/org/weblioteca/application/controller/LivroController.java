@@ -89,6 +89,8 @@ public class LivroController {
 //	    return "editoras";
 //	}
 	
+	
+	
 	@ModelAttribute("listaEditoras")
 	public List<Editora> getlistaEditoras() {
 	      List<Editora> listaEditoras = editoraService.getAllEditoras();
