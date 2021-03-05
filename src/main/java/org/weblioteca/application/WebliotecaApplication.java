@@ -9,6 +9,7 @@ import org.weblioteca.application.model.Cliente;
 import org.weblioteca.application.repository.AutorRepository;
 import org.weblioteca.application.repository.ClienteRepository;
 import org.weblioteca.application.repository.EditoraRepository;
+import org.weblioteca.application.repository.LivroRepository;
 
 @SpringBootApplication
 public class WebliotecaApplication {
@@ -26,9 +27,12 @@ class DemoCommandLineRunner implements CommandLineRunner {
 	
 	@Autowired
 	private EditoraRepository editoraRepository;
-	
+
 	@Autowired
 	private AutorRepository autorRepository;
+	
+	@Autowired
+	private LivroRepository livroRepository;
 
 	@Override
 	public void run(String... args) throws Exception {

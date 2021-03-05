@@ -61,22 +61,22 @@ public class LivroController {
 	}
 	
 	@GetMapping("/pageLivro/{pageNo}")
-	public String livrosPaginacao(@PathVariable (value = "pageNo") int pageNo, 
-			                        @RequestParam("sortField") String sortField,
-		                        	@RequestParam("sortDir") String sortDir,
+	public String livrosPaginacao(@PathVariable (value = "pageNo") int pageNoLivro, 
+			                        @RequestParam("sortField") String sortFieldLivro,
+		                        	@RequestParam("sortDir") String sortDirLivro,
 		                         	Model model) {
-		int pageSize = 5;
+		int pageSizeLivro = 5;
 		
-		Page<Livro> page = livroService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<Livro> listaLivros = page.getContent();
+		Page<Livro> pageLivro = livroService.findPaginated(pageNoLivro, pageSizeLivro, sortFieldLivro, sortDirLivro);
+		List<Livro> listaLivros = pageLivro.getContent();
 		
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("currentPage", pageNoLivro);
+		model.addAttribute("totalPages", pageLivro.getTotalPages());
+		model.addAttribute("totalItems", pageLivro.getTotalElements());
 		
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		model.addAttribute("sortField", sortFieldLivro);
+		model.addAttribute("sortDir", sortDirLivro);
+		model.addAttribute("reverseSortDir", sortDirLivro.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaLivros", listaLivros);
 		return "livro";
@@ -88,6 +88,8 @@ public class LivroController {
 //	    model.addAttribute("listaEditoras", listaEditoras);
 //	    return "editoras";
 //	}
+	
+	
 	
 	@ModelAttribute("listaEditoras")
 	public List<Editora> getlistaEditoras() {
