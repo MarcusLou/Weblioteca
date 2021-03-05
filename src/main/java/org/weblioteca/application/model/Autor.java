@@ -1,5 +1,6 @@
 package org.weblioteca.application.model;
 
+
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -17,11 +18,24 @@ public class Autor {
 	private String nome;
 	private String origem;
 	private Date nascimento;
+	//private boolean ativo = true;
 	
 
 	public Autor() {
 	}
+/*
+    public boolean isActivo() {
+        return this.ativo;
+    }
 
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public void inativato() {
+        this.ativo = false;
+    }
+	*/
 	public Long getAutorId() {
 		return autorId;
 	}
