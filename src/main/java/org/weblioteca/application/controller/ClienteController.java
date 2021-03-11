@@ -19,7 +19,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
-	@GetMapping("/")
+	@GetMapping("/indexcliente")
 	public String viewHomePage(Model model) {
 		return clientesPaginacao(1, "nome", "asc", model);
 	}
