@@ -13,6 +13,8 @@ import org.weblioteca.application.model.Cliente;
 import org.weblioteca.application.repository.AutorRepository;
 import org.weblioteca.application.repository.ClienteRepository;
 import org.weblioteca.application.service.ClienteServiceImpl;
+import org.weblioteca.application.repository.EditoraRepository;
+import org.weblioteca.application.repository.LivroRepository;
 
 @SpringBootApplication
 public class WebliotecaApplication {
@@ -24,23 +26,21 @@ public class WebliotecaApplication {
 
 @Component
 class DemoCommandLineRunner implements CommandLineRunner {
- 
+
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
+	@Autowired
+	private EditoraRepository editoraRepository;
+
 	@Autowired
 	private AutorRepository autorRepository;
-	
-	ClienteServiceImpl clienteServiceImpl;
+
+	@Autowired
+	private LivroRepository livroRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-//		Teste metódo para pesquisar um clinte
-//		List<Cliente> cliente = new ArrayList<>();
-//		cliente = clienteServiceImpl.findByNomeContainingIgnoreCase("miu");
-//		for (Cliente x : cliente) {
-//			 System.out.println(x.getNome() + " : " + x.getSexo());
-//		}
-		        
+
 	}
 }

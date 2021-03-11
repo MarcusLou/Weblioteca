@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="css/webliotecaStyle.css" media="screen" />
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
+	
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+<title>Livros</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+        <header class="header">
+  			<img src="img/books.png" alt="bookstore">	
+        </header>
+
+		<nav class="navbar navbar-expand-sm bg-light navbar-light">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="bi bi-house-door"></i> Home</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="bi bi-search"></i> Pesquisar</a></li>
+
+				<!-- Dropdown -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/funcionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/cliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
+						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
+						<a class="dropdown-item" th:href="@{/autor}"><i class="bi bi-person "></i> Autores</a> 
+						<a class="dropdown-item" th:href="@{/editora}"><i class="bi bi-bookshelf"></i> Editoras</a>
+						<a class="dropdown-item" th:href="@{/abonarMulta}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a> 
+						<a class="dropdown-item" th:href="@{/prolongarEmprestimo}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
+						<a class="dropdown-item" th:href="@{/faturarEmprestimo}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/emprestarExemplares}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/devolucaoExemplares}"><i class="bi bi-journal-check"></i> Devolução de Exempares</a>
+						<a class="dropdown-item" th:href="@{/emprestimoReserva}"><i class="bi bi-journal-bookmark"></i> Empréstimo Reserva</a> 
+					</div></li>
+				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
+				</li>
+				<form class="form-inline">
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Pesquisar Livro" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ok</button>
+				</form>
+			</ul>
+		</nav>
+
+		<div class="row">
+			<div class="col-sm-12">
+			
+			<h3>Lista de Livros</h3>
+				<a th:href = "@{/novoLivro}" class="btn btn-primary">Adicionar Livros</a>
+				<table border="1" class = "table table-striped table-responsive-md">
+					<thead>
+						<tr>
+							<th><a
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=tituloLivro&sortDir=' + ${reverseSortDir}}">
+									Titulo</a></th>
+							<th><a
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=quantidade&sortDir=' + ${reverseSortDir}}">
+									Quantidade</a></th>
+							<th><a
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=localizacao&sortDir=' + ${reverseSortDir}}">
+									Localizacao</a></th>
+							<th><a
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=autora&sortDir=' + ${reverseSortDir}}">
+									Autor</a></th>
+							<th><a
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=editora&sortDir=' + ${reverseSortDir}}">
+									Editora</a></th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr th:each="livro : ${listaLivros}">
+						<td th:text="${livro.tituloLivro}"></td>
+						<td th:text="${livro.quantidade}"></td>
+						<td th:text="${livro.localizacao}"></td>
+						<td th:text="${livro.autor.nome}"></td>
+						<td th:text="${livro.editora.nome}"></td>
+						
+					    <td> <a th:href="@{/atualizarLivro/{id}(id=${livro.livroId})}" class="btn btn-primary">Atualizar</a>
+					         <a th:href="@{/deletarLivro/{id}(id=${livro.livroId})}" class="btn btn-danger">Deletar</a>
+					    </td>
+				</tr>
+			</tbody>
+		    </table>
+			</div>
+			
+		</div>
+		
+		<div th:if = "${totalPages > 1}">
+			<div class = "row col-sm-10">
+				<div class = "col-sm-2">
+					Total Livros: [[${totalItems}]] 
+				</div>
+				<div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/pageLivro/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+				</div>
+				<div class = "col-sm-1">
+					<a th:if="${currentPage < totalPages}" th:href="@{'/pageLivro/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Avançar</a>
+					<span th:unless="${currentPage < totalPages}">Avançar</span>
+				</div>
+				
+				 <div class="col-sm-1">
+    				<a th:if="${currentPage < totalPages}" th:href="@{'/pageLivro/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Voltar</a>
+					<span th:unless="${currentPage < totalPages}">Voltar</span>
+   				 </div>
+			</div>
+				
+		</div>
+		
+	    <footer>
+	     <div>
+	     <ul class="nav list-inline justify-content-center">
+	      <li>Todos os direitos reservados a Weblioteca. Siga nossas redes sociais.</li>
+          <li><a href="#" target="_blank"><img src="img/linkedin.png" width="48" height="48"></a></li>      
+          <li><a href="#" target="_blank"><img src="img/twitter.png" width="48" height="48"></a></li>     
+          <li><a href="#" target="_blank"><img src="img/instagram.png" width="48" height="48"></a></li>
+          <li><a href="#" target="_blank"><img src="img/facebook.png" width="48" height="48"></a></li>        
+        </ul> 
+	     </div>	
+	    </footer>
+	    
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
+</body>
+</html>

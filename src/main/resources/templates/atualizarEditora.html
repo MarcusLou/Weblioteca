@@ -21,7 +21,7 @@
 			crossorigin="anonymous"></script>		
 	<script src="../javascript/jquery.mask.js" type="text/javascript"></script>
 	<script src="../javascript/CONFIG.jquery.mask.js" type="text/javascript"></script>
-	<title>Atualizar Autor</title>
+	<title>Atualizar Editora</title>
 </head>
 <body>
 	<div class="container-fluid">
@@ -38,29 +38,29 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/autor}"><i class="bi bi-person "></i> Autores</a>
+						<a class="dropdown-item" th:href="@{/editora}"><i class="bi bi-bookshelf"></i> Editoras</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
 				<form class="form-inline">
 					<input class="form-control mr-sm-2" type="search"
-						placeholder="Pesquisar Autor" aria-label="Search">
+						placeholder="Pesquisar Editora" aria-label="Search">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ok</button>
 				</form>
 			</ul>
 		</nav>
+
 		<div class="row">
 			<div class="col-sm-12">
-				<h2>Atualizar Autor</h2>
-				<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">
-				    <input type="hidden" th:field="*{autorId}" />
+				<h2>Atualizar Editora</h2>
+				<form action="#" th:action="@{/salvarEditora}" th:object="${editora}" method="POST">
+				    <input type="hidden" th:field="*{editoraId}" />
 					<input type="text" th:field="*{nome}" class="form-control mb-4 col-4">
-					<input type="date" th:field="*{nascimento}" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{origem}" class="form-control mb-4 col-4">
-					<button type="submit" class="btn btn-info col-2">Atualizar Autor</button>
+					<input type="text" th:field="*{cnpj}" class="form-control mb-4 col-4 cnpj">
+					<button type="submit" class="btn btn-info col-2">Atualizar Editora</button>
 				</form>
 				<hr>
-				<a th:href="@{/autor}">Voltar lista de autores</a>
+				<a th:href="@{/editora}">Voltar lista de editoras</a>
 			</div>
 		</div>
 		<footer>

@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "EDITORA")
@@ -12,6 +13,9 @@ public class Editora {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long editoraId;
+	private String nome;
+	@Size(min = 18, message = "required")
+	private String cnpj;
 
 	public Editora() {
 	}
@@ -22,6 +26,22 @@ public class Editora {
 
 	public void setEditoraId(Long editoraId) {
 		this.editoraId = editoraId;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 }
