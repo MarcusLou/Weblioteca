@@ -19,7 +19,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
-	@GetMapping("/cliente")
+	@GetMapping("/indexcliente")
 	public String viewHomePage(Model model) {
 		return clientesPaginacao(1, "nome", "asc", model);
 	}
@@ -76,6 +76,6 @@ public class ClienteController {
 		model.addAttribute("reverseSortDir", sortDirCliente.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaClientes", listaClientes);
-		return "cliente";
+		return "indexCliente";
 	}
 }
