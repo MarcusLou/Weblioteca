@@ -76,6 +76,6 @@ public class ClienteController {
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaClientes", listaClientes);
-		return "index";
+		return "indexCliente";
 	}
 }
