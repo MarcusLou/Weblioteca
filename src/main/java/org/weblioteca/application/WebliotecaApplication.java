@@ -1,12 +1,17 @@
 package org.weblioteca.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
+
 import org.weblioteca.application.model.Cliente;
 import org.weblioteca.application.repository.ClienteRepository;
+import org.weblioteca.application.service.ClienteServiceImpl;
 
 @SpringBootApplication
 public class WebliotecaApplication {
@@ -18,18 +23,21 @@ public class WebliotecaApplication {
 
 @Component
 class DemoCommandLineRunner implements CommandLineRunner {
-
+ 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	ClienteServiceImpl clienteServiceImpl;
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-//		Cliente cliente = new Cliente();
-//		cliente.setNome("Alan Turing");
-//		cliente.setCpf("04663439988");
-//		cliente.setSexo("Masculino");
-//
-//		clienteRepository.save(cliente);
+//		Teste metódo para pesquisar um clinte
+//		List<Cliente> cliente = new ArrayList<>();
+//		cliente = clienteServiceImpl.findByNomeContainingIgnoreCase("miu");
+//		for (Cliente x : cliente) {
+//			 System.out.println(x.getNome() + " : " + x.getSexo());
+//		}
+		        
 	}
 }
