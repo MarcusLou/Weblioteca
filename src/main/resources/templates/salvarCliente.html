@@ -63,17 +63,19 @@
 				<h1>Weblioteca Management System</h1>
 				<hr>
 				<h2>Salvar Cliente</h2>
-				<form action="#" th:action="@{/salvarCliente}" th:object="${cliente}" method="POST">
+				<div class="card-body">
+				<form action="#" th:action="@{/salvarCliente}" th:object="${clienteView}" method="POST">
 					<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{sexo}" placeholder="Sexo" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{cpf}" placeholder="Cpf"   class="form-control mb-4 col-4">
 					<button type="submit" class="btn btn-info col-2">Salvar Cliente</button>
 				</form>
+				</div>
 				<hr>
 				<a th:href="@{/}">Voltar lista de clientes</a>
 			</div>
 		</div>
-
+		
 		<footer>
 	     <div>
 	     <ul class="nav list-inline justify-content-center">
@@ -85,7 +87,7 @@
         </ul> 
 	     </div>	
 	    </footer>
-	    
+
 	</div>
 
 

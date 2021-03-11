@@ -60,12 +60,50 @@
 		</br>
 		<div class="row center" align="center">
 			<div class="col-sm-12">
+<<<<<<< HEAD
 				<div class="btn-group  col-sm-4">
 				 	<a  th:href="@{/funcionario}" class="btn btn-primary" role="button"><i class="bi bi-person-square"></i> Funcionários</a>
 				</div>
 				<div class="btn-group col-sm-4">
 				 	<a  th:href="@{/cliente}" class="btn btn-primary" role="button"><i class="bi bi-person-bounding-box"></i> Clientes</a>
 				</div>	
+=======
+			<h3>Pesquisar cliente</h3>
+			
+			<form class="form-inline">
+  				<div class="form-group mx-sm-3 mb-2">
+   					<input type="text" class="form-control" id="nomeCliente" placeholder="Nome cliente">
+  				</div>
+  				<div class="form-group mx-sm-3 mb-2">
+  					<button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+  				</div>
+  				<div class="form-group mx-sm-3 mb-2">
+	  				<a th:href="@{/novoCliente}" class="btn btn-primary mb-2">Novo Cliente</a>
+  				</div>
+			</form>
+			
+				<table border="1" class = "table table-striped">
+					<thead class="table-info">
+						<tr>
+							<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=nome&sortDir=' + ${reverseSortDir}}">Nome</a></th>
+							<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=sexo&sortDir=' + ${reverseSortDir}}">Sexo</a></th>
+							<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=cpf&sortDir=' + ${reverseSortDir}}">Cpf</a></th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr th:each="cliente : ${listaClientes}">
+						<td th:text="${cliente.nome}"></td>
+						<td th:text="${cliente.sexo}"></td>
+						<td th:text="${cliente.cpf}"></td>
+					    <td> 
+					    	<a th:href="@{/atualizarCliente/{id}(id=${cliente.clienteId})}" class="btn btn-primary">Atualizar</a>
+					    	<a th:href="@{/deletarCliente/{id}(id=${cliente.clienteId})}" class="btn btn-danger">Deletar</a>
+					    </td>
+				   </tr>
+				   </tbody>
+		    </table>
+>>>>>>> RA78076_JONATAS
 			</div>
 		</div>
 		</br>
