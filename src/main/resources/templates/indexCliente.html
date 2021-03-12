@@ -16,7 +16,7 @@
 	
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-<title>Hello, world!</title>
+<title>Clientes</title>
 </head>
 
 <body>
@@ -36,8 +36,8 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/funcionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
-						<a class="dropdown-item" th:href="@{/cliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
+						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
 						<a class="dropdown-item" th:href="@{/autor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/editora}"><i class="bi bi-bookshelf"></i> Editoras</a>
@@ -70,7 +70,7 @@
   					<button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
   				</div>
   				<div class="form-group mx-sm-3 mb-2">
-	  				<a th:href="@{/novoCliente}" class="btn btn-primary mb-2">Novo Cliente</a>
+	  				<a th:href="@{/novocliente}" class="btn btn-primary mb-2">Novo Cliente</a>
   				</div>
 			</form>
 			
@@ -89,8 +89,8 @@
 						<td th:text="${cliente.sexo}"></td>
 						<td th:text="${cliente.cpf}"></td>
 					    <td> 
-					    	<a th:href="@{/atualizarCliente/{id}(id=${cliente.clienteId})}" class="btn btn-primary">Atualizar</a>
-					    	<a th:href="@{/deletarCliente/{id}(id=${cliente.clienteId})}" class="btn btn-danger">Deletar</a>
+					    	<a th:href="@{/atualizarcliente/{id}(id=${cliente.clienteId})}" class="btn btn-primary">Atualizar</a>
+					    	<a th:href="@{/deletarcliente/{id}(id=${cliente.clienteId})}" class="btn btn-danger">Deletar</a>
 					    </td>
 				   </tr>
 				   </tbody>
