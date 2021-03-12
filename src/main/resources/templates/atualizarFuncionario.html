@@ -16,7 +16,7 @@
 	
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-<title>Hello, world!</title>
+<title>Atualizar Funcionário</title>
 </head>
 
 <body>
@@ -36,8 +36,8 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/funcionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
-						<a class="dropdown-item" th:href="@{/cliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
+						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
 						<a class="dropdown-item" th:href="@{/autor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/editora}"><i class="bi bi-bookshelf"></i> Editoras</a>
@@ -62,16 +62,16 @@
 			<div class="col-sm-12">
 				<h1>Weblioteca Management System</h1>
 				<hr>
-				<h2>Atualizar Cliente</h2>
-				<form action="#" th:action="@{/salvarCliente}" th:object="${cliente}" method="POST">
-				    <input type="hidden" th:field="*{idCliente}" />
+				<h2>Atualizar Funcionario</h2>
+				<form action="#" th:action="@{/salvarfuncionario}" th:object="${funcionario}" method="POST">
+				    <input type="hidden" th:field="*{funcionarioId}" />
 					<input type="text" th:field="*{nome}" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{sexo}" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{cpf}" class="form-control mb-4 col-4">
-					<button type="submit" class="btn btn-info col-2">Atualizar Cliente</button>
+					<input type="text" th:field="*{funcao}" class="form-control mb-4 col-4">
+					<button type="submit" class="btn btn-info col-2">Atualizar Funcionário</button>
 				</form>
 				<hr>
-				<a th:href="@{/}">Voltar lista de clientes</a>
+				<a th:href="@{/indexfuncionario}">Voltar lista de funcionários</a>
 			</div>
 		</div>
 

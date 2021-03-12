@@ -24,33 +24,33 @@ public class FuncionarioController {
 		return funcionarioPaginacao(1, "nome", "asc", model);
 	}
 	
-	@GetMapping("/novoFuncionario") 
+	@GetMapping("/novofuncionario") 
 	public String novoFuncionario(Model model) {
 		Funcionario funcionario = new Funcionario();
 		model.addAttribute("funcionario", funcionario);
 		return "salvarFuncionario";
 	}
 	
-	@PostMapping("/salvarFuncionario")
+	@PostMapping("/salvarfuncionario")
 	public String salvarFuncionario(@ModelAttribute("funcionario") Funcionario funcionario) {
 		funcionarioService.salvarFuncionario(funcionario);
-		return "redirect:/";
+		return "redirect:/indexfuncionario";
 	}
 	
-	@GetMapping("/atualizarFuncionario/{id}")
+	@GetMapping("/atualizarfuncionario/{id}")
 	public String atualizarFuncionario(@PathVariable ( value = "id") Long id, Model model) {
 		Funcionario funcionario = funcionarioService.getFuncionarioById(id);
 		model.addAttribute("funcionario", funcionario);
 		return "atualizarFuncionario";
 	}
 	
-	@GetMapping("/deletarFuncionario/{id}")
+	@GetMapping("/deletarfuncionario/{id}")
 	public String deletarFuncionario(@PathVariable (value = "id") Long id) {
 		funcionarioService.deletarFuncionarioById(id);
-		return "redirect:/";
+		return "redirect:/indexfuncionario";
 	}
 	
-	@GetMapping("/pageFuncionario/{pageNo}")
+	@GetMapping("/pagefuncionario/{pageNo}")
 	public String funcionarioPaginacao(@PathVariable (value = "pageNo") int pageNo, 
 			                           @RequestParam("sortField") String sortField,
 		                        	   @RequestParam("sortDir") String sortDir,
