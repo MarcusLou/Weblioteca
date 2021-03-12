@@ -19,15 +19,15 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
-	@GetMapping("/cliente")
+	@GetMapping("/indexcliente")
 	public String viewHomePage(Model model) {
 		return clientesPaginacao(1, "nome", "asc", model);
 	}
 	
 	@GetMapping("/novoCliente") 
-	public String novoCliente(Model model) {
+	public String novoCliente(Model clienteModel) {
 		Cliente cliente = new Cliente();
-		model.addAttribute("cliente", cliente);
+		clienteModel.addAttribute("clienteView", cliente);
 		return "salvarCliente";
 	}
 	
@@ -38,14 +38,21 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/atualizarCliente/{id}")
-	public String atualizarCliente(@PathVariable ( value = "id") Long id, Model model) {
+	public String atualizarCliente(@PathVariable(value = "id") Long id, Model model) {
 		Cliente cliente = clienteService.getClienteById(id);
 		model.addAttribute("cliente", cliente);
 		return "atualizarCliente";
 	}
 	
+	@GetMapping("/pesquisarCliente/{nome}")
+	public String pesquisarCliente(@PathVariable (value = "nome") String nome, Model model) {
+		List<Cliente> cliente  = clienteService.findByNomeContainingIgnoreCase(nome);
+		model.addAttribute("pesquisarCliente", cliente);
+		return "redirect:/";
+	}
+	
 	@GetMapping("/deletarCliente/{id}")
-	public String deletarCliente(@PathVariable (value = "id") Long id) {
+	public String deletarCliente(@PathVariable(value = "id") Long id) {
 		clienteService.deletarClienteById(id);
 		return "redirect:/cliente";
 	}
@@ -69,6 +76,6 @@ public class ClienteController {
 		model.addAttribute("reverseSortDir", sortDirCliente.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaClientes", listaClientes);
-		return "cliente";
+		return "indexCliente";
 	}
 }

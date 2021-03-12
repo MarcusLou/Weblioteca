@@ -19,7 +19,7 @@ public class FuncionarioController {
 	@Autowired
 	FuncionarioService funcionarioService;
 	
-	@GetMapping("/funcionario")
+	@GetMapping("/indexfuncionario")
 	public String viewHomePage(Model model) {
 		return funcionarioPaginacao(1, "nome", "asc", model);
 	}
@@ -69,6 +69,6 @@ public class FuncionarioController {
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaFuncionarios", listaFuncionarios);
-		return "index";
+		return "indexFuncionario";
 	}
 }

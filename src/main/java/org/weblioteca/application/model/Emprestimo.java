@@ -1,4 +1,4 @@
-package org.weblioteca.application.model;
+	package org.weblioteca.application.model;
 
 import java.sql.Date;
 import java.util.List;
@@ -18,9 +18,7 @@ public class Emprestimo {
 	private Long emprestimoId;
 	private Date dataEmprestimo;
 	private Date dataDevolucao;
-	private Date dataDevolvido;/*
-	@ManyToOne
-	private List<Livro> exemplar;*/
+	private Date dataDevolvido;
 	private String exemplar;
 	public Emprestimo() {
 	}
@@ -56,14 +54,6 @@ public class Emprestimo {
 	public void setDataDevolvido(Date dataDevolvido) {
 		this.dataDevolvido = dataDevolvido;
 	}
-/*
-	public List<Livro> getExemplar() {
-		return exemplar;
-	}
-
-	public void setExemplar(List<Livro> exemplar) {
-		this.exemplar = exemplar;
-	}*/
 
 	public String getExemplar() {
 		return exemplar;
