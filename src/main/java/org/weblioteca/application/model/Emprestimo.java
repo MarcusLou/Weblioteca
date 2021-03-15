@@ -1,13 +1,15 @@
 	package org.weblioteca.application.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,12 +18,19 @@ public class Emprestimo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long emprestimoId;
-	private Date dataEmprestimo;
-	private Date dataDevolucao;
-	private Date dataDevolvido;
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	private Cliente cliente;
+	
+	@OneToMany(cascade=CascadeType.PERSIST)
+	private List<Livro> livros;
+	
+	private LocalDate dataEmprestimo;
+	private LocalDate dataDevolucao;
+	private LocalDate dataDevolvido;
 	private String exemplar;
-	public Emprestimo() {
-	}
+	
+	public Emprestimo() {}
 
 	public Long getEmprestimoId() {
 		return emprestimoId;
@@ -31,27 +40,43 @@ public class Emprestimo {
 		this.emprestimoId = emprestimoId;
 	}
 
-	public Date getDataEmprestimo() {
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
+	}
+
+	public LocalDate getDataEmprestimo() {
 		return dataEmprestimo;
 	}
 
-	public void setDataEmprestimo(Date dataEmprestimo) {
+	public void setDataEmprestimo(LocalDate dataEmprestimo) {
 		this.dataEmprestimo = dataEmprestimo;
 	}
 
-	public Date getDataDevolucao() {
+	public LocalDate getDataDevolucao() {
 		return dataDevolucao;
 	}
 
-	public void setDataDevolucao(Date dataDevolucao) {
+	public void setDataDevolucao(LocalDate dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
 
-	public Date getDataDevolvido() {
+	public LocalDate getDataDevolvido() {
 		return dataDevolvido;
 	}
 
-	public void setDataDevolvido(Date dataDevolvido) {
+	public void setDataDevolvido(LocalDate dataDevolvido) {
 		this.dataDevolvido = dataDevolvido;
 	}
 
@@ -62,5 +87,4 @@ public class Emprestimo {
 	public void setExemplar(String exemplar) {
 		this.exemplar = exemplar;
 	}
-
 }
