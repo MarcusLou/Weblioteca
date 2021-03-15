@@ -19,38 +19,38 @@ public class FuncionarioController {
 	@Autowired
 	FuncionarioService funcionarioService;
 	
-	@GetMapping("/funcionario")
+	@GetMapping("/indexfuncionario")
 	public String viewHomePage(Model model) {
 		return funcionarioPaginacao(1, "nome", "asc", model);
 	}
 	
-	@GetMapping("/novoFuncionario") 
+	@GetMapping("/novofuncionario") 
 	public String novoFuncionario(Model model) {
 		Funcionario funcionario = new Funcionario();
 		model.addAttribute("funcionario", funcionario);
 		return "salvarFuncionario";
 	}
 	
-	@PostMapping("/salvarFuncionario")
+	@PostMapping("/salvarfuncionario")
 	public String salvarFuncionario(@ModelAttribute("funcionario") Funcionario funcionario) {
 		funcionarioService.salvarFuncionario(funcionario);
-		return "redirect:/";
+		return "redirect:/indexfuncionario";
 	}
 	
-	@GetMapping("/atualizarFuncionario/{id}")
+	@GetMapping("/atualizarfuncionario/{id}")
 	public String atualizarFuncionario(@PathVariable ( value = "id") Long id, Model model) {
 		Funcionario funcionario = funcionarioService.getFuncionarioById(id);
 		model.addAttribute("funcionario", funcionario);
 		return "atualizarFuncionario";
 	}
 	
-	@GetMapping("/deletarFuncionario/{id}")
+	@GetMapping("/deletarfuncionario/{id}")
 	public String deletarFuncionario(@PathVariable (value = "id") Long id) {
 		funcionarioService.deletarFuncionarioById(id);
-		return "redirect:/";
+		return "redirect:/indexfuncionario";
 	}
 	
-	@GetMapping("/pageFuncionario/{pageNo}")
+	@GetMapping("/pagefuncionario/{pageNo}")
 	public String funcionarioPaginacao(@PathVariable (value = "pageNo") int pageNo, 
 			                           @RequestParam("sortField") String sortField,
 		                        	   @RequestParam("sortDir") String sortDir,
@@ -69,6 +69,6 @@ public class FuncionarioController {
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaFuncionarios", listaFuncionarios);
-		return "index";
+		return "indexFuncionario";
 	}
 }

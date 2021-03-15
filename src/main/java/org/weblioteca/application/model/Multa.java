@@ -13,8 +13,7 @@ public class Multa {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long multaId;
 
-	public Multa() {
-	}
+	public Multa() {}
 
 	public Long getMultaId() {
 		return multaId;

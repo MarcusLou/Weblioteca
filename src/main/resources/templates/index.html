@@ -27,7 +27,7 @@
 
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="bi bi-house-door"></i> Home</a>
+				<li class="nav-item active"><a class="nav-link" th:href="@{/index}"><i class="bi bi-house-door"></i> Home</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="bi bi-search"></i> Pesquisar</a></li>
 
@@ -36,8 +36,8 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/funcionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
-						<a class="dropdown-item" th:href="@{/cliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
+						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
 						<a class="dropdown-item" th:href="@{/autor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/editora}"><i class="bi bi-bookshelf"></i> Editoras</a>
@@ -61,10 +61,10 @@
 		<div class="row center" align="center">
 			<div class="col-sm-12">
 				<div class="btn-group  col-sm-4">
-				 	<a  th:href="@{/funcionario}" class="btn btn-primary" role="button"><i class="bi bi-person-square"></i> Funcionários</a>
+				 	<a  th:href="@{/indexfuncionario}" class="btn btn-primary" role="button"><i class="bi bi-person-square"></i> Funcionários</a>
 				</div>
 				<div class="btn-group col-sm-4">
-				 	<a  th:href="@{/cliente}" class="btn btn-primary" role="button"><i class="bi bi-person-bounding-box"></i> Clientes</a>
+				 	<a th:href="@{/indexcliente}" class="btn btn-primary" role="button"><i class="bi bi-person-bounding-box"></i> Clientes</a>
 				</div>	
 			</div>
 		</div>

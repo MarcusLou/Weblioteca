@@ -16,7 +16,7 @@
 	
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-<title>Hello, world!</title>
+<title>Cliente</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="bi bi-house-door"></i> Home</a>
+				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="bi bi-house-door"></i>Home</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="bi bi-search"></i> Pesquisar</a></li>
 
@@ -36,8 +36,8 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/funcionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
-						<a class="dropdown-item" th:href="@{/cliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
+						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
 						<a class="dropdown-item" th:href="@{/autor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/editora}"><i class="bi bi-bookshelf"></i> Editoras</a>
@@ -63,17 +63,19 @@
 				<h1>Weblioteca Management System</h1>
 				<hr>
 				<h2>Salvar Cliente</h2>
-				<form action="#" th:action="@{/salvarCliente}" th:object="${cliente}" method="POST">
+				<div class="card-body">
+				<form action="#" th:action="@{/salvarcliente}" th:object="${clienteView}" method="POST">
 					<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{sexo}" placeholder="Sexo" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{cpf}" placeholder="Cpf"   class="form-control mb-4 col-4">
 					<button type="submit" class="btn btn-info col-2">Salvar Cliente</button>
 				</form>
+				</div>
 				<hr>
-				<a th:href="@{/}">Voltar lista de clientes</a>
+				<a th:href="@{/indexcliente}">Voltar lista de clientes</a>
 			</div>
 		</div>
-
+		
 		<footer>
 	     <div>
 	     <ul class="nav list-inline justify-content-center">
@@ -85,7 +87,7 @@
         </ul> 
 	     </div>	
 	    </footer>
-	    
+
 	</div>
 
 

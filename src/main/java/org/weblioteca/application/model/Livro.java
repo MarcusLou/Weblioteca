@@ -1,5 +1,6 @@
 package org.weblioteca.application.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,10 +15,13 @@ public class Livro {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long livroId;
 	private String tituloLivro;
-	@OneToOne
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private Autor autor;
-	@OneToOne
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private Editora editora;
+	
 	private int quantidade;
 	private String localizacao;
 	private boolean disponivelEmprestimo;
