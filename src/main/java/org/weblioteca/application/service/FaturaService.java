@@ -11,6 +11,8 @@ public interface FaturaService {
 	List<Fatura> getAllFaturas();
 
 	void salvarFatura(Fatura fatura);
+	
+	Fatura gerarFatura(Long emprestimoId);
 
 	Fatura getFaturaById(Long id);
 

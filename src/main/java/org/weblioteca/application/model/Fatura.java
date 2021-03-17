@@ -17,7 +17,7 @@ public class Fatura {
 	private Date dataFatura;
 	private float valorFatura;
 	@OneToOne
-	private Cliente cliente;
+	private Emprestimo emprestimo;
 	private int diasAtraso;
 
 	public Fatura() {
@@ -39,12 +39,12 @@ public class Fatura {
 		this.dataFatura = dataFatura;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Emprestimo getEmprestimo() {
+		return emprestimo;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setEmprestimo(Emprestimo emprestimo) {
+		this.emprestimo = emprestimo;
 	}
 
 	public float getValorFatura() {
