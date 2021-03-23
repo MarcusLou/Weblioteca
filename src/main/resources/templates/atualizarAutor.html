@@ -38,7 +38,7 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/autor}"><i class="bi bi-person "></i> Autores</a>
+						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
@@ -51,16 +51,60 @@
 		</nav>
 		<div class="row">
 			<div class="col-sm-12">
-				<h2>Atualizar Autor</h2>
-				<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">
-				    <input type="hidden" th:field="*{autorId}" />
-					<input type="text" th:field="*{nome}" class="form-control mb-4 col-4">
-					<input type="date" th:field="*{nascimento}" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{origem}" class="form-control mb-4 col-4">
-					<button type="submit" class="btn btn-info col-2">Atualizar Autor</button>
-				</form>
+				<h2>Atualizar Autor</h2>				
+				<div class="card-body">
+					<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">
+						<input type="hidden" th:field="*{autorId}" />										    					
+						<div id="ajudaNomeAutor" class="collapse azulAjuda">
+                            O nome do autor do livro é o nome da pessoa que criou o livro...
+                        </div>
+                        <div class="input-group mb-3">                        	
+							<input type="text" th:field="*{nome}" class="form-control col-4" required="true">			  
+						  	<div class="input-group-append">						  
+								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeAutor">?</button>
+						  	</div>						  	
+						</div>
+						
+						<div id="ajudaData" class="collapse azulAjuda">
+                            Aqui devemos preencher o dia, mês e ano que o autor nasceu.
+                        </div>
+                        <div class="input-group mb-3">                        	
+							<input type="date" th:field="*{nascimento}" class="form-control col-4" required="true">		  
+						  	<div class="input-group-append">						  
+								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaData">?</button>
+                        	</div>						  	
+						</div>
+						
+						<div id="ajudaOrigem" class="collapse azulAjuda">
+                            Aqui devemos preencher a origem, ou local, de onde o autor nasceu.
+                        </div>
+                        <div class="input-group mb-3">                        	
+							<input type="text" th:field="*{origem}" class="form-control col-4" required="true">
+							<div class="input-group-append">						  
+								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaOrigem">?</button>
+                        	</div>						  	
+						</div>
+						
+						
+                        
+						<div class="row form-group"> 
+                             <div class="col text-center form-actions">                                 
+                                 <div  id="colaps2" class="collapse"> 
+                                 	<a th:href="@{/indexAutor}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
+                                     <button type="submit" id="submit" class="btn btn-success" value="Atualizar Autor" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Atualizar!</b></button>
+                                     </br>
+                                 </div>
+                                 <div class="form-actions floatRight">
+                                     </br>
+                                     <input type="button" value="Atualizar Autor" class="btn btn-info" data-toggle="collapse"  data-target="#colaps2">
+                                 </div>   
+                             </div>
+                         </div>
+                         
+					</form>
+				</div>
 				<hr>
-				<a th:href="@{/autor}">Voltar lista de autores</a>
+				<a th:href="@{/indexAutor}">Voltar lista de autores</a>
 			</div>
 		</div>
 		<footer>

@@ -19,7 +19,7 @@ public class EditoraController {
 	@Autowired
 	EditoraService editoraService;
 	
-	@GetMapping("/editora")
+	@GetMapping("/indexEditora")
 	public String viewHomePage(Model model) {
 		return editorasPaginacao(1, "nome", "asc", model);
 	}
@@ -34,7 +34,7 @@ public class EditoraController {
 	@PostMapping("/salvarEditora")
 	public String salvarEditora(@ModelAttribute("editora") Editora editora) {
 		editoraService.salvarEditora(editora);
-		return "redirect:/editora";
+		return "redirect:/indexEditora";
 	}
 	
 	@GetMapping("/atualizarEditora/{id}")
@@ -47,7 +47,7 @@ public class EditoraController {
 	@GetMapping("/deletarEditora/{id}")
 	public String deletarEditora(@PathVariable (value = "id") Long id) {
 		editoraService.deletarEditoraById(id);
-		return "redirect:/editora";
+		return "redirect:/indexEditora";
 	}
 	
 	@GetMapping("/pageEditora/{pageNo}")
@@ -69,6 +69,6 @@ public class EditoraController {
 		model.addAttribute("reverseSortDir", sortDirEditora.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaEditoras", listaEditoras);
-		return "editora";
+		return "indexEditora";
 	}
 }
