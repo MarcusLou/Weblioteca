@@ -58,12 +58,23 @@
 			</ul>
 		</nav>
 
-		<div class="row">
-			<div class="col-sm-12">
-			
-			<h3>Lista de Livros</h3>
-				<a th:href = "@{/novoLivro}" class="btn btn-primary">Adicionar Livros</a>
-				<table border="1" class = "table table-striped table-responsive-md">
+		<div class="row center" align="center">
+			<div class="col-sm-12">	
+			<h3>Lista de Livros</h3>			
+			<form class="form-inline">
+  				<div class="form-group mx-sm-3 mb-2">
+   					<input type="text" class="form-control" id="nomeLivro" placeholder="Nome livro">
+  				</div>
+  				<div class="form-group mx-sm-3 mb-2">
+  					<button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+  				</div>
+  				<div class="form-group mx-sm-3 mb-2">
+	  				<a th:href="@{/novoLivro}" class="btn btn-primary mb-2">Novo Livro</a>
+  				</div>
+			</form>
+				
+				
+				<table border="1" class = "table table-striped">
 					<thead>
 						<tr>
 							<th><a
