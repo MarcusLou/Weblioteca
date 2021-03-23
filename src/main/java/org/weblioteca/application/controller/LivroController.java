@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.weblioteca.application.model.Editora;
 import org.weblioteca.application.model.Autor;
@@ -43,8 +41,15 @@ public class LivroController {
 	
 	@PostMapping("/salvarLivro")
 	public String salvarLivro(@ModelAttribute("livro") Livro livro) {
-		livroService.salvarLivro(livro);
-		return "redirect:/livro";
+		if (livro.getTituloLivro() == "") {
+			if (livro.getLivroId() != null)
+				return "redirect:/atualizarLivro/"+livro.getLivroId();
+			else
+				return "salvarLivro";	
+		}else {
+			livroService.salvarLivro(livro);
+			return "redirect:/livro";
+		}
 	}	
 	
 	@GetMapping("/atualizarLivro/{id}")
