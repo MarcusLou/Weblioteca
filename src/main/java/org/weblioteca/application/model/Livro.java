@@ -1,5 +1,7 @@
 package org.weblioteca.application.model;
 
+import java.sql.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,8 @@ public class Livro {
 	@OneToOne(cascade=CascadeType.PERSIST)
 	private Editora editora;
 	
+	private String edicao;
+	private Date dataDeCompra;
 	private int quantidade;
 	private String localizacao;
 	private boolean disponivelEmprestimo;
@@ -83,6 +87,22 @@ public class Livro {
 
 	public void setDisponivelEmprestimo(boolean disponivelEmprestimo) {
 		this.disponivelEmprestimo = disponivelEmprestimo;
+	}
+
+	public String getEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(String edicao) {
+		this.edicao = edicao;
+	}
+
+	public Date getDataDeCompra() {
+		return dataDeCompra;
+	}
+
+	public void setDataDeCompra(Date dataDeCompra) {
+		this.dataDeCompra = dataDeCompra;
 	}
 
 }

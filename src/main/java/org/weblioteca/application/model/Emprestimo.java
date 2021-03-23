@@ -1,6 +1,6 @@
 	package org.weblioteca.application.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,12 +23,12 @@ public class Emprestimo {
 	private Cliente cliente;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
-	private List<Livro> livros;
+	private List<Livro> exemplar;
 	
-	private LocalDate dataEmprestimo;
-	private LocalDate dataDevolucao;
-	private LocalDate dataDevolvido;
-	private String exemplar;
+	private Date dataEmprestimo;
+	private Date dataDevolucao;
+	private Date dataDevolvido;
+	private double valorTotal;
 	
 	public Emprestimo() {}
 
@@ -48,43 +48,46 @@ public class Emprestimo {
 		this.cliente = cliente;
 	}
 
-	public List<Livro> getLivros() {
-		return livros;
-	}
-
-	public void setLivros(List<Livro> livros) {
-		this.livros = livros;
-	}
-
-	public LocalDate getDataEmprestimo() {
-		return dataEmprestimo;
-	}
-
-	public void setDataEmprestimo(LocalDate dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
-	}
-
-	public LocalDate getDataDevolucao() {
-		return dataDevolucao;
-	}
-
-	public void setDataDevolucao(LocalDate dataDevolucao) {
-		this.dataDevolucao = dataDevolucao;
-	}
-
-	public LocalDate getDataDevolvido() {
-		return dataDevolvido;
-	}
-
-	public void setDataDevolvido(LocalDate dataDevolvido) {
-		this.dataDevolvido = dataDevolvido;
-	}
-
-	public String getExemplar() {
+	public List<Livro> getExemplar() {
 		return exemplar;
 	}
 
-	public void setExemplar(String exemplar) {
+	public void setExemplar(List<Livro> exemplar) {
 		this.exemplar = exemplar;
 	}
+
+	public double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public Date getDataEmprestimo() {
+		return dataEmprestimo;
+	}
+
+	public void setDataEmprestimo(Date dataEmprestimo) {
+		this.dataEmprestimo = dataEmprestimo;
+	}
+
+	public Date getDataDevolucao() {
+		return dataDevolucao;
+	}
+
+	public void setDataDevolucao(Date dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
+	}
+
+	public Date getDataDevolvido() {
+		return dataDevolvido;
+	}
+
+	public void setDataDevolvido(Date dataDevolvido) {
+		this.dataDevolvido = dataDevolvido;
+	}
+
+	
+
 }

@@ -9,13 +9,6 @@ import org.weblioteca.application.model.Autor;
 @Repository                              
 public interface AutorRepository extends JpaRepository<Autor, Long> {
 	List<Autor> findByNomeContainingIgnoreCase(String nome);
-	
-/*
-	List<Autor> findByActiveTrue();
 
-	List<Autor> findByNameContainingAndActiveTrue(String name);
-
-	List<Autor> findByNameContainingAndActiveFalse(String name);
-	*/
 	
 }

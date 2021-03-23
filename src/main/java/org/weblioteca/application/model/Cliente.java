@@ -1,6 +1,6 @@
 package org.weblioteca.application.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,16 +18,15 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long clienteId;
-	@NotBlank(message = "Nome deve ser preenchido.")
 	private String nome;
-	@NotBlank(message = "Sexo deve ser preenchido.")
 	private String sexo;
-	@Size(min = 11, max = 11, message = "Cpf deve ser preenchido.")
 	private String cpf;
-	@Lob
-	@Column(columnDefinition = "MEDIUMBLOB")
 	private String foto;
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
+	private String telefone;
+	private String logradouro;
+	private String complemento;
+	private String numero;
 	
 	public Cliente() {}
 	
@@ -71,12 +70,46 @@ public class Cliente {
 		this.foto = foto;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	
 
 }
