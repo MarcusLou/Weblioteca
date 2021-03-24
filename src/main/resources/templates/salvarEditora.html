@@ -38,7 +38,7 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/editora}"><i class="bi bi-bookshelf"></i> Editoras</a> 
+						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a> 
 					</div></li>
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
@@ -52,13 +52,15 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<h2>Salvar Editora</h2>
-				<form action="#" th:action="@{/salvarEditora}" th:object="${editora}" method="POST">
-					<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{cnpj}" placeholder="CNPJ"  class="form-control mb-4 col-4 cnpj">
-					<button type="submit" class="btn btn-info col-2">Salvar Editora</button>
-				</form>
+				<div class="card-body">
+					<form action="#" th:action="@{/salvarEditora}" th:object="${editora}" method="POST">
+						<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
+						<input type="text" th:field="*{cnpj}" placeholder="CNPJ"  class="form-control mb-4 col-4 cnpj">
+						<button type="submit" class="btn btn-info col-2">Salvar Editora</button>
+					</form>				
+				</div>
 				<hr>
-				<a th:href="@{/editora}">Voltar lista de editoras</a>
+				<a th:href="@{/indexEditora}">Voltar lista de editoras</a>
 			</div>
 		</div>
 		<footer>

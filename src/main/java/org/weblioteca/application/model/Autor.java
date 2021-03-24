@@ -15,27 +15,15 @@ public class Autor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long autorId;
+	
 	private String nome;
 	private String origem;
 	private Date nascimento;
-	//private boolean ativo = true;
 	
 
 	public Autor() {
 	}
-/*
-    public boolean isActivo() {
-        return this.ativo;
-    }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    public void inativato() {
-        this.ativo = false;
-    }
-	*/
 	public Long getAutorId() {
 		return autorId;
 	}

@@ -1,5 +1,6 @@
 package org.weblioteca.application.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,10 +15,14 @@ public class Fatura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long faturaId;
+	
+	
+	private Long clienteId;
+	
 	private Date dataFatura;
-	private float valorFatura;
-	@OneToOne
-	private Emprestimo emprestimo;
+
+	private double valorFatura;
+	
 	private int diasAtraso;
 
 	public Fatura() {
@@ -39,19 +44,11 @@ public class Fatura {
 		this.dataFatura = dataFatura;
 	}
 
-	public Emprestimo getEmprestimo() {
-		return emprestimo;
-	}
-
-	public void setEmprestimo(Emprestimo emprestimo) {
-		this.emprestimo = emprestimo;
-	}
-
-	public float getValorFatura() {
+	public double getValorFatura() {
 		return valorFatura;
 	}
 
-	public void setValorFatura(float valorFatura) {
+	public void setValorFatura(double valorFatura) {
 		this.valorFatura = valorFatura;
 	}
 
@@ -61,6 +58,14 @@ public class Fatura {
 
 	public void setDiasAtraso(int diasAtraso) {
 		this.diasAtraso = diasAtraso;
+	}
+
+	public Long getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(Long clienteId) {
+		this.clienteId = clienteId;
 	}
 
 }

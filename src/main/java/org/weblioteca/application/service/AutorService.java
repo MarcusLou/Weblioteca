@@ -13,14 +13,6 @@ public interface AutorService {
 	List<Autor> findByNomeContainingIgnoreCase(String nome);
 	
 
-/*
-	List<Autor> findByActiveTrue();
-
-	List<Autor> findByNameContainingAndActiveTrue(String name);
-
-	List<Autor> findByNameContainingAndActiveFalse(String name);
-	*/
-
 	void salvarAutor(Autor autor);
 
 	Autor getAutorById(Long id);

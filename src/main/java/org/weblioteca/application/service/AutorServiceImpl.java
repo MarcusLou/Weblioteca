@@ -27,22 +27,7 @@ public class AutorServiceImpl implements AutorService {
 		List<Autor> autor = autorRepository.findByNomeContainingIgnoreCase(nome);
 		return autor;
 	}
-	/*
-	@Override
-	public List<Autor> findByNameContainingAndActiveTrue(String nome) {
-		List<Autor> autor = autorRepository.findByNameContainingAndActiveTrue(nome);
-		return autor;
-	}
-	
-	@Override
-	public List<Autor> findByNameContainingAndActiveFalse(String nome) {
-		List<Autor> autor = autorRepository.findByNameContainingAndActiveFalse(nome);
-		return autor;
-	}
-	
-	*/
-	
-	
+		
 	@Override
 	public void salvarAutor(Autor autor) {
 		autorRepository.save(autor);
