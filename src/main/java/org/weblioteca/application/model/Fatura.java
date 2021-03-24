@@ -20,8 +20,8 @@ public class Fatura {
 	private Long clienteId;
 	
 	private Date dataFatura;
+
 	private double valorFatura;
-	
 	
 	private int diasAtraso;
 

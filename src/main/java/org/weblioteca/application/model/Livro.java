@@ -10,22 +10,26 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name = "LIVRO")
 public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long livroId;
+	@NotNull
 	private String tituloLivro;
-	
+	@NotNull
 	@OneToOne(cascade=CascadeType.PERSIST)
 	private Autor autor;
-	
+	@NotNull
 	@OneToOne(cascade=CascadeType.PERSIST)
 	private Editora editora;
 	
 	private String edicao;
 	private Date dataDeCompra;
+
 	private int quantidade;
 	private String localizacao;
 	private boolean disponivelEmprestimo;

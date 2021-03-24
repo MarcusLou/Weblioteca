@@ -24,13 +24,6 @@ public class FaturaController {
 		return faturaPaginacao(1, "faturaId", "asc", model);
 	}
 	
-	@GetMapping("/novoFatura") 
-	public String novoFatura(Model model) {
-		Fatura fatura = new Fatura();
-		model.addAttribute("fatura", fatura);
-		return "salvarFatura";
-	}
-	
 	@PostMapping("/salvarFatura")
 	public String salvarFatura(@ModelAttribute("fatura") Fatura fatura) {
 		faturaService.salvarFatura(fatura);
@@ -47,6 +40,13 @@ public class FaturaController {
 	@GetMapping("/deletarFatura/{id}")
 	public String deletarFatura(@PathVariable (value = "id") Long id) {
 		faturaService.deletarFaturaById(id);
+		return "redirect:/fatura";
+	}
+	
+	@GetMapping("/faturarEmprestimo/{id}")
+	public String faturarEmprestimo(@PathVariable (value = "id") Long id) {
+		Fatura fatura = faturaService.gerarFatura(id); //id referente ao emprestimo
+		faturaService.salvarFatura(fatura);
 		return "redirect:/fatura";
 	}
 	
