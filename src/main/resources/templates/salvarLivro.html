@@ -39,8 +39,8 @@
 						<a class="dropdown-item" th:href="@{/funcionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
 						<a class="dropdown-item" th:href="@{/cliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
-						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
-						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
+						<a class="dropdown-item" th:href="@{/autor}"><i class="bi bi-person "></i> Autores</a> 
+						<a class="dropdown-item" th:href="@{/editora}"><i class="bi bi-bookshelf"></i> Editoras</a>
 						<a class="dropdown-item" th:href="@{/abonarMulta}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a> 
 						<a class="dropdown-item" th:href="@{/prolongarEmprestimo}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
 						<a class="dropdown-item" th:href="@{/faturarEmprestimo}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
@@ -65,15 +65,15 @@
 				<h2>Salvar Livro</h2>
 				<form action="#" th:action="@{/salvarLivro}" th:object="${livro}" method="POST">
 					<input type="text" th:field="*{tituloLivro}" placeholder="Titulo" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{quantidade}" placeholder="Quantidade" class="form-control mb-4 col-4">
+					<input type="number" th:field="*{quantidade}" placeholder="Quantidade" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{localizacao}" placeholder="Localizacao"   class="form-control mb-4 col-4">
-					<select th:field="*{editora.editoraId}" class="form-control mb-4 col-4">
+					<select th:field="*{editora}" class="form-control mb-4 col-4">
                             <option value="">Selecione uma editora</option>
-    						<option th:each="editora : ${listaEditoras}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
+    						<option th:each="editora : ${listEditora}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
     				</select>
-					<select th:field="*{autor.autorId}" class="form-control mb-4 col-4">
+					<select th:field="*{autor}" class="form-control mb-4 col-4">
                             <option value="">Selecione um autor</option>
-    						<option th:each="autor : ${listaAutores}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
+    						<option th:each="autor : ${listAutor}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
     				</select>
     				
 					<button type="submit" class="btn btn-info col-2">Salvar Livro</button>

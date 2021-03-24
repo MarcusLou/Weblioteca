@@ -53,8 +53,7 @@
 			<div class="col-sm-12">
 				<h2>Salvar Autor</h2>
 				<div class="card-body">
-					<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">
-					
+					<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">					
 						
 						<div id="ajudaNomeAutor" class="collapse azulAjuda">
                             O nome do autor do livro é o nome da pessoa que criou o livro...
@@ -65,9 +64,7 @@
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeAutor">?</button>
 						  	</div>						  	
-						</div>
-                        
-                        
+						</div>                       
                         
 						<div id="ajudaData" class="collapse azulAjuda">
                             Aqui devemos preencher o dia, mês e ano que o autor nasceu.
@@ -90,13 +87,11 @@
                         	</div>						  	
 						</div>
 						
-						
-                        
 						<div class="row form-group"> 
                              <div class="col text-center form-actions">                                 
                                  <div  id="colaps2" class="collapse"> 
                                  	<a th:href="@{/indexAutor}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-                                     <button type="submit" id="submit" class="btn btn-success" value="Salvar Autor" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Cadastrar!</b></button>
+                                     <button type="submit" id="submit" class="btn btn-success" value="Salvar Autor" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Salvar!</b></button>
                                      </br>
                                  </div>
                                  <div class="form-actions floatRight">

@@ -56,9 +56,38 @@
 				<div class="card-body">
 					<form action="#" th:action="@{/salvarEditora}" th:object="${editora}" method="POST">
 					    <input type="hidden" th:field="*{editoraId}" />
-						<input type="text" th:field="*{nome}" class="form-control mb-4 col-4">
-						<input type="text" th:field="*{cnpj}" class="form-control mb-4 col-4 cnpj">
-						<button type="submit" class="btn btn-info col-2">Atualizar Editora</button>
+					    <div id="ajudaNomeEditora" class="collapse azulAjuda">
+                            O nome da Editora do livro é o nome fantasia da empresa que publicou o livro...
+                        </div>
+                        <div class="input-group mb-3">                        	
+							<input type="text" th:field="*{nome}" class="form-control col-4" required="true">			  
+						  	<div class="input-group-append">						  
+								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeEditora">?</button>
+						  	</div>						  	
+						</div>
+						
+						<div id="ajudaCnpjEditora" class="collapse azulAjuda">
+                            O CNPJ da editora do livro é o número de cadastro nacional de pessoa júridica que a editora tem...
+                        </div>
+                        <div class="input-group mb-3">                        	
+							<input type="text" th:field="*{cnpj}" class="form-control col-4 cnpj" required="true">		  
+						  	<div class="input-group-append">						  
+								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaCnpjEditora">?</button>
+						  	</div>						  	
+						</div>
+						<div class="row form-group"> 
+                             <div class="col text-center form-actions">                                 
+                                 <div  id="colaps2" class="collapse"> 
+                                 	<a th:href="@{/indexEditora}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>                                 	
+									<button type="submit" id="submit" class="btn btn-success" value="Atualizar Editora" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Atualizar!</b></button>
+                                    </br>
+                                 </div>
+                                 <div class="form-actions floatRight">
+                                     </br>
+                                     <input type="button" value="Atualizar Editora" class="btn btn-info" data-toggle="collapse"  data-target="#colaps2">
+                                 </div>   
+                             </div>
+                         </div>
 					</form>
 				</div>
 				<hr>
