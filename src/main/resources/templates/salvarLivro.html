@@ -2,51 +2,53 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	  content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" type="text/css" href="css/webliotecaStyle.css" media="screen" />
-
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
-	
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
-<title>Hello, world!</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="../css/webliotecaStyle.css" media="screen" />	
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+		crossorigin="anonymous">	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"></script>
+	<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+			crossorigin="anonymous"></script>		
+	<script src="../javascript/jquery.mask.js" type="text/javascript"></script>
+	<script src="../javascript/CONFIG.jquery.mask.js" type="text/javascript"></script>
+	<title>Adicionar Livro</title>
 </head>
-
 <body>
 	<div class="container-fluid">
         <header class="header">
-  			<img src="img/books.png" alt="bookstore">	
+  			<img src="../img/books.png" alt="bookstore">	
         </header>
-
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="bi bi-house-door"></i> Home</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="bi bi-search"></i> Pesquisar</a></li>
-
 				<!-- Dropdown -->
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/funcionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
-						<a class="dropdown-item" th:href="@{/cliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
-						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
+						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
-						<a class="dropdown-item" th:href="@{/abonarMulta}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a> 
-						<a class="dropdown-item" th:href="@{/prolongarEmprestimo}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
-						<a class="dropdown-item" th:href="@{/faturarEmprestimo}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
-						<a class="dropdown-item" th:href="@{/emprestarExemplares}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/devolucaoExemplares}"><i class="bi bi-journal-check"></i> Devolução de Exempares</a>
-						<a class="dropdown-item" th:href="@{/emprestimoReserva}"><i class="bi bi-journal-bookmark"></i> Empréstimo Reserva</a> 
+						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
+						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexEmprestar}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexProlongar}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
+						<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexAbonar}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
@@ -57,19 +59,18 @@
 				</form>
 			</ul>
 		</nav>
-
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>Weblioteca Management System</h1>
-				<hr>
 				<h2>Salvar Livro</h2>
 					<div class="card-body">
 						<form action="#" th:action="@{/salvarLivro}" th:object="${livro}" method="POST">
+						
+						
 						<div id="ajudaTituloLivro" class="collapse azulAjuda">
                             O nome do livro
                         </div>
                         <div class="input-group mb-3">  
-								<input type="text" th:field="*{tituloLivro}" placeholder="Titulo" class="form-control mb-4 col-4">
+								<input type="text" th:field="*{tituloLivro}" placeholder="Titulo" id="tituloLivro" class="form-control col-4" required="true">
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaTituloLivro">?</button>
 						  		</div>	
@@ -78,9 +79,9 @@
                             Editora que reproduz o livro
                         </div>	
                         <div class="input-group mb-3"> 						
-								<select th:field="*{editora.editoraId}" class="form-control mb-4 col-4">
+								<select th:field="*{editora}" id="editora" class="form-control col-4" required="true">
 			                            <option value="">Selecione uma editora</option>
-			    						<option th:each="editora : ${listaEditoras}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
+			    						<option th:each="editora : ${listEditora}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
 			    				</select>
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaEditora">?</button>
@@ -90,19 +91,19 @@
                             Autor que escreve o livro
                         </div>	
                         <div class="input-group mb-3"> 					
-								<select th:field="*{autor.autorId}" class="form-control mb-4 col-4">
+								<select th:field="*{autor}" class="form-control col-4">
 			                            <option value="">Selecione um autor</option>
-			    						<option th:each="autor : ${listaAutores}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
+			    						<option th:each="autor : ${listAutor}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
 			    				</select>
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaAutor">?</button>
 						  		</div>	
 						</div>
-						<div id="ajudaEdicao" class="collapse azulAjuda">
+						<div id="ajudaEdicao" class="collapse azulAjuda" >
                             Numero da edição lançada
                         </div>	
 						<div class="input-group mb-3"> 	
-			    				<input type="text" th:field="*{edicao}" placeholder="Edicao"   class="form-control mb-4 col-4">
+			    				<input type="text" th:field="*{edicao}" placeholder="Edicao" id="edicao"  class="form-control col-4" required="true">
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaEdicao">?</button>
 						  		</div>	
@@ -111,7 +112,7 @@
                             Quantidade de Livros disponíveis
                         </div>
                         <div class="input-group mb-3"> 
-								<input type="text" th:field="*{quantidade}" placeholder="Quantidade" class="form-control mb-4 col-4">
+								<input type="number" th:field="*{quantidade}" placeholder="Quantidade" id="quantidade" class="form-control col-4" required="true">
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaQuantidade">?</button>
 						  		</div>		
@@ -120,7 +121,7 @@
                             Localizacao fisica do livro
                         </div>	
                         <div class="input-group mb-3"> 
-								<input type="text" th:field="*{localizacao}" placeholder="Localizacao"   class="form-control mb-4 col-4">
+								<input type="text" th:field="*{localizacao}" placeholder="Localizacao" id="localizacao" class="form-control col-4">
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaLocalizacao">?</button>
 						  		</div>		
@@ -129,16 +130,28 @@
                             Data que o livro foi adquirido pela biblioteca
                         </div>		
                         <div class="input-group mb-3"> 					
-								<input type="date" th:field="*{dataDeCompra}" placeholder="DataDeCompra" class="form-control col-4 " required="true">				
+								<input type="date" th:field="*{dataDeCompra}" placeholder="DataDeCompra" id="dataDeCompra" class="form-control col-4 " required="true">				
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaDataDeCompra">?</button>
 						  		</div>		
-						</div>								
-						<button type="submit" class="btn btn-info col-2">Salvar Livro</button>
+						</div>	
+						<div class="row form-group"> 
+                             <div class="col text-center form-actions">                                 
+                                 <div  id="colaps2" class="collapse"> 		
+                                 		<a th:href="@{/indexLivro}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>					
+										<button type="submit" id="submit" class="btn btn-success" value="Salvar Livro" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Cadastrar!</b></button>
+                                     </br>
+                                 </div>
+                                 <div class="form-actions floatRight">
+                                     </br>
+                                     <input type="button" value="Salvar Livro" class="btn btn-info" data-toggle="collapse"  data-target="#colaps2">
+                                 </div>   
+                             </div>
+                         </div>										
 						</form>
 					</div>
 				<hr>
-				<a th:href="@{/livro}">Voltar lista de livros</a>
+				<a th:href="@{/indexLivro}">Voltar lista de livros</a>
 			</div>
 		</div>
 
@@ -152,17 +165,7 @@
           <li><a href="#" target="_blank"><img src="img/facebook.png" width="48" height="48"></a></li>        
         </ul> 
 	     </div>	
-	    </footer>
-	    
+	    </footer>	    
 	</div>
-
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-		crossorigin="anonymous"></script>
 </body>
 </html>

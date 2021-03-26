@@ -14,12 +14,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.weblioteca.application.model.Editora;
 import org.weblioteca.application.model.Autor;
 import org.weblioteca.application.model.Livro;
+import org.weblioteca.application.repository.AutorRepository;
+import org.weblioteca.application.repository.EditoraRepository;
 import org.weblioteca.application.service.EditoraService;
 import org.weblioteca.application.service.LivroService;
 import org.weblioteca.application.service.AutorService;
 
 @Controller
 public class LivroController {
+	
+	@Autowired
+	private AutorRepository autorRepository;
+	@Autowired
+	private EditoraRepository editoraRepository;
+	
 	@Autowired
 	LivroService livroService;
 	@Autowired
@@ -27,7 +35,7 @@ public class LivroController {
 	@Autowired
 	AutorService autorService;
 	
-	@GetMapping("/livro")
+	@GetMapping("/indexLivro")
 	public String viewHomePage(Model model) {
 		return livrosPaginacao(1, "tituloLivro", "asc", model);
 	}
@@ -36,33 +44,51 @@ public class LivroController {
 	public String novoLivro(Model model) {
 		Livro livro = new Livro();
 		model.addAttribute("livro", livro);
+		List<Autor> listAutor = autorRepository.findAll();
+	    model.addAttribute("listAutor", listAutor);
+		List<Editora> listEditora = editoraRepository.findAll();
+	    model.addAttribute("listEditora", listEditora);
+		
 		return "salvarLivro";
 	}
 	
 	@PostMapping("/salvarLivro")
 	public String salvarLivro(@ModelAttribute("livro") Livro livro) {
-		if (livro.getTituloLivro() == "") {
-			if (livro.getLivroId() != null)
-				return "redirect:/atualizarLivro/"+livro.getLivroId();
-			else
-				return "salvarLivro";	
-		}else {
-			livroService.salvarLivro(livro);
-			return "redirect:/livro";
-		}
+		livroService.salvarLivro(livro);
+		return "redirect:/indexLivro";
 	}	
 	
 	@GetMapping("/atualizarLivro/{id}")
 	public String atualizarLivro(@PathVariable ( value = "id") Long id, Model model) {
 		Livro livro = livroService.getLivroById(id);
 		model.addAttribute("livro", livro);
+		List<Autor> listAutor = autorRepository.findAll();
+	    model.addAttribute("listAutor", listAutor);
+		List<Editora> listEditora = editoraRepository.findAll();
+	    model.addAttribute("listEditora", listEditora);
 		return "atualizarLivro";
 	}
 	
+//	@GetMapping("/deletarLivro/{id}")
+//	public String deletarLivro(@PathVariable (value = "id") Long id) {
+//		livroService.deletarLivroById(id);
+//		return "redirect:/livro";
+//	}
+	
+	//@SuppressWarnings("finally")
 	@GetMapping("/deletarLivro/{id}")
 	public String deletarLivro(@PathVariable (value = "id") Long id) {
-		livroService.deletarLivroById(id);
-		return "redirect:/livro";
+		try {
+			livroService.deletarLivroById(id);	
+			return "redirect:/indexLivro";	
+		}catch (Exception $e)  {			
+			return "redirect:/erroLivro";	
+		}
+	}
+	
+	@GetMapping("/erroLivro") 
+	public String erroLivro(Model model) {
+		return "erroLivro";	
 	}
 	
 	@GetMapping("/pageLivro/{pageNo}")
@@ -84,7 +110,7 @@ public class LivroController {
 		model.addAttribute("reverseSortDir", sortDirLivro.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaLivros", listaLivros);
-		return "livro";
+		return "indexLivro";
 	}
 	
 //	@RequestMapping(value = { "/listarEditoras" }, method = RequestMethod.GET)
@@ -96,7 +122,7 @@ public class LivroController {
 	
 	
 	
-	@ModelAttribute("listaEditoras")
+	/*@ModelAttribute("listaEditoras")
 	public List<Editora> getlistaEditoras() {
 	      List<Editora> listaEditoras = editoraService.getAllEditoras();
 	      return listaEditoras;
@@ -106,7 +132,7 @@ public class LivroController {
 	public List<Autor> getlistaAutores() {
 	      List<Autor> listaAutores = autorService.getAllAutores();
 	      return listaAutores;
-	}
+	}*/
 	
 //	@ModelAttribute("retornaEditora")
 //	public Editora retornaNomeEditora(@RequestParam("idLivro") Long idLivro) {
