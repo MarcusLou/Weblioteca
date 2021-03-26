@@ -61,7 +61,11 @@ public class LivroController {
 				return "salvarLivro";	
 		}else {
 			livroService.salvarLivro(livro);
+<<<<<<< HEAD
 			return "redirect:/indexLivro";
+=======
+			return "redirect:/livro";
+>>>>>>> cd6d175aa3a21b3c0f7ecbe93435f80725cdac57
 		}
 	}	
 	
