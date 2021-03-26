@@ -1,7 +1,7 @@
 package org.weblioteca.application.model;
 
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +17,7 @@ public class Autor {
 	private Long autorId;	
 	private String nome;
 	private String origem;
-	private Date nascimento;	
+	private LocalDate nascimento;	
 
 	public Autor() {
 	}
@@ -46,11 +46,11 @@ public class Autor {
 		this.origem = origem;
 	}
 	
-	public Date getNascimento() {
+	public LocalDate getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(LocalDate nascimento) {
 		this.nascimento = nascimento;
 	}
 

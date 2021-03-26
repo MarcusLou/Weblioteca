@@ -1,6 +1,6 @@
 package org.weblioteca.application.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ public class Reserva {
 	
 	private Long livroId;
 	
-	private Date dataReserva;
+	private LocalDate dataReserva;
 	
 
 	public Reserva() {
@@ -36,11 +36,11 @@ public class Reserva {
 	}
 
 
-	public Date getDataReserva() {
+	public LocalDate getDataReserva() {
 		return dataReserva;
 	}
 
-	public void setDataReserva(Date dataReserva) {
+	public void setDataReserva(LocalDate dataReserva) {
 		this.dataReserva = dataReserva;
 	}
 

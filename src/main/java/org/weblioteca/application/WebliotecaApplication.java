@@ -1,5 +1,6 @@
 package org.weblioteca.application;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +79,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Severino Pedreira");
 		funcionario.setFuncao("Atendente");
-		funcionario.setDataAdmissao(java.sql.Date.valueOf("2019-03-22"));
+		funcionario.setDataAdmissao(LocalDate.of(2019,03,22));
 		funcionario.setSexo("Masculino");
 		funcionario.setSalario(2000.00);
 		funcionario.setTelefone("44-3269-6542");
@@ -95,7 +96,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		cliente1.setNumero("19B");
 		cliente1.setTelefone("44-99988-5544");
 		cliente1.setComplemento("Próximo ao parque do Jabuti");
-		cliente1.setDataNascimento(java.sql.Date.valueOf("1989-11-01"));
+		cliente1.setDataNascimento(LocalDate.of(2019,03,22));
 		cliente1.setFoto("./img/fotos/126.jpg");
 		cliente1.setSexo("Masculino");
 		clienteRepository.save(cliente1);
@@ -103,7 +104,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		// Autor1
 		Autor autor1 = new Autor();
 		autor1.setNome("Robert C Martin");			
-		autor1.setNascimento(java.sql.Date.valueOf("1999-01-01"));
+		autor1.setNascimento(LocalDate.of(2019,03,22));
 		autor1.setOrigem("Paquistão");
 		
 		// Editora1
@@ -119,7 +120,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		livro1.setEditora(editora1);
 		livro1.setLocalizacao("Maringá");
 		livro1.setQuantidade(10);
-		livro1.setDataDeCompra(java.sql.Date.valueOf("2020-01-01"));
+		livro1.setDataDeCompra(LocalDate.of(2019,03,22));
 		livro1.setEdicao("1ª Edição");
 		livroRepository.save(livro1);
 		
@@ -127,7 +128,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		Reserva reserva = new Reserva();
 		reserva.setClienteId(cliente1.getClienteId());		
 		reserva.setLivroId(livro1.getLivroId());		
-		reserva.setDataReserva(java.sql.Date.valueOf("2021-03-23"));
+		reserva.setDataReserva(LocalDate.of(2019,03,22));
 		reservaRepository.save(reserva);
 		
 		////////Processo até Emprestar ///////////////
@@ -139,14 +140,14 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		cliente2.setNumero("2.564");
 		cliente2.setTelefone("44-98846-5656");
 		cliente2.setComplemento("Próximo ao Balão do João");
-		cliente2.setDataNascimento(java.sql.Date.valueOf("2002-06-10"));
+		cliente2.setDataNascimento(LocalDate.of(2019,03,22));
 		cliente2.setFoto("./img/fotos/127.jpg");
 		cliente2.setSexo("Feminino");
 
 		// Autor2
 		Autor autor2 = new Autor();
 		autor2.setNome("Waldomiro Santiago");			
-		autor2.setNascimento(java.sql.Date.valueOf("1980-11-01"));
+		autor2.setNascimento(LocalDate.of(2019,03,22));
 		autor2.setOrigem("EUA");
 
 		// Editora2
@@ -162,13 +163,13 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		livro2.setEditora(editora2);
 		livro2.setLocalizacao("Sarandi");
 		livro2.setQuantidade(2);
-		livro2.setDataDeCompra(java.sql.Date.valueOf("2018-11-21"));
+		livro2.setDataDeCompra(LocalDate.of(2019,03,22));
 		livro2.setEdicao("2ª Edição");
 		
 		// Autor3
 		Autor autor3 = new Autor();
 		autor3.setNome("Pafuncio Dos Santos");			
-		autor3.setNascimento(java.sql.Date.valueOf("1905-12-31"));
+		autor3.setNascimento(LocalDate.of(2019,03,22));
 		autor3.setOrigem("Paraguay");
 		
 		// Editora3
@@ -184,7 +185,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		livro3.setEditora(editora3);
 		livro3.setLocalizacao("Paiçandu");
 		livro3.setQuantidade(4);
-		livro3.setDataDeCompra(java.sql.Date.valueOf("2019-01-17"));
+		livro3.setDataDeCompra(LocalDate.of(2019,03,22));
 		livro3.setEdicao("1ª Edição");
 		
 		// Lista de exemplares para emprestimo
@@ -195,9 +196,9 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		// Emprestimo (tem Cliente e Livro(s)
 		Emprestimo emprestimo1 = new Emprestimo();
 		emprestimo1.setCliente(cliente2);
-		emprestimo1.setDataDevolucao(java.sql.Date.valueOf("2021-04-23"));
+		emprestimo1.setDataDevolucao(LocalDate.of(2019,03,22));
 		emprestimo1.setDataDevolvido(null);
-		emprestimo1.setDataEmprestimo(java.sql.Date.valueOf("2021-03-23"));
+		emprestimo1.setDataEmprestimo(LocalDate.of(2019,03,22));
 		emprestimo1.setExemplar(livrosList1);
 		emprestimo1.setValorTotal(0);	
 		emprestimoRepository.save(emprestimo1);
@@ -211,14 +212,14 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		cliente3.setNumero("15.564");
 		cliente3.setTelefone("44-3266-6677");
 		cliente3.setComplemento("Ap 201");
-		cliente3.setDataNascimento(java.sql.Date.valueOf("2000-08-02"));
+		cliente3.setDataNascimento(LocalDate.of(2019,03,22));
 		cliente3.setFoto("./img/fotos/122.jpg");
 		cliente3.setSexo("Feminino");
 		
 		// Autor4
 		Autor autor4 = new Autor();
 		autor4.setNome("Mascarenhas de Moraes");			
-		autor4.setNascimento(java.sql.Date.valueOf("1917-03-15"));
+		autor4.setNascimento(LocalDate.of(2019,03,22));
 		autor4.setOrigem("Brasil");
 		
 		// Editora4
@@ -234,7 +235,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		livro4.setEditora(editora4);
 		livro4.setLocalizacao("São Paulo");
 		livro4.setQuantidade(1);
-		livro4.setDataDeCompra(java.sql.Date.valueOf("2021-01-22"));
+		livro4.setDataDeCompra(LocalDate.of(2019,03,22));
 		livro4.setEdicao("6ª Edição");
 		
 		// Lista de exemplares para emprestimo
@@ -244,16 +245,16 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		// Emprestimo (tem Cliente e Livro(s)
 		Emprestimo emprestimo2 = new Emprestimo();
 		emprestimo2.setCliente(cliente3);
-		emprestimo2.setDataDevolucao(java.sql.Date.valueOf("2021-03-22"));
+//		emprestimo2.setDataDevolucao(java.sql.Date.valueOf("2021-03-22"));
 		emprestimo2.setDataDevolvido(null);
-		emprestimo2.setDataEmprestimo(java.sql.Date.valueOf("2021-02-22"));
+//		emprestimo2.setDataEmprestimo(java.sql.Date.valueOf("2021-02-22"));
 		emprestimo2.setExemplar(livrosList2);
 		emprestimo2.setValorTotal(1.89);	
 		emprestimoRepository.save(emprestimo2);
 		
 
 		// Devolucao
-		emprestimo2.setDataDevolvido(java.sql.Date.valueOf("2021-03-23"));		
+//		emprestimo2.setDataDevolvido(java.sql.Date.valueOf("2021-03-23"));		
 		emprestimoRepository.save(emprestimo2);
 		
 		//////Processo do faturamento ///////////////
