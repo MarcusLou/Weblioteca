@@ -16,6 +16,8 @@ import org.weblioteca.application.model.Reserva;
 import org.weblioteca.application.model.Livro;
 import org.weblioteca.application.repository.ClienteRepository;
 import org.weblioteca.application.repository.LivroRepository;
+import org.weblioteca.application.service.ClienteService;
+import org.weblioteca.application.service.LivroService;
 import org.weblioteca.application.service.ReservaService;
 
 @Controller
@@ -28,24 +30,31 @@ public class ReservaController {
 	private LivroRepository livroRepository;
 	
 	@Autowired
+	ClienteService clienteService;
+	
+	@Autowired
+	LivroService livroService;
+	
+	@Autowired
 	ReservaService reservaService;
 	
 	@GetMapping("/indexReserva")
-	public String viewHomePage(Model model) {
-		
+	public String viewHomePage(Model model) {		
 		List<Cliente> listCliente = clienteRepository.findAll();
-	    model.addAttribute("listCliente", listCliente);
-	    
+	    model.addAttribute("listCliente", listCliente);	    
 		List<Livro> listLivro = livroRepository.findAll();
-	    model.addAttribute("listLivro", listLivro);
-	    
-		return reservaPaginacao(1, "clienteId", "asc", model);
+	    model.addAttribute("listLivro", listLivro);	    
+		return reservasPaginacao(1, "clienteId", "asc", model);
 	}
 	
 	@GetMapping("/novaReserva") 
 	public String novaReserva(Model model) {
 		Reserva reserva = new Reserva();
 		model.addAttribute("reserva", reserva);
+		List<Cliente> listCliente = clienteRepository.findAll();
+	    model.addAttribute("listCliente", listCliente);
+		List<Livro> listLivro = livroRepository.findAll();
+	    model.addAttribute("listLivro", listLivro);
 		return "salvarReserva";
 	}
 	
@@ -59,32 +68,45 @@ public class ReservaController {
 	public String atualizarReserva(@PathVariable ( value = "id") Long id, Model model) {
 		Reserva reserva = reservaService.getReservaById(id);
 		model.addAttribute("reserva", reserva);
+		List<Cliente> listCliente = clienteRepository.findAll();
+	    model.addAttribute("listCliente", listCliente);
+		List<Livro> listLivro = livroRepository.findAll();
+	    model.addAttribute("listLivro", listLivro);
 		return "atualizarReserva";
 	}
 	
 	@GetMapping("/deletarReserva/{id}")
 	public String deletarReserva(@PathVariable (value = "id") Long id) {
-		reservaService.deletarReservaById(id);
-		return "redirect:/indexReserva";
+		try {
+			reservaService.deletarReservaById(id);
+			return "redirect:/indexReserva";
+		}catch (Exception $e)  {			
+			return "redirect:/mensagemReserva";	
+		}
+	}
+
+	@GetMapping("/mensagemReserva") 
+	public String mensagemAutor(Model model) {
+		return "mensagemReserva";	
 	}
 	
 	@GetMapping("/pageReserva/{pageNo}")
-	public String reservaPaginacao(@PathVariable (value = "pageNo") int pageNo, 
-			                           @RequestParam("sortField") String sortField,
-		                        	   @RequestParam("sortDir") String sortDir,
+	public String reservasPaginacao(@PathVariable (value = "pageNo") int pageNoReserva, 
+			                           @RequestParam("sortField") String sortFieldReserva,
+		                        	   @RequestParam("sortDir") String sortDirReserva,
 		                         	   Model model) {
-		int pageSize = 5;
+		int pageSizeReserva = 5;
 		
-		Page<Reserva> page = reservaService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<Reserva> listaReservas = page.getContent();
+		Page<Reserva> pageReserva = reservaService.findPaginated(pageNoReserva, pageSizeReserva, sortFieldReserva, sortDirReserva);
+		List<Reserva> listaReservas = pageReserva.getContent();
 		
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("currentPage", pageNoReserva);
+		model.addAttribute("totalPages", pageReserva.getTotalPages());
+		model.addAttribute("totalItems", pageReserva.getTotalElements());
 		
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		model.addAttribute("sortField", sortFieldReserva);
+		model.addAttribute("sortDir", sortDirReserva);
+		model.addAttribute("reverseSortDir", sortDirReserva.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaReservas", listaReservas);
 		
