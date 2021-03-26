@@ -27,7 +27,7 @@ public class LivroController {
 	private AutorRepository autorRepository;
 	@Autowired
 	private EditoraRepository editoraRepository;
-	
+
 	@Autowired
 	LivroService livroService;
 	@Autowired
@@ -54,8 +54,10 @@ public class LivroController {
 	
 	@PostMapping("/salvarLivro")
 	public String salvarLivro(@ModelAttribute("livro") Livro livro) {
+
 		livroService.salvarLivro(livro);
 		return "redirect:/indexLivro";
+
 	}	
 	
 	@GetMapping("/atualizarLivro/{id}")
@@ -112,6 +114,7 @@ public class LivroController {
 		model.addAttribute("listaLivros", listaLivros);
 		return "indexLivro";
 	}
+
 	
 //	@RequestMapping(value = { "/listarEditoras" }, method = RequestMethod.GET)
 //	public String ListarEditoras(Model model) { 
@@ -142,4 +145,5 @@ public class LivroController {
 //		editora = livro.getEditora();
 //		return editora;
 //	}
+
 }
