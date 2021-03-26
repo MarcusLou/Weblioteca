@@ -2,23 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	  content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" type="text/css" href="css/webliotecaStyle.css" media="screen" />
-
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
-	
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
-<title>Hello, world!</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no">	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="../css/webliotecaStyle.css" media="screen" />	
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+		crossorigin="anonymous">	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"></script>
+	<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+			crossorigin="anonymous"></script>		
+	<script src="../javascript/jquery.mask.js" type="text/javascript"></script>
+	<script src="../javascript/CONFIG.jquery.mask.js" type="text/javascript"></script>
+	<title>Atualizar Livro</title>
 </head>
-
 <body>
 	<div class="container-fluid">
         <header class="header">
@@ -35,7 +39,7 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
-					<div class="dropdown-menu">
+					<div class="dropdown-menu"> 
 						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
 						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
@@ -65,18 +69,88 @@
 				<h2>Atualizar Livro</h2>
 				<form action="#" th:action="@{/salvarLivro}" th:object="${livro}" method="POST">
 				    <input type="hidden" th:field="*{livroId}" />
-					<input type="text" th:field="*{tituloLivro}" class="form-control mb-4 col-4">
-					<input type="number" th:field="*{quantidade}" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{localizacao}" class="form-control mb-4 col-4">
-					<select th:field="*{editora}" class="form-control mb-4 col-4">
-                            <option value="">Selecione uma editora</option>
-    						<option th:each="editora : ${listEditora}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
-    				</select>
-					<select th:field="*{autor}" class="form-control mb-4 col-4">
-                            <option value="">Selecione um autor</option>
-    						<option th:each="autor : ${listAutor}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
-    				</select>
-					<button type="submit" class="btn btn-info col-2">Atualizar Livro</button>
+					<div id="ajudaTituloLivro" class="collapse azulAjuda">
+                            O nome do livro
+                    </div>	
+                    <div class="input-group mb-3"> 			    
+						<input type="text" th:field="*{tituloLivro}" class="form-control  col-4">
+						<div class="input-group-append">						  
+							<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaTituloLivro">?</button>
+						</div>	
+					</div>
+						<div id="ajudaEditora" class="collapse azulAjuda">
+                            Editora que reproduz o livro
+                        </div>	
+                        <div class="input-group mb-3"> 						
+								<select th:field="*{editora}" id="editora" class="form-control col-4" required="true">
+			                            <option value="">Selecione uma editora</option>
+			    						<option th:each="editora : ${listEditora}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
+			    				</select>
+								<div class="input-group-append">						  
+									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaEditora">?</button>
+						  		</div>	
+						</div>
+						<div id="ajudaAutor" class="collapse azulAjuda">
+                            Autor que escreve o livro
+                        </div>	
+                        <div class="input-group mb-3"> 					
+								<select th:field="*{autor}" id="autor" class="form-control col-4" required="true">
+			                            <option value="">Selecione um autor</option>
+			    						<option th:each="autor : ${listAutor}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
+			    				</select>
+								<div class="input-group-append">						  
+									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaAutor">?</button>
+						  		</div>	
+						</div>
+						<div id="ajudaEdicao" class="collapse azulAjuda" >
+                            Numero da edição lançada
+                        </div>	
+						<div class="input-group mb-3"> 	
+			    				<input type="text" th:field="*{edicao}" id="edicao"  class="form-control col-4" required="true">
+								<div class="input-group-append">						  
+									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaEdicao">?</button>
+						  		</div>	
+						</div>
+						<div id="ajudaQuantidade" class="collapse azulAjuda">
+                            Quantidade de Livros disponíveis
+                        </div>
+                        <div class="input-group mb-3"> 
+								<input type="number" th:field="*{quantidade}" id="quantidade" class="form-control col-4" required="true">
+								<div class="input-group-append">						  
+									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaQuantidade">?</button>
+						  		</div>		
+						</div>	
+						<div id="ajudaLocalizacao" class="collapse azulAjuda">
+                            Localizacao fisica do livro
+                        </div>	
+                        <div class="input-group mb-3"> 
+								<input type="text" th:field="*{localizacao}" id="localizacao" class="form-control col-4">
+								<div class="input-group-append">						  
+									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaLocalizacao">?</button>
+						  		</div>		
+						</div>		
+						<div id="ajudaDataDeCompra" class="collapse azulAjuda">
+                            Data que o livro foi adquirido pela biblioteca
+                        </div>		
+                        <div class="input-group mb-3"> 					
+								<input type="date" th:field="*{dataDeCompra}" id="dataDeCompra" class="form-control col-4 " required="true">				
+								<div class="input-group-append">						  
+									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaDataDeCompra">?</button>
+						  		</div>		
+						</div>
+						<div class="row form-group"> 
+                             <div class="col text-center form-actions">                                 
+                                 <div  id="colaps2" class="collapse"> 
+                                 	<a th:href="@{/indexLivro}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
+                                     <button type="submit" id="submit" class="btn btn-success" value="Atualizar Livro" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Atualizar!</b></button>
+                                     </br>
+                                 </div>
+                                 <div class="form-actions floatRight">
+                                     </br>
+                                     <input type="button" value="Atualizar Livro" class="btn btn-info" data-toggle="collapse"  data-target="#colaps2">
+                                 </div>   
+                             </div>
+                         </div>
 				</form>
 				<hr>
 				<a th:href="@{/indexLivro}">Voltar lista de livros</a>
@@ -96,14 +170,5 @@
 	    </footer>
 	    
 	</div>
-
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-		crossorigin="anonymous"></script>
 </body>
 </html>

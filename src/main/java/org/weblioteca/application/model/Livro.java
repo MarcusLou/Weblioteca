@@ -1,6 +1,7 @@
+
 package org.weblioteca.application.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "LIVRO")
@@ -30,7 +31,7 @@ public class Livro {
 	private String localizacao;
 	private boolean disponivelEmprestimo;
 
-	private Date dataDeCompra;
+	private LocalDate dataDeCompra;
 	private String Edicao;
 	
 	public Livro() {
@@ -92,11 +93,11 @@ public class Livro {
 		this.disponivelEmprestimo = disponivelEmprestimo;
 	}
 
-	public Date getDataDeCompra() {
+	public LocalDate getDataDeCompra() {
 		return dataDeCompra;
 	}
 
-	public void setDataDeCompra(Date dataDeCompra) {
+	public void setDataDeCompra(LocalDate dataDeCompra) {
 		this.dataDeCompra = dataDeCompra;
 	}
 
@@ -108,6 +109,5 @@ public class Livro {
 		Edicao = edicao;
 	}
 
-	
-
 }
+

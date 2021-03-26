@@ -31,23 +31,82 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="bi bi-search"></i> Pesquisar</a></li>
 
-				<!-- Dropdown -->
+				<!-- Clientes Dropdown -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="bi bi-person-plus"></i>Clientes</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i>Manter Clientes</a> 
+						</div>
+					</li>
+                
+				<!-- Funcionarios Dropdown -->
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
-					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
+					data-toggle="dropdown"><i class="bi bi-person-plus"></i>Funcionários</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
-						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
+						
 						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
-						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
-						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/indexEmprestar}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/indexProlongar}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
-						<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
-						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+						
+						<a class="dropdown-item" th:href="@{/devolucaoExemplares}"><i class="bi bi-journal-check"></i> Devolução de Exempares</a>
+						<a class="dropdown-item" th:href="@{/emprestimoReserva}"><i class="bi bi-journal-bookmark"></i> Empréstimo Reserva</a> 
+						
 						<a class="dropdown-item" th:href="@{/indexAbonar}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
 					</div></li>
+					
+					<!-- Livros Dropdown -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="bi bi-person-plus"></i>Livros</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-person-square"></i>Manter Livros</a> 
+						</div>
+					</li>
+					
+					<!-- Autores Dropdown -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="bi bi-person-plus"></i>Autores</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-person-square"></i>Manter Livros</a> 
+						</div>
+					</li>
+					
+					<!-- Editoras Dropdown -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="bi bi-person-plus"></i>Editoras</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-person-square"></i>Manter Livros</a> 
+						</div>
+					</li>
+					
+					<!-- Emprestimos Dropdown  -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="bi bi-person-plus"></i>Emprestimos</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/}"><i class="bi bi-person-bounding-box"></i>Emprestar Livro</a> 
+							<a class="dropdown-item" th:href="@{/}"><i class="bi bi-person "></i>Prolongar Empréstimo</a> 
+							<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
+							<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
+							<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+						</div>
+					</li>
+					
+					<!-- Emprestimos Dropdown  -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="bi bi-person-plus"></i>Multas</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/abonarMulta}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>  
+						</div>
+					</li>
+					
+					
+					
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
 				<form class="form-inline">
