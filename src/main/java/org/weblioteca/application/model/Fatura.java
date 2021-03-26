@@ -1,11 +1,9 @@
 package org.weblioteca.application.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.sql.Date;
 
@@ -20,8 +18,8 @@ public class Fatura {
 	private Long clienteId;
 	
 	private Date dataFatura;
-
 	private double valorFatura;
+	
 	
 	private int diasAtraso;
 
