@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
 import org.weblioteca.application.repository.FaturaRepository;
 
@@ -17,7 +16,6 @@ import org.weblioteca.application.repository.FaturaRepository;
 public class FaturaServiceImpl implements FaturaService {
 	@Autowired
 	private FaturaRepository faturaRepository;
-	private EmprestimoServiceImpl emprestimoService;
 
 	@Override
 	public List<Fatura> getAllFaturas() {
@@ -54,14 +52,6 @@ public class FaturaServiceImpl implements FaturaService {
 
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		return this.faturaRepository.findAll(pageable);
-	}
-
-	@Override
-	public Fatura gerarFatura(Long emprestimoId) {
-	//	Fatura fatura = new Fatura();
-	//	Emprestimo emprestimo;
-	//	emprestimo = 
-		return null;
 	}
 
 }

@@ -36,17 +36,17 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/funcionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
-						<a class="dropdown-item" th:href="@{/cliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
-						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
+						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
-						<a class="dropdown-item" th:href="@{/abonarMulta}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a> 
-						<a class="dropdown-item" th:href="@{/prolongarEmprestimo}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
-						<a class="dropdown-item" th:href="@{/faturarEmprestimo}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
-						<a class="dropdown-item" th:href="@{/emprestarExemplares}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/devolucaoExemplares}"><i class="bi bi-journal-check"></i> Devolução de Exempares</a>
-						<a class="dropdown-item" th:href="@{/emprestimoReserva}"><i class="bi bi-journal-bookmark"></i> Empréstimo Reserva</a> 
+						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
+						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexEmprestar}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexProlongar}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
+						<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexAbonar}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
@@ -66,20 +66,20 @@
 				<form action="#" th:action="@{/salvarLivro}" th:object="${livro}" method="POST">
 				    <input type="hidden" th:field="*{livroId}" />
 					<input type="text" th:field="*{tituloLivro}" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{quantidade}" class="form-control mb-4 col-4">
+					<input type="number" th:field="*{quantidade}" class="form-control mb-4 col-4">
 					<input type="text" th:field="*{localizacao}" class="form-control mb-4 col-4">
-					<select th:field="*{editora.editoraId}" class="form-control mb-4 col-4">
+					<select th:field="*{editora}" class="form-control mb-4 col-4">
                             <option value="">Selecione uma editora</option>
-    						<option th:each="editora : ${listaEditoras}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
+    						<option th:each="editora : ${listEditora}" th:value="${editora.editoraId}" th:text="${editora.nome}"></option>
     				</select>
-					<select th:field="*{autor.autorId}" class="form-control mb-4 col-4">
+					<select th:field="*{autor}" class="form-control mb-4 col-4">
                             <option value="">Selecione um autor</option>
-    						<option th:each="autor : ${listaAutores}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
+    						<option th:each="autor : ${listAutor}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
     				</select>
 					<button type="submit" class="btn btn-info col-2">Atualizar Livro</button>
 				</form>
 				<hr>
-				<a th:href="@{/livro}">Voltar lista de livros</a>
+				<a th:href="@{/indexLivro}">Voltar lista de livros</a>
 			</div>
 		</div>
 

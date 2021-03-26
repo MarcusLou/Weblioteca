@@ -46,8 +46,17 @@ public class EditoraController {
 	
 	@GetMapping("/deletarEditora/{id}")
 	public String deletarEditora(@PathVariable (value = "id") Long id) {
-		editoraService.deletarEditoraById(id);
-		return "redirect:/indexEditora";
+		try {
+			editoraService.deletarEditoraById(id);
+			return "redirect:/indexEditora";
+		}catch (Exception $e)  {			
+			return "redirect:/mensagemEditora";	
+		}
+	}
+	
+	@GetMapping("/mensagemEditora") 
+	public String mensagemEditora(Model model) {
+		return "mensagemEditora";	
 	}
 	
 	@GetMapping("/pageEditora/{pageNo}")

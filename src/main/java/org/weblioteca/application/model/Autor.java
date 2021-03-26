@@ -14,12 +14,10 @@ import javax.persistence.Table;
 public class Autor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long autorId;
-	
+	private Long autorId;	
 	private String nome;
 	private String origem;
-	private Date nascimento;
-	
+	private Date nascimento;	
 
 	public Autor() {
 	}

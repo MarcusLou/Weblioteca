@@ -72,7 +72,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*
+
 		////////Processo até reservar ///////////////
 		//Funcionario
 		Funcionario funcionario = new Funcionario();
@@ -264,6 +264,6 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		fatura1.setDiasAtraso(5);
 		fatura1.setValorFatura(8.00);
 		faturaRepository.save(fatura1);
-		*/
+		
 	}
 }

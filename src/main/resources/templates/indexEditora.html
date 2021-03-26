@@ -38,7 +38,17 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
+						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
+						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
+						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexEmprestar}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexProlongar}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
+						<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexAbonar}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
@@ -85,10 +95,30 @@
 					    <td class="center">
 							<a th:href="@{/atualizarEditora/{id}(id=${editora.editoraId})}" class="btn btn-primary">Atualizar</a>
 					    
-					         <a th:href="@{/deletarEditora/{id}(id=${editora.editoraId})}" class="btn btn-danger">Deletar</a>
+					    	<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${editora.editoraId}" >Remover</button>
+						    	
+					    	<div class="modal fade" th:id="remover_+${editora.editoraId}"  tabindex="-1" role="dialog" aria-hidden="true">
+				                <div class="modal-dialog modal-dialog-centered" role="document">
+					                  <div class="modal-content">
+						                    <div class="modal-header">
+							                      <h5 class="modal-title" id="modalConfirmacao">Confirmação</h5>
+							                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                         <span aria-hidden="true">&times;</span>
+							                      </button>
+						                    </div>
+						                    <div class="modal-body">
+						                      	<p>Tem certeza que quer remover essa Editora?</p>
+						                    </div>
+						                    <div class="modal-footer">
+							                      <a th:href="@{/indexEditora}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
+							                      <a type="button" class="btn btn-danger" th:href="@{/deletarEditora/{id}(id=${editora.editoraId})}">Sim, desejo realmente <b>Remover!</b></a>
+						                    </div>
+					                  </div>
+				                </div>
+			              	</div>						    
 					    </td>
-				</tr>
-			</tbody>
+					</tr>
+				</tbody>
 		    </table>
 			</div>			
 		</div>		

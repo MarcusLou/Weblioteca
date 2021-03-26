@@ -38,7 +38,17 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop"
 					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
 					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
+						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
+						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
+						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
+						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexEmprestar}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexProlongar}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
+						<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexAbonar}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
@@ -53,8 +63,7 @@
 			<div class="col-sm-12">
 				<h2>Salvar Autor</h2>
 				<div class="card-body">
-					<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">
-					
+					<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">					
 						
 						<div id="ajudaNomeAutor" class="collapse azulAjuda">
                             O nome do autor do livro é o nome da pessoa que criou o livro...
@@ -65,9 +74,7 @@
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeAutor">?</button>
 						  	</div>						  	
-						</div>
-                        
-                        
+						</div>                       
                         
 						<div id="ajudaData" class="collapse azulAjuda">
                             Aqui devemos preencher o dia, mês e ano que o autor nasceu.
@@ -90,13 +97,11 @@
                         	</div>						  	
 						</div>
 						
-						
-                        
 						<div class="row form-group"> 
                              <div class="col text-center form-actions">                                 
                                  <div  id="colaps2" class="collapse"> 
                                  	<a th:href="@{/indexAutor}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-                                     <button type="submit" id="submit" class="btn btn-success" value="Salvar Autor" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Cadastrar!</b></button>
+                                     <button type="submit" id="submit" class="btn btn-success" value="Salvar Autor" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Salvar!</b></button>
                                      </br>
                                  </div>
                                  <div class="form-actions floatRight">

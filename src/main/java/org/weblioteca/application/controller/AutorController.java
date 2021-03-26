@@ -44,20 +44,19 @@ public class AutorController {
 		return "atualizarAutor";
 	}
 	
-	@SuppressWarnings("finally")
 	@GetMapping("/deletarAutor/{id}")
 	public String deletarAutor(@PathVariable (value = "id") Long id) {
 		try {
 			autorService.deletarAutorById(id);	
 			return "redirect:/indexAutor";	
 		}catch (Exception $e)  {			
-			return "redirect:/erroAutor";	
+			return "redirect:/mensagemAutor";	
 		}
 	}
 	
-	@GetMapping("/erroAutor") 
-	public String erroAutor(Model model) {
-		return "erroAutor";	
+	@GetMapping("/mensagemAutor") 
+	public String mensagemAutor(Model model) {
+		return "mensagemAutor";	
 	}
 	
 	@GetMapping("/pageAutor/{pageNo}")
