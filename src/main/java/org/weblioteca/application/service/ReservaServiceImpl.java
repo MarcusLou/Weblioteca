@@ -34,7 +34,7 @@ public class ReservaServiceImpl implements ReservaService {
 		if (optional.isPresent()) {
 			reserva = optional.get();
 		} else {
-			throw new RuntimeException("Cliente nao encontrado com id = " + id);
+			throw new RuntimeException("Reserva nao encontrado com id = " + id);
 		}
 		return reserva;
 	}

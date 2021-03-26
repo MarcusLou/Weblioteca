@@ -23,11 +23,11 @@ import org.weblioteca.application.service.AutorService;
 @Controller
 public class LivroController {
 	
+
 	@Autowired
 	private AutorRepository autorRepository;
 	@Autowired
 	private EditoraRepository editoraRepository;
-
 	@Autowired
 	LivroService livroService;
 	@Autowired
@@ -54,10 +54,15 @@ public class LivroController {
 	
 	@PostMapping("/salvarLivro")
 	public String salvarLivro(@ModelAttribute("livro") Livro livro) {
-
-		livroService.salvarLivro(livro);
-		return "redirect:/indexLivro";
-
+		if (livro.getTituloLivro() == "") {
+			if (livro.getLivroId() != null)
+				return "redirect:/atualizarLivro/"+livro.getLivroId();
+			else
+				return "salvarLivro";	
+		}else {
+			livroService.salvarLivro(livro);
+			return "redirect:/indexLivro";
+		}
 	}	
 	
 	@GetMapping("/atualizarLivro/{id}")
@@ -68,29 +73,14 @@ public class LivroController {
 	    model.addAttribute("listAutor", listAutor);
 		List<Editora> listEditora = editoraRepository.findAll();
 	    model.addAttribute("listEditora", listEditora);
+	    
 		return "atualizarLivro";
 	}
 	
-//	@GetMapping("/deletarLivro/{id}")
-//	public String deletarLivro(@PathVariable (value = "id") Long id) {
-//		livroService.deletarLivroById(id);
-//		return "redirect:/livro";
-//	}
-	
-	//@SuppressWarnings("finally")
 	@GetMapping("/deletarLivro/{id}")
 	public String deletarLivro(@PathVariable (value = "id") Long id) {
-		try {
-			livroService.deletarLivroById(id);	
-			return "redirect:/indexLivro";	
-		}catch (Exception $e)  {			
-			return "redirect:/erroLivro";	
-		}
-	}
-	
-	@GetMapping("/erroLivro") 
-	public String erroLivro(Model model) {
-		return "erroLivro";	
+		livroService.deletarLivroById(id);
+		return "redirect:/indexLivro";
 	}
 	
 	@GetMapping("/pageLivro/{pageNo}")
@@ -114,36 +104,4 @@ public class LivroController {
 		model.addAttribute("listaLivros", listaLivros);
 		return "indexLivro";
 	}
-
-	
-//	@RequestMapping(value = { "/listarEditoras" }, method = RequestMethod.GET)
-//	public String ListarEditoras(Model model) { 
-//	    List<Editora> listaEditoras = editoraService.getAllEditoras();
-//	    model.addAttribute("listaEditoras", listaEditoras);
-//	    return "editoras";
-//	}
-	
-	
-	
-	/*@ModelAttribute("listaEditoras")
-	public List<Editora> getlistaEditoras() {
-	      List<Editora> listaEditoras = editoraService.getAllEditoras();
-	      return listaEditoras;
-	}
-	
-	@ModelAttribute("listaAutores")
-	public List<Autor> getlistaAutores() {
-	      List<Autor> listaAutores = autorService.getAllAutores();
-	      return listaAutores;
-	}*/
-	
-//	@ModelAttribute("retornaEditora")
-//	public Editora retornaNomeEditora(@RequestParam("idLivro") Long idLivro) {
-//		Editora editora;
-//		Livro livro;
-//		livro = livroService.getLivroById(idLivro);
-//		editora = livro.getEditora();
-//		return editora;
-//	}
-
 }

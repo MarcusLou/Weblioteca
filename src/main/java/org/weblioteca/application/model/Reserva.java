@@ -1,12 +1,15 @@
 package org.weblioteca.application.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "RESERVA")
@@ -20,8 +23,9 @@ public class Reserva {
 	
 	
 	private Long livroId;
-	
-	private Date dataReserva;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataReserva;
 	
 
 	public Reserva() {
@@ -36,11 +40,11 @@ public class Reserva {
 	}
 
 
-	public Date getDataReserva() {
+	public LocalDate getDataReserva() {
 		return dataReserva;
 	}
 
-	public void setDataReserva(Date dataReserva) {
+	public void setDataReserva(LocalDate dataReserva) {
 		this.dataReserva = dataReserva;
 	}
 

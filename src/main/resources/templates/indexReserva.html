@@ -27,54 +27,41 @@
 	<div class="container-fluid">
         <header class="header">
   			<img src="../img/books.png" alt="bookstore">	
+  			<img src="../img/weblioteca.png" alt="Weblioteca"  height="110">
         </header>
-		<nav class="navbar navbar-expand-sm bg-light navbar-light">
+		<nav class="navbar navbar-expand-sm bg-light navbar-light justify-content-between">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="bi bi-house-door"></i> Home</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="bi bi-search"></i> Pesquisar</a></li>
 				<!-- Dropdown -->
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbardrop"
-					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="bi bi-calendar3"></i> Reserva</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
 						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
-						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
-						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
 						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
-						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/indexEmprestar}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/indexProlongar}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
-						<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
-						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
-						<a class="dropdown-item" th:href="@{/indexAbonar}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
-					</div></li>
-				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
+						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-calendar2-week-fill"></i> Reservas</a> 
+						<a class="dropdown-item" th:href="@{/novaReserva}"><i class="bi bi-calendar2-plus-fill "></i> Nova Reserva</a> 
+					</div>
 				</li>
-				<form class="form-inline">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Pesquisar Reserva" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ok</button>
-				</form>
 			</ul>
-		</nav>
-		
-		<div class="row center" align="center">
-			<div class="col-sm-12">		
-			<h3>Pesquisar reserva</h3>	
 			<form class="form-inline">
-  				<div class="form-group mx-sm-3 mb-2">
-   					<input type="text" class="form-control" id="clienteId" placeholder="Nome reserva">
-  				</div>
-  				<div class="form-group mx-sm-3 mb-2">
-  					<button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
-  				</div>
-  				<div class="form-group mx-sm-3 mb-2">
-	  				<a th:href="@{/novaReserva}" class="btn btn-primary mb-2">Nova Reserva</a>
-  				</div>
-			</form>	
-			
+		    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do Cliente" aria-label="Search" aria-describedby="basic-addon2">
+			  	<div class="input-group-append">
+		    		<button class="btn btn-outline-success my-2 my-sm-0 " type="submit"> Pesquisar <i class="bi bi-search "></i></button>				 
+				</div>
+			</form>
+		</nav>	
+		<hr></hr>	
+		<div class="row justify-content-between">
+      		<div class="col-md-9 center">
+			<h3>Reservas</h3>
+      		</div>
+	      	<div class="mx-sm-3 mb-3" >
+				<a th:href="@{/novaReserva}" class="btn btn-success mb-3 "><i class="bi bi-calendar2-plus "></i> Nova Reserva</a>
+	      	</div>
+	    </div>
+		<div class="row">
+			<div class="col-sm-12">		
 				<table border="1" class = "table table-striped">
 					<thead class="table-info">
 						<tr>
@@ -94,11 +81,11 @@
 						<tr th:each="reserva : ${listaReservas}">						
 							<td th:each="cliente : ${listCliente}" th:text="*{cliente.clienteId == reserva.clienteId}? *{cliente.nome}" th:if="${cliente.clienteId} == ${reserva.clienteId}" ></td>
 							<td th:each="livro : ${listLivro}" th:text="*{livro.livroId == reserva.livroId}? *{livro.tituloLivro}" th:if="${livro.livroId} == ${reserva.livroId}" ></td>
-							<td th:text="${#dates.format(new java.util.Date(reserva.dataReserva), 'dd/MM/yyyy')}"></td>
+							<td th:text="${#temporals.format(reserva.dataReserva, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
 						    <td class="center">
-								<a th:href="@{/atualizarReserva/{id}(id=${reserva.reservaId})}" class="btn btn-primary">Atualizar</a>
+								<a th:href="@{/atualizarReserva/{id}(id=${reserva.reservaId})}" class="btn btn-primary"><i class="bi bi-calendar-check  "></i> Atualizar</a>
 								
-								<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" >Remover</button>
+								<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar2-x  "></i> Remover</button>
 						    	
 						    	<div class="modal fade" th:id="remover_+${reserva.reservaId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					                <div class="modal-dialog modal-dialog-centered" role="document">
@@ -147,18 +134,25 @@
 					<span th:unless="${currentPage < totalPages}">Voltar</span>
    				 </div>
 			</div>				
-		</div>		
-	    <footer>
-		     <div>
-			     <ul class="nav list-inline justify-content-center">
-				      <li>Todos os direitos reservados a Weblioteca. Siga nossas redes sociais. </li>
-			          <li><a href="#" target="_blank"><img src="../img/linkedin.png" width="48" height="48"></a></li>      
-			          <li><a href="#" target="_blank"><img src="../img/twitter.png" width="48" height="48"></a></li>     
-			          <li><a href="#" target="_blank"><img src="../img/instagram.png" width="48" height="48"></a></li>
-			          <li><a href="#" target="_blank"><img src="../img/facebook.png" width="48" height="48"></a></li>        
-		        </ul> 
-		     </div>	
-	    </footer>	    
+		</div>			
+	    <footer class="site-footer ">
+	      <div class="container ">
+	        <div class="row  ">
+	          <div class="col-md-9 col-sm-9 col-xs-12 " >
+	            <p>Copyright &copy; 2021 - Todos os direitos reservados a Weblioteca. Siga nossas redes sociais. 
+	            </p>
+	          </div>	
+	          <div class="col-md-3 col-sm-3 col-xs-12 ">
+	            <ul class="social-icons">
+	              <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+	              <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+	              <li><a class="instagram" href="#"><i class="bi bi-instagram"></i></a></li>
+	              <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>   
+	            </ul>
+	          </div>
+	        </div>
+	      </div>
+		</footer> 	    
 	</div>
 </body>
 </html>
