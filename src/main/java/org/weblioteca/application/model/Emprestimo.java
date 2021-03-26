@@ -1,6 +1,6 @@
 	package org.weblioteca.application.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,9 +25,9 @@ public class Emprestimo {
 	@OneToMany(cascade=CascadeType.PERSIST)
 	private List<Livro> exemplar;
 	
-	private LocalDate dataEmprestimo;
-	private LocalDate dataDevolucao;
-	private LocalDate dataDevolvido;
+	private Date dataEmprestimo;
+	private Date dataDevolucao;
+	private Date dataDevolvido;
 	private double valorTotal;
 	
 	public Emprestimo() {}
@@ -64,28 +64,30 @@ public class Emprestimo {
 		this.valorTotal = valorTotal;
 	}
 
-	public LocalDate getDataEmprestimo() {
+	public Date getDataEmprestimo() {
 		return dataEmprestimo;
 	}
 
-	public void setDataEmprestimo(LocalDate dataEmprestimo) {
+	public void setDataEmprestimo(Date dataEmprestimo) {
 		this.dataEmprestimo = dataEmprestimo;
 	}
 
-	public LocalDate getDataDevolucao() {
+	public Date getDataDevolucao() {
 		return dataDevolucao;
 	}
 
-	public void setDataDevolucao(LocalDate dataDevolucao) {
+	public void setDataDevolucao(Date dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
 
-	public LocalDate getDataDevolvido() {
+	public Date getDataDevolvido() {
 		return dataDevolvido;
 	}
 
-	public void setDataDevolvido(LocalDate dataDevolvido) {
+	public void setDataDevolvido(Date dataDevolvido) {
 		this.dataDevolvido = dataDevolvido;
 	}
+
 	
+
 }

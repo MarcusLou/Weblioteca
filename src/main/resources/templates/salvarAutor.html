@@ -6,19 +6,20 @@
 	<meta name="viewport"
 		  content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/webliotecaStyle.css" media="screen" />	
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 		crossorigin="anonymous">	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="../css/webliotecaStyle.css" media="screen" />	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 			crossorigin="anonymous"></script>
 	<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-			crossorigin="anonymous"></script>		
+			crossorigin="anonymous"></script>	
+	<script src="../javascript/scripts.js" type="text/javascript"></script>		
 	<script src="../javascript/jquery.mask.js" type="text/javascript"></script>
 	<script src="../javascript/CONFIG.jquery.mask.js" type="text/javascript"></script>
 	<title>Adicionar Autor</title>
@@ -27,76 +28,59 @@
 	<div class="container-fluid">
         <header class="header">
   			<img src="../img/books.png" alt="bookstore">	
+  			<img src="../img/weblioteca.png" alt="Weblioteca"  height="110">
         </header>
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="bi bi-house-door"></i> Home</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="bi bi-search"></i> Pesquisar</a></li>
 				<!-- Dropdown -->
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbardrop"
-					data-toggle="dropdown"><i class="bi bi-person-plus"></i> Cadastrar</a>
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="bi bi-person"></i> Autor</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
-						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
-						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
-						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
-						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
-						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/indexEmprestar}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/indexProlongar}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
-						<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
-						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
-						<a class="dropdown-item" th:href="@{/indexAbonar}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
-					</div></li>
-				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
+						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-people-fill "></i> Autores</a> 
+						<a class="dropdown-item" th:href="@{/novoAutor}"><i class="bi bi-person-plus-fill "></i> Novo Autor</a> 
+					</div>
 				</li>
-				<form class="form-inline">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Pesquisar Autor" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ok</button>
-				</form>
 			</ul>
 		</nav>
+		<hr></hr>	
+      	<div class="center">
+			<h3>Cadastrar Autor</h3>
+      	</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<h2>Salvar Autor</h2>
 				<div class="card-body">
-					<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST">					
-						
+					<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST" class="needs-validation"  novalidate>					
 						<div id="ajudaNomeAutor" class="collapse azulAjuda">
                             O nome do autor do livro é o nome da pessoa que criou o livro...
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{nome}" placeholder="Nome" id="nome" class="form-control col-4" required="true">
+							<input type="text" th:field="*{nome}" placeholder="Nome" id="nome" class="form-control col-12" required >
 										  
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeAutor">?</button>
 						  	</div>						  	
-						</div>                       
-                        
+						</div>  
 						<div id="ajudaData" class="collapse azulAjuda">
                             Aqui devemos preencher o dia, mês e ano que o autor nasceu.
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="date" th:field="*{nascimento}" placeholder="Nascimento" class="form-control col-4 " required="true">
+							<input type="date" th:field="*{nascimento}" placeholder="Nascimento" class="form-control col-12 " required >
 									  
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaData">?</button>
                         	</div>						  	
 						</div>
-						
 						<div id="ajudaOrigem" class="collapse azulAjuda">
                             Aqui devemos preencher a origem, ou local, de onde o autor nasceu.
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{origem}" placeholder="Origem"   class="form-control col-4" required="true">
+							<input type="text" th:field="*{origem}" placeholder="Origem"   class="form-control col-12" required >
 							<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaOrigem">?</button>
                         	</div>						  	
 						</div>
-						
 						<div class="row form-group"> 
                              <div class="col text-center form-actions">                                 
                                  <div  id="colaps2" class="collapse"> 
@@ -110,24 +94,30 @@
                                  </div>   
                              </div>
                          </div>
-						
 					</form>
 				</div>
 				<hr>
 				<a th:href="@{/indexAutor}">Voltar lista de autores</a>
 			</div>
 		</div>
-		<footer>
-		     <div>
-			     <ul class="nav list-inline justify-content-center">
-				      <li>Todos os direitos reservados a Weblioteca. Siga nossas redes sociais.</li>
-			          <li><a href="#" target="_blank"><img src="../img/linkedin.png" width="48" height="48"></a></li>      
-			          <li><a href="#" target="_blank"><img src="../img/twitter.png" width="48" height="48"></a></li>     
-			          <li><a href="#" target="_blank"><img src="../img/instagram.png" width="48" height="48"></a></li>
-			          <li><a href="#" target="_blank"><img src="../img/facebook.png" width="48" height="48"></a></li>        
-		        </ul> 
-		     </div>	
-	    </footer>
+		<footer class="site-footer ">
+	      <div class="container ">
+	        <div class="row  ">
+	          <div class="col-md-9 col-sm-9 col-xs-12 " >
+	            <p>Copyright &copy; 2021 - Todos os direitos reservados a Weblioteca. Siga nossas redes sociais.  
+	            </p>
+	          </div>
+	          <div class="col-md-3 col-sm-3 col-xs-12 ">
+	            <ul class="social-icons">
+	              <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+	              <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+	              <li><a class="instagram" href="#"><i class="bi bi-instagram"></i></a></li>
+	              <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>   
+	            </ul>
+	          </div>
+	        </div>
+	      </div>
+		</footer> 
 	</div>
 </body>
 </html>
