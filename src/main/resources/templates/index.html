@@ -38,15 +38,15 @@
 					<div class="dropdown-menu">
 						<a class="dropdown-item" th:href="@{/indexfuncionario}"><i class="bi bi-person-square"></i> Funcionários</a> 
 						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
-						<a class="dropdown-item" th:href="@{/livro}"><i class="bi bi-book"></i> Livros</a>
 						<a class="dropdown-item" th:href="@{/indexAutor}"><i class="bi bi-person "></i> Autores</a> 
 						<a class="dropdown-item" th:href="@{/indexEditora}"><i class="bi bi-bookshelf"></i> Editoras</a>
-						<a class="dropdown-item" th:href="@{/abonarMulta}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a> 
-						<a class="dropdown-item" th:href="@{/prolongarEmprestimo}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
-						<a class="dropdown-item" th:href="@{/faturarEmprestimo}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
-						<a class="dropdown-item" th:href="@{/emprestarExemplares}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
-						<a class="dropdown-item" th:href="@{/devolucaoExemplares}"><i class="bi bi-journal-check"></i> Devolução de Exempares</a>
-						<a class="dropdown-item" th:href="@{/emprestimoReserva}"><i class="bi bi-journal-bookmark"></i> Empréstimo Reserva</a> 
+						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
+						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-journal-bookmark"></i> Reservar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexEmprestar}"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a> 
+						<a class="dropdown-item" th:href="@{/indexProlongar}"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a> 
+						<a class="dropdown-item" th:href="@{/indexDevolucao}"><i class="bi bi-journal-check"></i> Devolução Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+						<a class="dropdown-item" th:href="@{/indexAbonar}"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link"  th:href="@{/relatorios}"><i class="bi bi-file-bar-graph"></i> Relatórios</a>
 				</li>
@@ -70,57 +70,57 @@
 		</div>
 		</br>
 		<div class="row center" align="center">
-			<div class="col-sm-12">
-				<div class="btn-group col-sm-4">
-				 	<a  th:href="@{/livro}" class="btn btn-primary" role="button"><i class="bi bi-book"></i> Livros</a>
-				</div>		
+			<div class="col-sm-12">	
 				<div class="btn-group col-sm-4">
 				 	<a  th:href="@{/indexAutor}" class="btn btn-primary" role="button"><i class="bi bi-person"></i> Autores</a>
+				</div>
+				<div class="btn-group  col-sm-4">
+				 	<a  th:href="@{/indexEditora}" class="btn btn-primary" role="button"><i class="bi bi-bookshelf"></i> Editoras</a>
 				</div>
 			</div>
 		</div>
 		</br>
 		<div class="row center" align="center">
 			<div class="col-sm-12">
-				<div class="btn-group  col-sm-4">
-				 	<a  th:href="@{/indexEditora}" class="btn btn-primary" role="button"><i class="bi bi-bookshelf"></i> Editoras</a>
-				</div>
 				<div class="btn-group col-sm-4">
-				 	<a  th:href="@{/abonarMulta}" class="btn btn-primary" role="button"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
+				 	<a  th:href="@{/indexLivro}" class="btn btn-primary" role="button"><i class="bi bi-book"></i> Livros</a>
+				</div>					
+				<div class="btn-group  col-sm-4">
+				 	<a  th:href="@{/indexReserva}" class="btn btn-primary" role="button"><i class="bi bi-journal-bookmark"></i> Reservar Exemplar</a>
 				</div>
 			</div>
 		</div>
 		</br>
 		<div class="row" align="center">
-			<div class="col-sm-12">
+			<div class="col-sm-12">	
 				<div class="btn-group col-sm-4">
-				 	<a  th:href="@{/prolongarEmprestimo}" class="btn btn-primary" role="button"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a>
+				 	<a  th:href="@{/indexEmprestar}" class="btn btn-primary" role="button"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a>
 				</div>
 				<div class="btn-group col-sm-4">
-				 	<a  th:href="@{/faturarEmprestimo}" class="btn btn-primary" role="button"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+				 	<a  th:href="@{/indexProlongar}" class="btn btn-primary" role="button"><i class="bi bi-journal-plus"></i> Prolongar Empréstimo</a>
 				</div>		
 			</div>
 		</div>		
 		</br>
 		<div class="row" align="center">
-			<div class="col-sm-12">		
+			<div class="col-sm-12">	
 				<div class="btn-group col-sm-4">
-				 	<a  th:href="@{/emprestarExemplares}" class="btn btn-primary" role="button"><i class="bi bi-journal-bookmark-fill"></i> Emprestar Exemplares</a>
-				</div>
+				 	<a  th:href="@{/indexDevolucao}" class="btn btn-primary" role="button"><i class="bi bi-journal-check"></i> Devolução de Exempares</a>
+				</div>	
 				<div class="btn-group col-sm-4">
-				 	<a  th:href="@{/devolucaoExemplares}" class="btn btn-primary" role="button"><i class="bi bi-journal-check"></i> Devolução de Exempares</a>
-				</div>			
+				 	<a  th:href="@{/indexFaturar}" class="btn btn-primary" role="button"><i class="bi bi-journal-arrow-down"></i> Faturar Empréstimo</a>
+				</div>		
 			</div>
 		</div>		
 		</br>	
 		<div class="row" align="center">
-			<div class="col-sm-12">
-				<div class="btn-group  col-sm-4">
-				 	<a  th:href="@{/emprestimoReserva}" class="btn btn-primary" role="button"><i class="bi bi-journal-bookmark"></i> Empréstimo Reserva</a>
-				</div>		
+			<div class="col-sm-12">					
+				<div class="btn-group col-sm-4">
+				 	<a  th:href="@{/indexAbonar}" class="btn btn-primary" role="button"><i class="bi bi-person-bounding-box"></i> Abonar Multa</a>
+				</div>
 				<div class="btn-group col-sm-4">
 				 	<a  th:href="@{/relatorioRentabilidadeExemplares}" class="btn btn-primary" role="button"><i class="bi bi-file-bar-graph"></i> Relatórios de Rentabilidade de Exemplares</a>
-				</div>
+				</div>				
 			</div>
 		</div>		
 		</br>	
