@@ -13,8 +13,8 @@ public class Editora {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long editoraId;
+	
 	private String nome;
-	@Size(min = 18, message = "required")
 	private String cnpj;
 
 	public Editora() {

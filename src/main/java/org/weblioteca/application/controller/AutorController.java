@@ -19,7 +19,7 @@ public class AutorController {
 	@Autowired
 	AutorService autorService;
 	
-	@GetMapping("/autor")
+	@GetMapping("/indexAutor")
 	public String viewHomePage(Model model) {
 		return autoresPaginacao(1, "nome", "asc", model);
 	}
@@ -30,11 +30,11 @@ public class AutorController {
 		model.addAttribute("autor", autor);
 		return "salvarAutor";
 	}
-	
+
 	@PostMapping("/salvarAutor")
 	public String salvarAutor(@ModelAttribute("autor") Autor autor) {
 		autorService.salvarAutor(autor);
-		return "redirect:/autor";
+		return "redirect:/indexAutor";
 	}
 	
 	@GetMapping("/atualizarAutor/{id}")
@@ -44,10 +44,20 @@ public class AutorController {
 		return "atualizarAutor";
 	}
 	
+	@SuppressWarnings("finally")
 	@GetMapping("/deletarAutor/{id}")
 	public String deletarAutor(@PathVariable (value = "id") Long id) {
-		autorService.deletarAutorById(id);
-		return "redirect:/autor";
+		try {
+			autorService.deletarAutorById(id);	
+			return "redirect:/indexAutor";	
+		}catch (Exception $e)  {			
+			return "redirect:/erroAutor";	
+		}
+	}
+	
+	@GetMapping("/erroAutor") 
+	public String erroAutor(Model model) {
+		return "erroAutor";	
 	}
 	
 	@GetMapping("/pageAutor/{pageNo}")
@@ -69,6 +79,6 @@ public class AutorController {
 		model.addAttribute("reverseSortDir", sortDirAutor.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaAutores", listaAutores);
-		return "autor";
+		return "indexAutor";
 	}
 }

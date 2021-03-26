@@ -1,5 +1,7 @@
 package org.weblioteca.application.model;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +14,16 @@ public class Funcionario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long funcionarioId;
+	
 	private String nome;
 	private String sexo;
 	private String funcao;
+	private String cpf;
+	private String telefone;
+	private Date dataAdmissao;
+	private double salario;
+	private String login;
+	private String senha;
 	
 	public Funcionario() {
 	}
@@ -49,6 +58,54 @@ public class Funcionario {
 
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public Date getDataAdmissao() {
+		return dataAdmissao;
+	}
+
+	public void setDataAdmissao(Date dataAdmissao) {
+		this.dataAdmissao = dataAdmissao;
+	}
+
+	public double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 }
