@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
 
 @Service
@@ -16,5 +17,5 @@ public interface FaturaService {
 
 	void deletarFaturaById(Long id);
 
-	Page<Fatura> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
+	Page<Emprestimo> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

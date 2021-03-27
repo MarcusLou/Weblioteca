@@ -79,8 +79,12 @@ public class LivroController {
 	
 	@GetMapping("/deletarLivro/{id}")
 	public String deletarLivro(@PathVariable (value = "id") Long id) {
-		livroService.deletarLivroById(id);
-		return "redirect:/indexLivro";
+		try {
+			livroService.deletarLivroById(id);
+			return "redirect:/indexLivro";
+		}catch (Exception $e)  {			
+			return "redirect:/mensagemLivro";	
+		}
 	}
 	
 	@GetMapping("/pageLivro/{pageNo}")
