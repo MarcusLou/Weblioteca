@@ -9,13 +9,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
 import org.weblioteca.application.repository.FaturaRepository;
+import org.weblioteca.application.repository.EmprestimoRepository;
 
 @Service
 public class FaturaServiceImpl implements FaturaService {
 	@Autowired
 	private FaturaRepository faturaRepository;
+	private EmprestimoRepository emprestimoRepository;
 
 	@Override
 	public List<Fatura> getAllFaturas() {
@@ -46,12 +49,12 @@ public class FaturaServiceImpl implements FaturaService {
 	}
 
 	@Override
-	public Page<Fatura> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Emprestimo> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
 
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-		return this.faturaRepository.findAll(pageable);
+		return this.emprestimoRepository.findAll(pageable);
 	}
 
 }
