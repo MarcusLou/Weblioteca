@@ -87,6 +87,11 @@ public class LivroController {
 		}
 	}
 	
+	@GetMapping("/mensagemLivro") 
+	public String mensagemLivro(Model model) {
+		return "mensagemLivro";	
+	}
+	
 	@GetMapping("/pageLivro/{pageNo}")
 	public String livrosPaginacao(@PathVariable (value = "pageNo") int pageNoLivro, 
 			                        @RequestParam("sortField") String sortFieldLivro,
