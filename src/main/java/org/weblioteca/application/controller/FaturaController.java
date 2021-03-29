@@ -27,9 +27,6 @@ public class FaturaController {
 	@Autowired
 	private EmprestimoRepository emprestimoRepository;
 	
-	@Autowired
-	private EmprestimoService emprestimoService;	
-	
 	@GetMapping("/indexFaturar")
 	public String viewHomePage(Model model) {
 		List<Emprestimo> listEmprestimo = emprestimoRepository.findAll();
