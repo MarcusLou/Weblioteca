@@ -58,6 +58,18 @@ public class FaturaController {
 		return "atualizarFatura";
 	}
 	
+	@GetMapping("/faturarEmprestimo/{id}")
+	public String faturarEmprestimo(@PathVariable (value = "id") Long id) {
+	//	Emprestimo emprestimo = emprestimoRepository.findById(id);
+		Fatura fatura1 = new Fatura();
+		fatura1.setClienteId((long) 1);
+		fatura1.setDataFatura(java.sql.Date.valueOf("2021-03-28"));
+		fatura1.setDiasAtraso(5);
+		fatura1.setValorFatura(8.00);
+		faturaService.salvarFatura(fatura1);
+		return "redirect:/indexFaturar";
+	}
+	
 	@GetMapping("/deletarFatura/{id}")
 	public String deletarFatura(@PathVariable (value = "id") Long id) {
 		faturaService.deletarFaturaById(id);
