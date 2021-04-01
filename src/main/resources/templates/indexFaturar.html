@@ -6,12 +6,12 @@
 	<meta name="viewport"
 		  content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/webliotecaStyle.css" media="screen" />	
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 		crossorigin="anonymous">	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="../css/webliotecaStyle.css" media="screen" />	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 			crossorigin="anonymous"></script>
@@ -21,12 +21,12 @@
 			crossorigin="anonymous"></script>		
 	<script src="../javascript/jquery.mask.js" type="text/javascript"></script>
 	<script src="../javascript/CONFIG.jquery.mask.js" type="text/javascript"></script>
-	<title>Faturar</title>
+	<title>Faturas</title>
 </head>
 <body>
 	<div class="container-fluid">
         <header class="header">
-  			<img src="../img/books.png" alt="bookstore">	
+  			<img src="../img/books.png" alt="bookstore">
   			<img src="../img/weblioteca.png" alt="Weblioteca"  height="110">
         </header>
 		<nav class="navbar navbar-expand-sm bg-light navbar-light justify-content-between">
@@ -35,58 +35,49 @@
 				</li>
 				<!-- Dropdown -->
 				<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="bi bi-calendar3"></i> Faturar</a>
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="bi bi-person"></i> Faturas</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
-						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
-						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-calendar2-week-fill"></i> Faturar</a> 
+						<a class="dropdown-item" th:href="@{/indexEmprestimo}"><i class="bi bi-people-fill "></i> Emprestimos</a>
 					</div>
 				</li>
 			</ul>
-			<form class="form-inline">
-		    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do Cliente" aria-label="Search" aria-describedby="basic-addon2">
-			  	<div class="input-group-append">
-		    		<button class="btn btn-outline-success my-2 my-sm-0 " type="submit"> Pesquisar <i class="bi bi-search "></i></button>				 
-				</div>
-			</form>
-		</nav>	
+		</nav>
 		<hr></hr>	
 		<div class="row justify-content-between">
       		<div class="col-md-9 center">
-			<h3>Empréstimos</h3>
+			<h3>Faturas</h3>
       		</div>
-	      	<div class="mx-sm-3 mb-3" >
-				<a th:href="@{/novaReserva}" class="btn btn-success mb-3 "><i class="bi bi-calendar2-plus "></i> Faturar</a>
-	      	</div>
 	    </div>
-		<div class="row">
-			<div class="col-sm-12">		
+		<div class="row" >
+			<div class="col-sm-12">				
 				<table border="1" class = "table table-striped">
 					<thead class="table-info">
 						<tr>
 							<th class="center"><a
 								th:href="@{'/pageFatura/' + ${currentPage} + '?sortField=clienteId&sortDir=' + ${reverseSortDir}}">
-									Nome Cliente</a></th>
+									ID Cliente</a></th>
 							<th class="center"><a
-								th:href="@{'/pageFatura/' + ${currentPage} + '?sortField=dataEmprestimo&sortDir=' + ${reverseSortDir}}">
-									Data Empréstimo</a></th>
+								th:href="@{'/pageFatura/' + ${currentPage} + '?sortField=dataFatura&sortDir=' + ${reverseSortDir}}">
+									Data Fatura</a></th>
 							<th class="center"><a
-								th:href="@{'/pageFatura/' + ${currentPage} + '?sortField=dataDevolvido&sortDir=' + ${reverseSortDir}}">
-									Data Devolvido</a></th>							
+								th:href="@{'/pageFatura/' + ${currentPage} + '?sortField=valorFatura&sortDir=' + ${reverseSortDir}}">
+									Valor Fatura</a></th>		
+							<th class="center"><a
+								th:href="@{'/pageFatura/' + ${currentPage} + '?sortField=diasAtraso&sortDir=' + ${reverseSortDir}}">
+									Dias Atraso</a></th>					
 							<th class="center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="emprestimo : ${listEmprestimo}" >						
-							<td th:text="${emprestimo.cliente.nome}"></td>
-							<td th:text="${#temporals.format(emprestimo.dataEmprestimo, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
-							<td th:text="${#temporals.format(emprestimo.dataDevolvido, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
-						    <td class="center">
-								<a th:href="@{/atualizarReserva/{id}(id=${reserva.reservaId})}" class="btn btn-primary"><i class="bi bi-calendar-check  "></i> Atualizar</a>
-								
-								<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar2-x  "></i> Remover</button>
+						<tr th:each="fatura : ${listaFatura}">
+							<td th:text="${fatura.clienteId}"></td>
+							<td th:text="${fatura.dataFatura}"></td>
+							<td th:text="${fatura.valorFatura}"></td>
+							<td th:text="${fatura.diasAtraso}"></td>
+						    <td class="center">								
+								<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${fatura.faturaId}" ><i class="bi bi-person-dash-fill "></i> Remover</button>
 						    	
-						    	<div class="modal fade" th:id="remover_+${reserva.reservaId}"  tabindex="-1" role="dialog" aria-hidden="true">
+						    	<div class="modal fade" th:id="remover_+${fatura.faturaId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					                <div class="modal-dialog modal-dialog-centered" role="document">
 						                  <div class="modal-content">
 							                    <div class="modal-header">
@@ -96,11 +87,11 @@
 								                      </button>
 							                    </div>
 							                    <div class="modal-body">
-							                      	<p>Tem certeza que quer remover essa reserva?</p>
+							                      	<p>Tem certeza que quer cancelar essa fatura?</p>
 							                    </div>
 							                    <div class="modal-footer">
-								                      <a th:href="@{/indexReserva}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-								                      <a type="button" class="btn btn-danger" th:href="@{/deletarReserva/{id}(id=${reserva.reservaId})}">Sim, desejo realmente <b>Remover!</b></a>
+								                      <a th:href="@{/indexfatura}" class="btn btn-warning" data-dismiss="modal">Abortar</a>
+								                      <a type="button" class="btn btn-danger" th:href="@{/deletarFatura/{id}(id=${fatura.faturaId})}">Sim, desejo realmente <b>Cancelar!</b></a>
 							                    </div>
 						                  </div>
 					                </div>
@@ -115,25 +106,25 @@
 		<div th:if = "${totalPages > 1}">
 			<div class = "row col-sm-10">
 				<div class = "col-sm-2">
-					Total Emprestimos: [[${totalItems}]] 
+					Total Faturas: [[${totalItems}]] 
 				</div>
 				<div class = "col-sm-1">
 					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-						<a th:if="${currentPage != i}" th:href="@{'/pageFatura/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<a th:if="${currentPage != i}" th:href="@{'/pagefatura/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
 						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
 					</span>
 				</div>
 				<div class = "col-sm-1">
-					<a th:if="${currentPage < totalPages}" th:href="@{'/pageFatura/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Avançar</a>
+					<a th:if="${currentPage < totalPages}" th:href="@{'/pagefatura/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Avançar</a>
 					<span th:unless="${currentPage < totalPages}">Avançar</span>
 				</div>
 				
 				 <div class="col-sm-1">
-    				<a th:if="${currentPage < totalPages}" th:href="@{'/pageFatura/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Voltar</a>
+    				<a th:if="${currentPage < totalPages}" th:href="@{'/pagefatura/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Voltar</a>
 					<span th:unless="${currentPage < totalPages}">Voltar</span>
    				 </div>
 			</div>				
-		</div>			
+		</div>		
 	    <footer class="site-footer ">
 	      <div class="container ">
 	        <div class="row  ">
@@ -151,7 +142,7 @@
 	          </div>
 	        </div>
 	      </div>
-		</footer> 	    
+		</footer>    
 	</div>
 </body>
 </html>

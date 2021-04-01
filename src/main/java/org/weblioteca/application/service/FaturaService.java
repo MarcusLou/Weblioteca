@@ -17,5 +17,5 @@ public interface FaturaService {
 
 	void deletarFaturaById(Long id);
 
-	Page<Emprestimo> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
+	Page<Fatura> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }
