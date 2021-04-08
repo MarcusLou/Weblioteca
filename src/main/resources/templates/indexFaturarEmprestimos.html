@@ -35,9 +35,9 @@
 				</li>
 				<!-- Dropdown -->
 				<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="bi bi-person"></i> Faturas</a>
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="bi bi-journal"></i> Faturas</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-people-fill "></i> Consultar Faturas</a>
+						<a class="dropdown-item" th:href="@{/indexFaturar}"><i class="bi bi-journal-fill "></i> Consultar Faturas</a>
 					</div>
 				</li>
 			</ul>
@@ -69,13 +69,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="emprestimo : ${listaEmprestimo}">
+						<tr th:each="emprestimo : ${listaEmprestimoFaturar.?[dataDevolvido != null]}">
 							<td th:text="${emprestimo.cliente.nome}"></td>
 							<td th:text="${emprestimo.dataEmprestimo}"></td>
 							<td th:text="${emprestimo.valorTotal}"></td>
-							<td th:text="${emprestimo.dataDevolvido}"></td>
+					  		<td th:text="${emprestimo.dataDevolvido}"></td>
 						    <td class="center">								
-								<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#faturar_'+${emprestimo.emprestimoId}" ><i class="bi bi-person-dash-fill "></i> Faturar</button>
+								<button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#faturar_'+${emprestimo.emprestimoId}" ><i class="bi bi-journal-check-fill "></i> Faturar</button>
 						    	
 						    	<div class="modal fade" th:id="faturar_+${emprestimo.emprestimoId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					                <div class="modal-dialog modal-dialog-centered" role="document">

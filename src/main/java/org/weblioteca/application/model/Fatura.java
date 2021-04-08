@@ -5,7 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "FATURA")
@@ -17,7 +21,8 @@ public class Fatura {
 	
 	private Long clienteId;
 	
-	private Date dataFatura;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataFatura;
 	private double valorFatura;
 	
 	
@@ -34,11 +39,11 @@ public class Fatura {
 		this.faturaId = faturaId;
 	}
 
-	public Date getDataFatura() {
+	public LocalDate getDataFatura() {
 		return dataFatura;
 	}
 
-	public void setDataFatura(Date dataFatura) {
+	public void setDataFatura(LocalDate dataFatura) {
 		this.dataFatura = dataFatura;
 	}
 
