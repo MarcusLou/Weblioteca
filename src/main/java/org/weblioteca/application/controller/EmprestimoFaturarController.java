@@ -1,5 +1,6 @@
 package org.weblioteca.application.controller;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -32,10 +33,11 @@ public class EmprestimoFaturarController {
 	@GetMapping("/faturarEmprestimo/{id}")
 	public String faturarEmprestimo(@PathVariable (value = "id") Long id) {
 		Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(id);
-		Date date = new Date();
+		//java.util.Date utilDate = new java.util.Date();
+		LocalDate date = LocalDate.now();
 		Fatura fatura1 = new Fatura();
 		fatura1.setClienteId(emprestimo.getCliente().getClienteId());
-		fatura1.setDataFatura((java.sql.Date) date);
+		fatura1.setDataFatura(date);
 		fatura1.setDiasAtraso((int) ((emprestimo.getDataDevolvido().getTime() - emprestimo.getDataDevolucao().getTime()) / (1000*60*60*24)));
 		fatura1.setValorFatura(emprestimo.getValorTotal());
 		faturaService.salvarFatura(fatura1);

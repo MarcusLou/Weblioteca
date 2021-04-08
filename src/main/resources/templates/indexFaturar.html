@@ -35,9 +35,9 @@
 				</li>
 				<!-- Dropdown -->
 				<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="bi bi-person"></i> Faturas</a>
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="bi bi-journal"></i> Faturas</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" th:href="@{/indexEmprestimo}"><i class="bi bi-people-fill "></i> Emprestimos</a>
+						<a class="dropdown-item" th:href="@{/indexFaturarEmprestimos}"><i class="bi bi-journal-fill "></i> Emprestimos</a>
 					</div>
 				</li>
 			</ul>
@@ -71,11 +71,12 @@
 					<tbody>
 						<tr th:each="fatura : ${listaFatura}">
 							<td th:text="${fatura.clienteId}"></td>
-							<td th:text="${fatura.dataFatura}"></td>
+							<!--  <td th:text="${fatura.dataFatura}"></td> -->
+							<td th:text="${#temporals.format(fatura.dataFatura, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
 							<td th:text="${fatura.valorFatura}"></td>
 							<td th:text="${fatura.diasAtraso}"></td>
 						    <td class="center">								
-								<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${fatura.faturaId}" ><i class="bi bi-person-dash-fill "></i> Remover</button>
+								<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${fatura.faturaId}" ><i class="bi bi-journal-check-fill "></i> Cancelar Fatura</button>
 						    	
 						    	<div class="modal fade" th:id="remover_+${fatura.faturaId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					                <div class="modal-dialog modal-dialog-centered" role="document">
