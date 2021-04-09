@@ -29,7 +29,16 @@ public class Emprestimo {
 	private Date dataDevolucao;
 	private Date dataDevolvido;
 	private double valorTotal;
+	private Boolean faturado=false;
 	
+	public Boolean getFaturado() {
+		return faturado;
+	}
+
+	public void setFaturado(Boolean faturado) {
+		this.faturado = faturado;
+	}
+
 	public Emprestimo() {}
 
 	public Long getEmprestimoId() {

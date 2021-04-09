@@ -40,7 +40,10 @@ public class EmprestimoFaturarController {
 		fatura1.setDataFatura(date);
 		fatura1.setDiasAtraso((int) ((emprestimo.getDataDevolvido().getTime() - emprestimo.getDataDevolucao().getTime()) / (1000*60*60*24)));
 		fatura1.setValorFatura(emprestimo.getValorTotal());
+		fatura1.setIdEmprestimo(emprestimo.getEmprestimoId());
 		faturaService.salvarFatura(fatura1);
+		emprestimo.setFaturado(true);
+		emprestimoFaturarService.salvarEmprestimo(emprestimo);
 		return "redirect:/indexFaturar";
 	}
 	
