@@ -55,7 +55,7 @@
 						<tr>
 							<th class="center"><a
 								th:href="@{'/pageFatura/' + ${currentPage} + '?sortField=clienteId&sortDir=' + ${reverseSortDir}}">
-									ID Cliente</a></th>
+									Cliente</a></th>
 							<th class="center"><a
 								th:href="@{'/pageFatura/' + ${currentPage} + '?sortField=dataFatura&sortDir=' + ${reverseSortDir}}">
 									Data Fatura</a></th>
@@ -70,7 +70,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="fatura : ${listaFatura}">
-							<td th:text="${fatura.clienteId}"></td>
+							<td th:each="cliente : ${listCliente}" th:text="*{cliente.clienteId == fatura.clienteId}? *{cliente.nome}" th:if="${cliente.clienteId} == ${fatura.clienteId}" ></td>
 							<!--  <td th:text="${fatura.dataFatura}"></td> -->
 							<td th:text="${#temporals.format(fatura.dataFatura, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
 							<td th:text="${fatura.valorFatura}"></td>

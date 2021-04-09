@@ -43,4 +43,10 @@ public class EmprestimoFaturarServiceImpl implements EmprestimoFaturarService {
 		return this.emprestimoRepository.findAll(pageable);
 	}
 
+	@Override
+	public void salvarEmprestimo(Emprestimo emprestimo) {
+		emprestimoRepository.save(emprestimo);
+		
+	}
+
 }

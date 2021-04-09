@@ -11,16 +11,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.weblioteca.application.service.EmprestimoFaturarService;
 import org.weblioteca.application.service.FaturaService;
+import org.weblioteca.application.model.Cliente;
+import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
+import org.weblioteca.application.repository.ClienteRepository;
 
 @Controller
 public class FaturaController {
 	@Autowired
+	private ClienteRepository clienteRepository;
+	@Autowired
 	FaturaService faturaService;
+	@Autowired
+	EmprestimoFaturarService emprestimoFaturarService;
 	
 	@GetMapping("/indexFaturar")
 	public String viewHomePage(Model model) {	 
+		List<Cliente> listCliente = clienteRepository.findAll();
+	    model.addAttribute("listCliente", listCliente);	
 		return faturaPaginacao(1, "faturaId", "asc", model);
 	}
 	
@@ -63,6 +73,9 @@ public class FaturaController {
 	@GetMapping("/deletarFatura/{id}")
 	public String deletarFatura(@PathVariable (value = "id") Long id) {
 		try {
+			Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(faturaService.getFaturaById(id).getIdEmprestimo());
+			emprestimo.setFaturado(false);
+			emprestimoFaturarService.salvarEmprestimo(emprestimo);
 			faturaService.deletarFaturaById(id);
 			return "redirect:/indexFaturar";
 		}catch (Exception $e) {

@@ -24,8 +24,16 @@ public class Fatura {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataFatura;
 	private double valorFatura;
+	private Long idEmprestimo;
 	
-	
+	public Long getIdEmprestimo() {
+		return idEmprestimo;
+	}
+
+	public void setIdEmprestimo(Long idEmprestimo) {
+		this.idEmprestimo = idEmprestimo;
+	}
+
 	private int diasAtraso;
 
 	public Fatura() {
