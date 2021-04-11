@@ -1,6 +1,7 @@
 package org.weblioteca.application.controller;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,11 @@ public class EmprestimoFaturarController {
 		return emprestimoFaturarPaginacao(1, "emprestimoId", "asc", model);
 	}
 	
+	@GetMapping("/indexProlongarEmprestimo")
+	public String viewHomePage2(Model model) {
+		return emprestimoProlongarPaginacao(1, "emprestimoId", "asc", model);
+	}
+	
 	@GetMapping("/faturarEmprestimo/{id}")
 	public String faturarEmprestimo(@PathVariable (value = "id") Long id) {
 		Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(id);
@@ -45,6 +51,16 @@ public class EmprestimoFaturarController {
 		emprestimo.setFaturado(true);
 		emprestimoFaturarService.salvarEmprestimo(emprestimo);
 		return "redirect:/indexFaturar";
+	}
+	
+	@GetMapping("/prolongarEmprestimo/{id}")
+	public String prolongarEmprestimo(@PathVariable (value = "id") Long id) {
+		Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(id);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(emprestimo.getDataDevolucao());
+		cal.add(Calendar.DAY_OF_MONTH, 7);
+		emprestimo.setDataDevolucao((java.sql.Date) cal.getTime());
+		return "redirect:/indexFaturarEmprestimos";
 	}
 	
 	@GetMapping("/pageEmprestimoFaturar/{pageNo}")
@@ -67,5 +83,27 @@ public class EmprestimoFaturarController {
 		
 		model.addAttribute("listaEmprestimoFaturar", listaEmprestimoFaturar);
 		return "indexFaturarEmprestimos";
+	}
+	
+	@GetMapping("/pageEmprestimoProlongar/{pageNo}")
+	public String emprestimoProlongarPaginacao(@PathVariable (value = "pageNo") int pageNoEmprestimoFaturar, 
+			                        @RequestParam("sortField") String sortFieldEmprestimoFaturar,
+		                        	@RequestParam("sortDir") String sortDirEmprestimoFaturar,
+		                         	Model model) {
+		int pageSizeEmprestimoFaturar = 5;
+		
+		Page<Emprestimo> pageEmprestimoFaturar = emprestimoFaturarService.findPaginated(pageNoEmprestimoFaturar, pageSizeEmprestimoFaturar, sortFieldEmprestimoFaturar, sortDirEmprestimoFaturar);
+		List<Emprestimo> listaEmprestimoFaturar = pageEmprestimoFaturar.getContent();
+		
+		model.addAttribute("currentPage", pageNoEmprestimoFaturar);
+		model.addAttribute("totalPages", pageEmprestimoFaturar.getTotalPages());
+		model.addAttribute("totalItems", pageEmprestimoFaturar.getTotalElements());
+		
+		model.addAttribute("sortField", sortFieldEmprestimoFaturar);
+		model.addAttribute("sortDir", sortDirEmprestimoFaturar);
+		model.addAttribute("reverseSortDir", sortDirEmprestimoFaturar.equals("asc") ? "desc" : "asc");
+		
+		model.addAttribute("listaEmprestimoFaturar", listaEmprestimoFaturar);
+		return "indexProlongarEmprestimo";
 	}
 }
