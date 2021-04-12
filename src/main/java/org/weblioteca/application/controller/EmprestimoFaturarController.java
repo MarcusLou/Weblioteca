@@ -83,7 +83,7 @@ public class EmprestimoFaturarController {
 			emprestimo.setDataDevolucao((java.sql.Date) cal.getTime());
 			return "redirect:/indexFaturarEmprestimos";
 		} else {
-			return "redirect:/indexFaturarEmprestimos";
+			return "redirect:/mensagemProlongarEmprestimos";
 		}
 	}
 	
