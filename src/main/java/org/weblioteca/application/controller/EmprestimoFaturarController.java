@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
+import org.weblioteca.application.model.Livro;
+import org.weblioteca.application.model.Reserva;
 import org.weblioteca.application.service.EmprestimoFaturarService;
 import org.weblioteca.application.service.FaturaService;
+import org.weblioteca.application.service.LivroService;
+import org.weblioteca.application.service.ReservaService;
 
 @Controller
 public class EmprestimoFaturarController {
@@ -24,10 +28,16 @@ public class EmprestimoFaturarController {
 	EmprestimoFaturarService emprestimoFaturarService;
 	
 	@Autowired
+	ReservaService reservaService;
+	
+	@Autowired
+	LivroService livroService;
+	
+	@Autowired
 	FaturaService faturaService;
 
 	@GetMapping("/indexFaturarEmprestimos")
-	public String viewHomePage(Model model) {
+	public String viewHomePage(Model model){
 		return emprestimoFaturarPaginacao(1, "emprestimoId", "asc", model);
 	}
 	
@@ -55,12 +65,26 @@ public class EmprestimoFaturarController {
 	
 	@GetMapping("/prolongarEmprestimo/{id}")
 	public String prolongarEmprestimo(@PathVariable (value = "id") Long id) {
+		boolean PodeProlongar=true;
 		Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(id);
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(emprestimo.getDataDevolucao());
-		cal.add(Calendar.DAY_OF_MONTH, 7);
-		emprestimo.setDataDevolucao((java.sql.Date) cal.getTime());
-		return "redirect:/indexFaturarEmprestimos";
+		List<Reserva> listaReservas = reservaService.getAllReservas();
+		List<Livro> listaLivros = emprestimo.getExemplar();
+		Livro livro = new Livro();
+		for (Reserva r: listaReservas) {
+			livro = livroService.getLivroById(r.getLivroId());
+			if (listaLivros.contains(livro)) {
+				PodeProlongar = false;
+			}
+		}
+		if (PodeProlongar == true) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(emprestimo.getDataDevolucao());
+			cal.add(Calendar.DAY_OF_MONTH, 7);
+			emprestimo.setDataDevolucao((java.sql.Date) cal.getTime());
+			return "redirect:/indexFaturarEmprestimos";
+		} else {
+			return "redirect:/indexFaturarEmprestimos";
+		}
 	}
 	
 	@GetMapping("/pageEmprestimoFaturar/{pageNo}")
