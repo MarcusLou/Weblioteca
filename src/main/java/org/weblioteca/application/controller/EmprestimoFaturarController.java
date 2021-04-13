@@ -1,6 +1,10 @@
 package org.weblioteca.application.controller;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -69,22 +73,34 @@ public class EmprestimoFaturarController {
 		Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(id);
 		List<Reserva> listaReservas = reservaService.getAllReservas();
 		List<Livro> listaLivros = emprestimo.getExemplar();
-		Livro livro = new Livro();
+		Livro livro = new Livro();  
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(emprestimo.getDataDevolucao());
+		cal.add(Calendar.DAY_OF_MONTH, 7);
+		java.util.Date data = new java.util.Date();
+		data = cal.getTime();
+		Instant instant = data.toInstant();
+		ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+		LocalDate date = zdt.toLocalDate();
+		java.sql.Date dataSql = new java.sql.Date(data.getTime());
 		for (Reserva r: listaReservas) {
 			livro = livroService.getLivroById(r.getLivroId());
-			if (listaLivros.contains(livro)) {
+			if ((listaLivros.contains(livro)) && (r.getDataReserva().isBefore(date))) {
 				PodeProlongar = false;
 			}
 		}
 		if (PodeProlongar == true) {
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(emprestimo.getDataDevolucao());
-			cal.add(Calendar.DAY_OF_MONTH, 7);
-			emprestimo.setDataDevolucao((java.sql.Date) cal.getTime());
-			return "redirect:/indexFaturarEmprestimos";
+			emprestimo.setDataDevolucao(dataSql);
+			emprestimoFaturarService.salvarEmprestimo(emprestimo);
+			return "redirect:/indexProlongarEmprestimo";
 		} else {
-			return "redirect:/mensagemProlongarEmprestimos";
+			return "redirect:/mensagemProlongarEmprestimo";
 		}
+	}
+	
+	@GetMapping("/mensagemProlongarEmprestimo") 
+	public String mensagemProlongarEmprestimo(Model model) {
+		return "mensagemProlongarEmprestimo";	
 	}
 	
 	@GetMapping("/pageEmprestimoFaturar/{pageNo}")

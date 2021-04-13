@@ -58,13 +58,10 @@
 									Cliente</a></th>
 							<th class="center"><a
 								th:href="@{'/pageEmprestimo/' + ${currentPage} + '?sortField=dataEmprestimo&sortDir=' + ${reverseSortDir}}">
-									Data Emprestimo</a></th>
+									Data Emprestimo</a></th>	
 							<th class="center"><a
-								th:href="@{'/pageEmprestimo/' + ${currentPage} + '?sortField=valoTotal&sortDir=' + ${reverseSortDir}}">
-									Valor Total</a></th>		
-							<th class="center"><a
-								th:href="@{'/pageEmprestimo/' + ${currentPage} + '?sortField=dataDevolvido&sortDir=' + ${reverseSortDir}}">
-									Data Devolvido</a></th>					
+								th:href="@{'/pageEmprestimo/' + ${currentPage} + '?sortField=dataDevolucao&sortDir=' + ${reverseSortDir}}">
+									Data Devolução</a></th>					
 							<th class="center">Ações</th>
 						</tr>
 					</thead>
@@ -72,8 +69,7 @@
 						<tr th:each="emprestimo : ${listaEmprestimoFaturar.?[dataDevolvido == null].?[faturado != true]}">
 							<td th:text="${emprestimo.cliente.nome}"></td>
 							<td th:text="${emprestimo.dataEmprestimo}"></td>
-							<td th:text="${emprestimo.valorTotal}"></td>
-					  		<td th:text="${emprestimo.dataDevolvido}"></td>
+					  		<td th:text="${emprestimo.dataDevolucao}"></td>
 						    <td class="center">								
 								<button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#prolongar_'+${emprestimo.emprestimoId}" ><i class="bi bi-journal-check-fill "></i> Prolongar</button>
 						    	
