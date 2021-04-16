@@ -57,7 +57,7 @@
 			<h3>Livros</h3>
       		</div>
 	      	<div class="mx-sm-3 mb-3" >
-				<a th:href="@{/novoLivro}" class="btn btn-success mb-3 "><i class="bi bi-person-plus-fill "></i> Novo Livro</a>
+				<a th:href="@{/novoLivro}" class="btn btn-success mb-3 "><i class="bi bi-book "></i> Novo Livro</a>
 	      	</div>
 	    </div>
 		<div class="row" >
@@ -80,6 +80,9 @@
 							<th><a
 								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=editora&sortDir=' + ${reverseSortDir}}">
 									Editora</a></th>
+							<th><a
+								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=editora&sortDir=' + ${reverseSortDir}}">
+									Status</a></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
@@ -90,11 +93,12 @@
 						<td th:text="${livro.localizacao}"></td>
 						<td th:text="${livro.autor.nome}"></td>
 						<td th:text="${livro.editora.nome}"></td>
-						
+						<td th:if="${livro.excluido}">Inativo</td>
+						<td th:unless="${livro.excluido}">Ativo</td>
 						<td class="center">
-							<a th:href="@{/atualizarLivro/{id}(id=${livro.livroId})}" class="btn btn-primary"><i class="bi bi-person-check-fill "></i> Atualizar</a>
+							<a th:href="@{/atualizarLivro/{id}(id=${livro.livroId})}" class="btn btn-primary"><i class="bi bi-book "></i> Atualizar</a>
 								
-							<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${livro.livroId}" ><i class="bi bi-person-dash-fill "></i> Remover</button>
+							<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${livro.livroId}" ><i class="bi bi-book-fill "></i> Inativar</button>
 						    	
 						    <div class="modal fade" th:id="remover_+${livro.livroId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					         	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -106,15 +110,37 @@
 								                </button>
 							            </div>
 							            <div class="modal-body">
-							            	<p>Tem certeza que quer remover esse livro?</p>
+							            	<p>Tem certeza que quer inativar esse livro?</p>
 							            </div>
 							            <div class="modal-footer">
 								        	<a th:href="@{/indexLivro}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-								            <a type="button" class="btn btn-danger" th:href="@{/deletarLivro/{id}(id=${livro.livroId})}">Sim, desejo realmente <b>Remover!</b></a>
+								            <a type="button" class="btn btn-danger" th:href="@{/deletarLivro/{id}(id=${livro.livroId})}">Sim, desejo realmente <b>Inativar!</b></a>
 							            </div>
 						            </div>
 					           	</div>
-				            </div>				             				              
+				            </div>	
+		
+							<button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#ativar_'+${livro.livroId}" ><i class="bi bi-book "></i> Ativar</button>
+						    	
+						    <div class="modal fade" th:id="ativar_+${livro.livroId}"  tabindex="-1" role="dialog" aria-hidden="true">
+					         	<div class="modal-dialog modal-dialog-centered" role="document">
+						        	<div class="modal-content">
+							        	<div class="modal-header">
+								        	<h5 class="modal-title" id="modalConfirmacao2">Confirmação</h5>
+								            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								                	<span aria-hidden="true">&times;</span>
+								                </button>
+							            </div>
+							            <div class="modal-body">
+							            	<p>Tem certeza que quer ativar esse livro?</p>
+							            </div>
+							            <div class="modal-footer">
+								        	<a th:href="@{/indexLivro}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
+								            <a type="button" class="btn btn-primary" th:href="@{/ativarLivro/{id}(id=${livro.livroId})}">Sim, desejo realmente <b>Ativar!</b></a>
+							            </div>
+						            </div>
+					           	</div>
+				            </div>			             				              
 						</td>												
 				</tr>
 			</tbody>
