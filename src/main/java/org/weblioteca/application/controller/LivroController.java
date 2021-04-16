@@ -73,7 +73,21 @@ public class LivroController {
 	@GetMapping("/deletarLivro/{id}")
 	public String deletarLivro(@PathVariable (value = "id") Long id) {
 		try {
-			livroService.deletarLivroById(id);
+			Livro livro = livroService.getLivroById(id);
+			livro.setExcluido(true);
+			livroService.salvarLivro(livro);
+			return "redirect:/indexLivro";
+		}catch (Exception $e)  {			
+			return "redirect:/mensagemLivro";	
+		}
+	}
+	
+	@GetMapping("/ativarLivro/{id}")
+	public String ativarLivro(@PathVariable (value = "id") Long id) {
+		try {
+			Livro livro = livroService.getLivroById(id);
+			livro.setExcluido(false);
+			livroService.salvarLivro(livro);
 			return "redirect:/indexLivro";
 		}catch (Exception $e)  {			
 			return "redirect:/mensagemLivro";	
