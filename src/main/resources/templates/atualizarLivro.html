@@ -100,7 +100,7 @@
                             Quantidade de Livros disponíveis
                         </div>
                         <div class="input-group mb-3"> 
-								<input type="text" th:field="*{quantidade}" placeholder="Quantidade" class="form-control col-12" required >
+								<input type="text" th:field="*{quantidade}" placeholder="Quantidade" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control col-12" required >
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaQuantidade">?</button>
 						  		</div>		

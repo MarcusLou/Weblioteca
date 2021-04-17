@@ -75,7 +75,7 @@
 							<td th:text="${emprestimo.valorTotal}"></td>
 					  		<td th:text="${emprestimo.dataDevolvido}"></td>
 						    <td class="center">								
-								<button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#faturar_'+${emprestimo.emprestimoId}" ><i class="bi bi-journal-check-fill "></i> Faturar</button>
+								<button type="button" class="btn btn-success" data-toggle="modal" th:attr="data-target='#faturar_'+${emprestimo.emprestimoId}" ><i class="bi bi-journal-check-fill "></i> Faturar</button>
 						    	
 						    	<div class="modal fade" th:id="faturar_+${emprestimo.emprestimoId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					                <div class="modal-dialog modal-dialog-centered" role="document">

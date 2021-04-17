@@ -98,7 +98,7 @@
 						<td class="center">
 							<a th:href="@{/atualizarLivro/{id}(id=${livro.livroId})}" class="btn btn-primary"><i class="bi bi-book "></i> Atualizar</a>
 								
-							<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${livro.livroId}" ><i class="bi bi-book-fill "></i> Inativar</button>
+							<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${livro.livroId}" th:disabled="${livro.excluido}"><i class="bi bi-book-fill "></i> Inativar</button>
 						    	
 						    <div class="modal fade" th:id="remover_+${livro.livroId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					         	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -120,7 +120,7 @@
 					           	</div>
 				            </div>	
 		
-							<button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#ativar_'+${livro.livroId}" ><i class="bi bi-book "></i> Ativar</button>
+							<button type="button" class="btn btn-success" data-toggle="modal" th:attr="data-target='#ativar_'+${livro.livroId}" th:disabled="${!livro.excluido}" ><i class="bi bi-book "></i> Ativar</button>
 						    	
 						    <div class="modal fade" th:id="ativar_+${livro.livroId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					         	<div class="modal-dialog modal-dialog-centered" role="document">
