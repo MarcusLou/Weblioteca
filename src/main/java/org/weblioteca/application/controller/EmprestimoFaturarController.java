@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.internal.TextListener;
+import org.junit.runner.JUnitCore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.weblioteca.application.controllerTest.EmprestimoFaturaControllerTest;
 import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
 import org.weblioteca.application.model.Livro;
@@ -42,6 +45,9 @@ public class EmprestimoFaturarController {
 
 	@GetMapping("/indexFaturarEmprestimos")
 	public String viewHomePage(Model model){
+		JUnitCore junit = new JUnitCore();
+		junit.addListener(new TextListener(System.out));
+		junit.run(EmprestimoFaturaControllerTest.class);
 		return emprestimoFaturarPaginacao(1, "emprestimoId", "asc", model);
 	}
 	
@@ -50,17 +56,24 @@ public class EmprestimoFaturarController {
 		return emprestimoProlongarPaginacao(1, "emprestimoId", "asc", model);
 	}
 	
-	@GetMapping("/faturarEmprestimo/{id}")
-	public String faturarEmprestimo(@PathVariable (value = "id") Long id) {
-		Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(id);
-		//java.util.Date utilDate = new java.util.Date();
+	public Fatura criarFatura(Emprestimo emprestimo) {
 		LocalDate date = LocalDate.now();
 		Fatura fatura1 = new Fatura();
 		fatura1.setClienteId(emprestimo.getCliente().getClienteId());
 		fatura1.setDataFatura(date);
 		fatura1.setDiasAtraso((int) ((emprestimo.getDataDevolvido().getTime() - emprestimo.getDataDevolucao().getTime()) / (1000*60*60*24)));
 		fatura1.setValorFatura(emprestimo.getValorTotal());
-		fatura1.setIdEmprestimo(emprestimo.getEmprestimoId());
+		fatura1.setIdEmprestimo(emprestimo.getEmprestimoId());	
+		return fatura1;
+	}
+	
+	@GetMapping("/faturarEmprestimo/{id}")
+	public String faturarEmprestimo(@PathVariable (value = "id") Long id) {
+		Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(id);
+		//java.util.Date utilDate = new java.util.Date();
+//		LocalDate date = LocalDate.now();
+		Fatura fatura1 = new Fatura();
+		fatura1 = criarFatura(emprestimo);
 		faturaService.salvarFatura(fatura1);
 		emprestimo.setFaturado(true);
 		emprestimoFaturarService.salvarEmprestimo(emprestimo);
