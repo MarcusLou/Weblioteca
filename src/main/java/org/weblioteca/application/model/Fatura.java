@@ -39,6 +39,57 @@ public class Fatura {
 	public Fatura() {
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((clienteId == null) ? 0 : clienteId.hashCode());
+		result = prime * result + ((dataFatura == null) ? 0 : dataFatura.hashCode());
+		result = prime * result + diasAtraso;
+		result = prime * result + ((faturaId == null) ? 0 : faturaId.hashCode());
+		result = prime * result + ((idEmprestimo == null) ? 0 : idEmprestimo.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(valorFatura);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Fatura other = (Fatura) obj;
+		if (clienteId == null) {
+			if (other.clienteId != null)
+				return false;
+		} else if (!clienteId.equals(other.clienteId))
+			return false;
+		if (dataFatura == null) {
+			if (other.dataFatura != null)
+				return false;
+		} else if (!dataFatura.equals(other.dataFatura))
+			return false;
+		if (diasAtraso != other.diasAtraso)
+			return false;
+		if (faturaId == null) {
+			if (other.faturaId != null)
+				return false;
+		} else if (!faturaId.equals(other.faturaId))
+			return false;
+		if (idEmprestimo == null) {
+			if (other.idEmprestimo != null)
+				return false;
+		} else if (!idEmprestimo.equals(other.idEmprestimo))
+			return false;
+		if (Double.doubleToLongBits(valorFatura) != Double.doubleToLongBits(other.valorFatura))
+			return false;
+		return true;
+	}
+
 	public Long getFaturaId() {
 		return faturaId;
 	}
