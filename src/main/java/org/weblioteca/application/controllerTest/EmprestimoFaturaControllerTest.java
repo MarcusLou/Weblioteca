@@ -2,6 +2,7 @@ package org.weblioteca.application.controllerTest;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -55,13 +56,21 @@ public class EmprestimoFaturaControllerTest {
 		emprestimo.setEmprestimoId(Long.valueOf(99));
 		emprestimo.setDataDevolucao(java.sql.Date.valueOf("2021-04-18"));
 		emprestimo.setDataDevolvido(java.sql.Date.valueOf("2021-04-19"));
+		emprestimo.setDataEmprestimo(java.sql.Date.valueOf("2021-04-11"));
+		emprestimo.setValorTotal(10);
 		EmprestimoFaturarController controller = new EmprestimoFaturarController();
 		
 		Fatura fatura = new Fatura();
 		fatura = controller.criarFatura(emprestimo);
-		//implementar em faturaOutro uma fatura base para comparação
+		LocalDate date = LocalDate.now();
 		Fatura faturaOutro = new Fatura();
+		faturaOutro.setClienteId(Long.valueOf(69));
+		faturaOutro.setDataFatura(date);
+		faturaOutro.setDiasAtraso(1);
+		faturaOutro.setValorFatura(10);
+		faturaOutro.setIdEmprestimo(Long.valueOf(99));
+		faturaOutro.setFaturaId(fatura.getFaturaId());
 		assertEquals(fatura, faturaOutro);
-		assertEquals(fatura.equals(faturaOutro), true);
+		//assertEquals(fatura.equals(faturaOutro), true);
 	}
 }
