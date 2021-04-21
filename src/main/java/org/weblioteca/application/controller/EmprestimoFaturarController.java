@@ -18,7 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.weblioteca.application.controllerTest.EmprestimoFaturaControllerTest;
+import org.weblioteca.application.Test.EmprestimoFaturaControllerTest;
+import org.weblioteca.application.builder.FaturaBuilder;
 import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
 import org.weblioteca.application.model.Livro;
@@ -58,12 +59,13 @@ public class EmprestimoFaturarController {
 	
 	public Fatura criarFatura(Emprestimo emprestimo) {
 		LocalDate date = LocalDate.now();
-		Fatura fatura1 = new Fatura();
-		fatura1.setClienteId(emprestimo.getCliente().getClienteId());
-		fatura1.setDataFatura(date);
-		fatura1.setDiasAtraso((int) ((emprestimo.getDataDevolvido().getTime() - emprestimo.getDataDevolucao().getTime()) / (1000*60*60*24)));
-		fatura1.setValorFatura(emprestimo.getValorTotal());
-		fatura1.setIdEmprestimo(emprestimo.getEmprestimoId());	
+		Fatura fatura1 = FaturaBuilder.builder()
+				.addClienteId(emprestimo.getCliente().getClienteId())
+				.addDataFatura(date)
+				.addDiasAtraso((int) ((emprestimo.getDataDevolvido().getTime() - emprestimo.getDataDevolucao().getTime()) / (1000*60*60*24)))
+				.addIdEmprestimo(emprestimo.getEmprestimoId())
+				.addValorFatura(emprestimo.getValorTotal())
+				.get();
 		return fatura1;
 	}
 	
