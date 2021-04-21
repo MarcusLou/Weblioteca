@@ -1,4 +1,4 @@
-package org.weblioteca.application.controllerTest;
+package org.weblioteca.application.Test;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
+import org.weblioteca.application.builder.FaturaBuilder;
 import org.weblioteca.application.controller.EmprestimoFaturarController;
 import org.weblioteca.application.model.Autor;
 import org.weblioteca.application.model.Cliente;
