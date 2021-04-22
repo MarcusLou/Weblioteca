@@ -11,43 +11,82 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.weblioteca.application.service.EmprestimoFaturarService;
 import org.weblioteca.application.service.FaturaService;
+import org.weblioteca.application.model.Cliente;
+import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
+import org.weblioteca.application.repository.ClienteRepository;
 
 @Controller
 public class FaturaController {
 	@Autowired
+	private ClienteRepository clienteRepository;
+	@Autowired
 	FaturaService faturaService;
-
-	@GetMapping("/fatura")
-	public String viewHomePage(Model model) {
+	@Autowired
+	EmprestimoFaturarService emprestimoFaturarService;
+	
+	@GetMapping("/indexFaturar")
+	public String viewHomePage(Model model) {	 
+		List<Cliente> listCliente = clienteRepository.findAll();
+	    model.addAttribute("listCliente", listCliente);	
 		return faturaPaginacao(1, "faturaId", "asc", model);
 	}
 	
 	@GetMapping("/novoFatura") 
 	public String novoFatura(Model model) {
-		Fatura fatura = new Fatura();
-		model.addAttribute("fatura", fatura);
+//		Fatura fatura = new Fatura();
+//		model.addAttribute("fatura", fatura);
+//		List<Emprestimo> listEmprestimo = emprestimoRepository.findAll();
+//	    model.addAttribute("listEmprestimo", listEmprestimo);
 		return "salvarFatura";
 	}
 	
 	@PostMapping("/salvarFatura")
 	public String salvarFatura(@ModelAttribute("fatura") Fatura fatura) {
 		faturaService.salvarFatura(fatura);
-		return "redirect:/fatura";
+		return "redirect:/indexFaturar";
 	}
 	
 	@GetMapping("/atualizarFatura/{id}")
 	public String atualizarFatura(@PathVariable ( value = "id") Long id, Model model) {
-		Fatura fatura = faturaService.getFaturaById(id);
-		model.addAttribute("fatura", fatura);
+//		Fatura fatura = faturaService.getFaturaById(id);
+//		model.addAttribute("fatura", fatura);
+//		List<Emprestimo> listEmprestimo = emprestimoRepository.findAll();
+//	    model.addAttribute("listEmprestimo", listEmprestimo);	
 		return "atualizarFatura";
 	}
 	
+//	@GetMapping("/faturarEmprestimo/{id}")
+//	public String faturarEmprestimo(@PathVariable (value = "id") Long id) {
+	//	Emprestimo emprestimo = emprestimoRepository.findById(id);
+//		Fatura fatura1 = new Fatura();
+//		fatura1.setClienteId((long) 1);
+//		fatura1.setDataFatura(java.sql.Date.valueOf("2021-03-28"));
+//		fatura1.setDiasAtraso(5);
+//		fatura1.setValorFatura(8.00);
+//		faturaService.salvarFatura(fatura1);
+//		return "redirect:/indexFaturar";
+//	}
+	
 	@GetMapping("/deletarFatura/{id}")
 	public String deletarFatura(@PathVariable (value = "id") Long id) {
-		faturaService.deletarFaturaById(id);
-		return "redirect:/fatura";
+		try {
+			Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(faturaService.getFaturaById(id).getIdEmprestimo());
+			emprestimo.setFaturado(false);
+			emprestimoFaturarService.salvarEmprestimo(emprestimo);
+			faturaService.deletarFaturaById(id);
+			return "redirect:/indexFaturar";
+		}catch (Exception $e) {
+			return "redirect:/mensagemFatura";
+		}
+		
+	}
+	
+	@GetMapping("/mensagemFatura") 
+	public String mensagemFatura(Model model) {
+		return "mensagemFatura";	
 	}
 	
 	@GetMapping("/pageFatura/{pageNo}")
@@ -69,6 +108,6 @@ public class FaturaController {
 		model.addAttribute("reverseSortDir", sortDirFatura.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaFatura", listaFatura);
-		return "fatura";
+		return "indexFaturar";
 	}
 }

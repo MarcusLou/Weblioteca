@@ -54,15 +54,8 @@ public class LivroController {
 	
 	@PostMapping("/salvarLivro")
 	public String salvarLivro(@ModelAttribute("livro") Livro livro) {
-		if (livro.getTituloLivro() == "") {
-			if (livro.getLivroId() != null)
-				return "redirect:/atualizarLivro/"+livro.getLivroId();
-			else
-				return "salvarLivro";	
-		}else {
 			livroService.salvarLivro(livro);
 			return "redirect:/indexLivro";
-		}
 	}	
 	
 	@GetMapping("/atualizarLivro/{id}")
@@ -79,8 +72,31 @@ public class LivroController {
 	
 	@GetMapping("/deletarLivro/{id}")
 	public String deletarLivro(@PathVariable (value = "id") Long id) {
-		livroService.deletarLivroById(id);
-		return "redirect:/indexLivro";
+		try {
+			Livro livro = livroService.getLivroById(id);
+			livro.setExcluido(true);
+			livroService.salvarLivro(livro);
+			return "redirect:/indexLivro";
+		}catch (Exception $e)  {			
+			return "redirect:/mensagemLivro";	
+		}
+	}
+	
+	@GetMapping("/ativarLivro/{id}")
+	public String ativarLivro(@PathVariable (value = "id") Long id) {
+		try {
+			Livro livro = livroService.getLivroById(id);
+			livro.setExcluido(false);
+			livroService.salvarLivro(livro);
+			return "redirect:/indexLivro";
+		}catch (Exception $e)  {			
+			return "redirect:/mensagemLivro";	
+		}
+	}
+	
+	@GetMapping("/mensagemLivro") 
+	public String mensagemLivro(Model model) {
+		return "mensagemLivro";	
 	}
 	
 	@GetMapping("/pageLivro/{pageNo}")

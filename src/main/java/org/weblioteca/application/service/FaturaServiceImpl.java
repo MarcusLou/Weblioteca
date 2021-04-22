@@ -42,7 +42,6 @@ public class FaturaServiceImpl implements FaturaService {
 	@Override
 	public void deletarFaturaById(Long id) {
 		faturaRepository.deleteById(id);
-
 	}
 
 	@Override

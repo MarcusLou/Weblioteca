@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
 
 @Service

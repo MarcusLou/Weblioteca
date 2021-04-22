@@ -6,5 +6,5 @@ import org.weblioteca.application.model.Fatura;
 
 @Repository
 public interface FaturaRepository extends JpaRepository<Fatura, Long> {
-	
+
 }
