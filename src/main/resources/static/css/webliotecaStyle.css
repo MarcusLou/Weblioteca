@@ -17,6 +17,7 @@ footer {
 }
 
 
+
  img {
  	margin: 2px;
  }
@@ -96,4 +97,26 @@ footer {
 	display: block;
 	margin: 10% auto;
 	max-width: 100%;
+}
+
+.direita1{
+	position:absolute;
+	right:400px;
+	width:400px;
+	background-color:rgb(243, 243, 243);
+}
+
+.direita2{
+	position:absolute;
+	right:0px;
+	width:400px;
+	background-color:rgb(243, 243, 243);
+}
+
+.colado{
+	float: left;
+}
+
+.tam-btn{
+	width: 110px;
 }

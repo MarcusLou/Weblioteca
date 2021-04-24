@@ -53,10 +53,12 @@
 				<div class="card-body">
 					<form action="#" th:action="@{/salvarAutor}" th:object="${autor}" method="POST" class="needs-validation"  novalidate>					
 						<div id="ajudaNomeAutor" class="collapse azulAjuda">
-                            O nome do autor do livro é o nome da pessoa que criou o livro...
+                            O nome do autor do livro é o nome da pessoa que criou o livro e é essencial!
+                            <hr>
+                            Mínimo de 3 e Máximo de 80 caracteres que não contenha números! 
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{nome}" placeholder="Nome" id="nome" class="form-control col-12" required >
+							<input type="text" th:field="*{nome}" placeholder="Nome" id="nome" class="form-control col-12"  size="80" pattern="[A-Za-z]{3}" required >
 										  
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeAutor">?</button>
@@ -64,9 +66,11 @@
 						</div>  
 						<div id="ajudaData" class="collapse azulAjuda">
                             Aqui devemos preencher o dia, mês e ano que o autor nasceu.
+                            <hr>
+                            A idade mínima do Autor é de 18 anos! 
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="date" th:field="*{nascimento}" placeholder="Nascimento" class="form-control col-12 " required >
+							<input type="date" th:field="*{nascimento}" placeholder="Nascimento" class="form-control col-12 "   max="2003-01-01" required >
 									  
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaData">?</button>
@@ -74,9 +78,11 @@
 						</div>
 						<div id="ajudaOrigem" class="collapse azulAjuda">
                             Aqui devemos preencher a origem, ou local, de onde o autor nasceu.
+                            <hr>
+                            Mínimo de 3 e Máximo de 80 caracteres podendo ter números! 
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{origem}" placeholder="Origem"   class="form-control col-12" required >
+							<input type="text" th:field="*{origem}" placeholder="Origem" minlength="3" size="80"  class="form-control col-12" required >
 							<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaOrigem">?</button>
                         	</div>						  	
