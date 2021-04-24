@@ -71,6 +71,6 @@ public class EmprestimoFaturaControllerTest {
 		faturaOutro.setIdEmprestimo(Long.valueOf(99));
 		faturaOutro.setFaturaId(fatura.getFaturaId());
 		assertEquals(fatura, faturaOutro);
-		assertEquals(fatura.equals(faturaOutro), true);
+		//assertEquals(fatura.equals(faturaOutro), true);
 	}
 }
