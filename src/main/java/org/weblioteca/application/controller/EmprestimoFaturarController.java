@@ -71,8 +71,8 @@ public class EmprestimoFaturarController {
 	@GetMapping("/faturarEmprestimo/{id}")
 	public String faturarEmprestimo(@PathVariable (value = "id") Long id) {
 		Emprestimo emprestimo = emprestimoFaturarService.getEmprestimoById(id);
-		java.util.Date utilDate = new java.util.Date();
-		LocalDate date = LocalDate.now();
+		//java.util.Date utilDate = new java.util.Date();
+//		LocalDate date = LocalDate.now();
 		Fatura fatura1 = new Fatura();
 		fatura1 = criarFatura(emprestimo);
 		faturaService.salvarFatura(fatura1);
