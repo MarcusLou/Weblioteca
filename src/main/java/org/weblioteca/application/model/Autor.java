@@ -22,7 +22,11 @@ public class Autor {
 	private String origem;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate nascimento;	
+	private Integer ativo = 1;
+	
+	
 
+ 
 	public Autor() {
 	}
 
@@ -58,4 +62,14 @@ public class Autor {
 		this.nascimento = nascimento;
 	}
 
+	public Integer getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Integer ativo) {
+		this.ativo = ativo;
+	}
+
+
+	
 }

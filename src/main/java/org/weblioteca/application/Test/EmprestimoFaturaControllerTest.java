@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.weblioteca.application.builder.FaturaBuilder;
@@ -72,6 +71,6 @@ public class EmprestimoFaturaControllerTest {
 		faturaOutro.setIdEmprestimo(Long.valueOf(99));
 		faturaOutro.setFaturaId(fatura.getFaturaId());
 		assertEquals(fatura, faturaOutro);
-		//assertEquals(fatura.equals(faturaOutro), true);
+		assertEquals(fatura.equals(faturaOutro), true);
 	}
 }

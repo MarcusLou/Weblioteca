@@ -42,17 +42,41 @@
 					</div>
 				</li>
 			</ul>
-			<form class="form-inline">
-		    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do Autor" aria-label="Search" aria-describedby="basic-addon2">
-			  	<div class="input-group-append">
+			<form class="form-inline"  th:action="@{/indexAutor/{pesquisa}}" >			
+		  		<div class="input-group ">
+					<select name="ativo" id="ativo" th:value="${ativo}" class="form-control "  required>
+	                	<optgroup label="Selecione">
+	                	<option value="1" >Ativos</option>
+	                	<option value="0" >Inativos</option>
+	    			</select>
+					<div class="input-group-append">						  
+						<button type="button" class="btn btn-outline-info colado" data-toggle="collapse" data-target="#ajudaAtivoAutor">?</button>
+			  		</div>
+		  		</div>
+		  		&nbsp;&nbsp;	
+		  		<div class="input-group ">
+			    	<input class="form-control " type="text" placeholder="Nome, Origem ou Data de Nascimento do Autor" name="pesquisa" id="pesquisa" size="50" th:value="${pesquisa}" />
+				  	<div class="input-group-append">						  
+						<button type="button" class="btn btn-outline-info colado" data-toggle="collapse" data-target="#ajudaPesquisaAutor">?</button>
+			  		</div>
+		  		</div>	
+			  		&nbsp;&nbsp;
+			  	<div class="input-group ">
 		    		<button class="btn btn-outline-success my-2 my-sm-0 " type="submit"> Pesquisar <i class="bi bi-search "></i></button>				 
 				</div>
 			</form>
 		</nav>
+		<div id="ajudaAtivoAutor" class="collapse azulAjuda direita1">
+            Escolha se o Autor é ativo ou inativo no Sistema.
+        </div>	
+        <div id="ajudaPesquisaAutor" class="collapse azulAjuda direita2">
+            Digite nome, origem ou data de nascimento a pesquisar.
+        </div>
 		<hr></hr>	
 		<div class="row justify-content-between">
       		<div class="col-md-9 center">
 			<h3>Autores</h3>
+			
       		</div>
 	      	<div class="mx-sm-3 mb-3" >
 				<a th:href="@{/novoAutor}" class="btn btn-success mb-3 "><i class="bi bi-person-plus-fill "></i> Novo Autor</a>
@@ -76,34 +100,72 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="autor : ${listaAutores}">
+						<tr th:each="autor : ${listaAutores} " > <!--  th:if="${autor.ativo} == 1" -->
 							<td th:text="${autor.nome}"></td>
 							<td class="center" th:text="${#temporals.format(autor.nascimento, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
 							<td th:text="${autor.origem}"></td>
 						    <td class="center">
 								<a th:href="@{/atualizarAutor/{id}(id=${autor.autorId})}" class="btn btn-primary"><i class="bi bi-person-check-fill "></i> Atualizar</a>
 								
-								<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${autor.autorId}" ><i class="bi bi-person-dash-fill "></i> Remover</button>
-						    	
-						    	<div class="modal fade" th:id="remover_+${autor.autorId}"  tabindex="-1" role="dialog" aria-hidden="true">
-					                <div class="modal-dialog modal-dialog-centered" role="document">
-						                  <div class="modal-content">
-							                    <div class="modal-header">
-								                      <h5 class="modal-title" id="modalConfirmacao">Confirmação</h5>
-								                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								                         <span aria-hidden="true">&times;</span>
-								                      </button>
-							                    </div>
-							                    <div class="modal-body">
-							                      	<p>Tem certeza que quer remover esse autor?</p>
-							                    </div>
-							                    <div class="modal-footer">
-								                      <a th:href="@{/indexAutor}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-								                      <a type="button" class="btn btn-danger" th:href="@{/deletarAutor/{id}(id=${autor.autorId})}">Sim, desejo realmente <b>Remover!</b></a>
-							                    </div>
-						                  </div>
-					                </div>
-				              	</div>				              
+								
+								<span th:if="${autor.ativo == 1}">
+
+									<button type="button" class="btn btn-danger tam-btn" data-toggle="modal" th:attr="data-target='#remover_'+${autor.autorId}" ><i class="bi bi-person-dash-fill "></i> Remover</button>
+							    	<div class="modal fade" th:id="remover_+${autor.autorId}"  tabindex="-1" role="dialog" aria-hidden="true">
+						                <div class="modal-dialog modal-dialog-centered" role="document">
+							                  <div class="modal-content">
+								                    <div class="modal-header">
+									                      <h5 class="modal-title" id="modalConfirmacao">Confirmação</h5>
+									                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									                         <span aria-hidden="true">&times;</span>
+									                      </button>
+								                    </div>
+								                    <div class="modal-body">
+								                      	<p>Tem certeza que quer remover esse autor?</p>
+								                    </div>
+								                    <div class="modal-footer">
+									                      <a th:href="@{/indexAutor}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
+									                      <a type="button" class="btn btn-danger" th:href="@{/deletarAutor/{id}(id=${autor.autorId})}">Sim, desejo realmente <b>Remover!</b></a>
+								                    </div>
+							                  </div>
+						                </div>
+					              	</div>	
+
+
+
+								</span>
+								
+								
+								
+								
+    							<span th:unless="${autor.ativo == 1}">
+
+									<button type="button" class="btn btn-secondary tam-btn" data-toggle="modal" th:attr="data-target='#remover_'+${autor.autorId}" ><i class="bi bi-person-dash-fill "></i> Ativar</button>
+							    	<div class="modal fade" th:id="remover_+${autor.autorId}"  tabindex="-1" role="dialog" aria-hidden="true">
+						                <div class="modal-dialog modal-dialog-centered" role="document">
+							                  <div class="modal-content">
+								                    <div class="modal-header">
+									                      <h5 class="modal-title" id="modalConfirmacao">Confirmação</h5>
+									                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									                         <span aria-hidden="true">&times;</span>
+									                      </button>
+								                    </div>
+								                    <div class="modal-body">
+								                      	<p>Tem certeza que quer Ativar esse autor?</p>
+								                    </div>
+								                    <div class="modal-footer">
+									                      <a th:href="@{/indexAutor}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
+									                      <a type="button" class="btn btn-success" th:href="@{/ativarAutor/{id}(id=${autor.autorId})}">Sim, desejo realmente <b>Ativar!</b></a>
+								                    </div>
+							                  </div>
+						                </div>
+					              	</div>	
+
+
+								</span>
+								
+								
+						    				              
 				              
 						    </td>
 						</tr>

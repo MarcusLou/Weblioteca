@@ -18,12 +18,13 @@ public class AutorServiceImpl implements AutorService {
 	private AutorRepository autorRepository;
 
 	@Override
-	public List<Autor> getAllAutores() {
-		return autorRepository.findAll();
+	public List<Autor> pesquisar(Integer ativo, String pesquisa){
+		return autorRepository.pesquisar(ativo, pesquisa);	
 	}
 	
 	@Override
 	public List<Autor> findByNomeContainingIgnoreCase(String nome) {
+		
 		List<Autor> autor = autorRepository.findByNomeContainingIgnoreCase(nome);
 		return autor;
 	}
@@ -51,11 +52,11 @@ public class AutorServiceImpl implements AutorService {
 	}
 
 	@Override
-	public Page<Autor> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Autor> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Integer ativo) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
 
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-		return this.autorRepository.findAll(pageable);
+		return this.autorRepository.findAllAtivos(ativo, pageable);
 	}
 }
