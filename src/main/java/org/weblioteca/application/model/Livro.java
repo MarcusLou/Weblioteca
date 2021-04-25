@@ -32,14 +32,14 @@ public class Livro {
 
 	private Date dataDeCompra;
 	private String Edicao;
-	private boolean Excluido;
-	
-	public boolean isExcluido() {
-		return Excluido;
+	private Integer ativo = 1;
+
+	public Integer getAtivo() {
+		return ativo;
 	}
 
-	public void setExcluido(boolean excluido) {
-		Excluido = excluido;
+	public void setAtivo(Integer ativo) {
+		this.ativo = ativo;
 	}
 
 	public Livro() {

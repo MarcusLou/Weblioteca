@@ -4,14 +4,16 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.weblioteca.application.model.Autor;
 import org.weblioteca.application.model.Livro;
 
 
 @Service
 public interface LivroService {
-	List<Livro> getAllLivros();
 	
 	List<Livro> findByTituloLivroContainingIgnoreCase(String tituloLivro);
+	
+	List<Livro> pesquisar(Integer ativo, String pesquisa);
 
 	void salvarLivro(Livro livro);
 
@@ -19,5 +21,5 @@ public interface LivroService {
 
 	void deletarLivroById(Long id);
 
-	Page<Livro> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
+	Page<Livro> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Integer ativo);
 }
