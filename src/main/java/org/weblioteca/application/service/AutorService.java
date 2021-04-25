@@ -9,8 +9,7 @@ import org.weblioteca.application.model.Autor;
 @Service
 public interface AutorService {
 
-	List<Autor> findByNomeContainingIgnoreCase(String nome);
-	
+	List<Autor> findByNomeContainingIgnoreCase(String nome);	
 	
 	List<Autor> pesquisar(Integer ativo, String pesquisa);
 	
@@ -22,5 +21,4 @@ public interface AutorService {
 
 	Page<Autor> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Integer ativo);
 
-	
 }
