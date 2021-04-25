@@ -18,9 +18,9 @@ public class LivroServiceImpl implements LivroService {
 	private LivroRepository livroRepository;
 
 	@Override
-	public List<Livro> getAllLivros() {
-		return livroRepository.findAll();
-	}
+	public List<Livro> pesquisar(Integer ativo, String pesquisa) {
+		return livroRepository.pesquisar(ativo, pesquisa);
+	}	
 	
 	@Override
 	public List<Livro> findByTituloLivroContainingIgnoreCase(String tituloLivro) {
@@ -53,12 +53,12 @@ public class LivroServiceImpl implements LivroService {
 	}
 
 	@Override
-	public Page<Livro> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Livro> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Integer ativo) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
 
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-		return this.livroRepository.findAll(pageable);
+		return this.livroRepository.findAllAtivos(ativo, pageable);
 	}
 
 }

@@ -79,7 +79,7 @@
                         <div class="input-group mb-3"> 					
 								<select th:field="*{autor}" class="form-control col-12" required >
 			                            <option value="">Selecione um autor</option>
-			    						<option th:each="autor : ${listAutor}" th:value="${autor.autorId}" th:text="${autor.nome}"></option>
+			    						<option th:each="autor : ${listAutor}" th:value="${autor.autorId}" th:text="${autor.nome}" th:if="${autor.ativo == 1}"></option>
 			    				</select>
 								<div class="input-group-append">						  
 									<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaAutor">?</button>
