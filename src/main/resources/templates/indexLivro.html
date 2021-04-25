@@ -31,7 +31,7 @@
   			<img src="../img/books.png" alt="bookstore">	
   			<img src="../img/weblioteca.png" alt="Weblioteca"  height="110">
         </header>
-		<nav class="navbar navbar-expand-sm bg-light navbar-light">
+		<nav class="navbar navbar-expand-sm bg-light navbar-light justify-content-between">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="bi bi-house-door"></i> Home</a>
 				</li>
@@ -44,13 +44,36 @@
 					</div>
 				</li>
 			</ul>
-			<form class="form-inline">
-		    	<input class="form-control mr-sm-2" type="search" placeholder="Titulo do Livro" aria-label="Search" aria-describedby="basic-addon2">
-			  	<div class="input-group-append">
+			<form class="form-inline" th:action="@{/indexLivro/{pesquisa}}">
+		  		<div class="input-group ">
+					<select name="ativo" id="ativo" th:value="${ativo}" class="form-control "  required>
+	                	<optgroup label="Selecione">
+	                	<option value="1" >Ativos</option>
+	                	<option value="0" >Inativos</option>
+	    			</select>
+					<div class="input-group-append">						  
+						<button type="button" class="btn btn-outline-info colado" data-toggle="collapse" data-target="#ajudaAtivoLivro">?</button>
+			  		</div>
+		  		</div>
+		  		&nbsp;&nbsp;
+		  		<div class="input-group ">
+			    	<input class="form-control " type="text" placeholder="Titulo do Livro" name="pesquisa" id="pesquisa" size="50" th:value="${pesquisa}" />
+				  	<div class="input-group-append">						  
+						<button type="button" class="btn btn-outline-info colado" data-toggle="collapse" data-target="#ajudaPesquisaLivro">?</button>
+			  		</div>
+		  		</div>	
+			  		&nbsp;&nbsp;
+			  	<div class="input-group ">
 		    		<button class="btn btn-outline-success my-2 my-sm-0 " type="submit"> Pesquisar <i class="bi bi-search "></i></button>				 
 				</div>
 			</form>
 		</nav>
+		<div id="ajudaAtivoLivro" class="collapse azulAjuda direita1">
+            Escolha se o Livro é ativo ou inativo no Sistema.
+        </div>	
+        <div id="ajudaPesquisaLivro" class="collapse azulAjuda direita2">
+            Digite o Título do livro a pesquisar.
+        </div>
 		<hr></hr>	
 		<div class="row justify-content-between">
       		<div class="col-md-9 center">
@@ -80,9 +103,6 @@
 							<th><a
 								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=editora&sortDir=' + ${reverseSortDir}}">
 									Editora</a></th>
-							<th><a
-								th:href="@{'/pageLivro/' + ${currentPage} + '?sortField=editora&sortDir=' + ${reverseSortDir}}">
-									Status</a></th>
 							<th>Ações</th>
 						</tr>
 					</thead>
@@ -93,12 +113,12 @@
 						<td th:text="${livro.localizacao}"></td>
 						<td th:text="${livro.autor.nome}"></td>
 						<td th:text="${livro.editora.nome}"></td>
-						<td th:if="${livro.excluido}">Inativo</td>
-						<td th:unless="${livro.excluido}">Ativo</td>
 						<td class="center">
 							<a th:href="@{/atualizarLivro/{id}(id=${livro.livroId})}" class="btn btn-primary"><i class="bi bi-book "></i> Atualizar</a>
+							
+							<span th:if="${livro.ativo == 1}">
 								
-							<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${livro.livroId}" th:disabled="${livro.excluido}"><i class="bi bi-book-fill "></i> Inativar</button>
+							<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${livro.livroId}"><i class="bi bi-book-fill "></i> Inativar</button>
 						    	
 						    <div class="modal fade" th:id="remover_+${livro.livroId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					         	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -119,8 +139,10 @@
 						            </div>
 					           	</div>
 				            </div>	
-		
-							<button type="button" class="btn btn-success" data-toggle="modal" th:attr="data-target='#ativar_'+${livro.livroId}" th:disabled="${!livro.excluido}" ><i class="bi bi-book "></i> Ativar</button>
+				            
+				            </span>
+							<span th:unless="${livro.ativo == 1}">
+							<button type="button" class="btn btn-success" data-toggle="modal" th:attr="data-target='#ativar_'+${livro.livroId}"><i class="bi bi-book "></i> Ativar</button>
 						    	
 						    <div class="modal fade" th:id="ativar_+${livro.livroId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					         	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -136,11 +158,12 @@
 							            </div>
 							            <div class="modal-footer">
 								        	<a th:href="@{/indexLivro}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-								            <a type="button" class="btn btn-primary" th:href="@{/ativarLivro/{id}(id=${livro.livroId})}">Sim, desejo realmente <b>Ativar!</b></a>
+								            <a type="button" class="btn btn-success" th:href="@{/ativarLivro/{id}(id=${livro.livroId})}">Sim, desejo realmente <b>Ativar!</b></a>
 							            </div>
 						            </div>
 					           	</div>
-				            </div>			             				              
+				            </div>			     
+				          	</span>			              
 						</td>												
 				</tr>
 			</tbody>
