@@ -101,17 +101,57 @@ footer {
 
 .direita1{
 	position:absolute;
-	right:400px;
-	width:400px;
-	background-color:rgb(243, 243, 243);
+	right:440px;
+	width:415px;
+	background-color: #f8f9fa;
 }
 
 .direita2{
 	position:absolute;
-	right:0px;
-	width:400px;
-	background-color:rgb(243, 243, 243);
+	right:15px;
+	width:430px;
+	background-color: #f8f9fa;
 }
+
+.direita3{
+	position:absolute;
+	right:15px;
+	margin-bottom: none;
+}
+
+.esquerda1{
+	position:absolute;
+	left:15px;
+	
+}
+
+
+ .centro1 {
+	left: 45%;
+	position:relative;
+	height: 50px;
+ }
+ 
+ .centro2 {
+	left: 41%;
+	position:relative;
+	height: 50px;
+ }
+ 
+ .centro3 {
+	left: 33%;
+	position:relative;
+	height: 50px;
+ }
+ 
+ .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
 
 .colado{
 	float: left;
@@ -119,4 +159,10 @@ footer {
 
 .tam-btn{
 	width: 110px;
+}
+
+.inativos{
+	color: rgb(255, 0, 0);
+	font-weight: bold;
+	
 }

@@ -1,8 +1,6 @@
 package org.weblioteca.application.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,16 +15,15 @@ public class Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long reservaId;
-
 	
-	private Long clienteId;
-	
+	private Long clienteId;	
 	
 	private Long livroId;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataReserva;
 	
+	private Integer ativo = 1;	
 
 	public Reserva() {
 	}
@@ -38,7 +35,6 @@ public class Reserva {
 	public void setReservaId(Long reservaId) {
 		this.reservaId = reservaId;
 	}
-
 
 	public LocalDate getDataReserva() {
 		return dataReserva;
@@ -62,6 +58,14 @@ public class Reserva {
 
 	public void setLivroId(Long livroId) {
 		this.livroId = livroId;
+	}
+
+	public Integer getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Integer ativo) {
+		this.ativo = ativo;
 	}
 
 }

@@ -23,8 +23,7 @@ public class AutorServiceImpl implements AutorService {
 	}
 	
 	@Override
-	public List<Autor> findByNomeContainingIgnoreCase(String nome) {
-		
+	public List<Autor> findByNomeContainingIgnoreCase(String nome) {		
 		List<Autor> autor = autorRepository.findByNomeContainingIgnoreCase(nome);
 		return autor;
 	}

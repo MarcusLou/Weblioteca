@@ -16,6 +16,7 @@ public class Editora {
 	
 	private String nome;
 	private String cnpj;
+	private Integer ativo = 1;
 
 	public Editora() {
 	}
@@ -42,6 +43,14 @@ public class Editora {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+
+	public Integer getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Integer ativo) {
+		this.ativo = ativo;
 	}
 
 }

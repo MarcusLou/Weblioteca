@@ -1,15 +1,18 @@
 package org.weblioteca.application.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.weblioteca.application.model.Cliente;
 import org.weblioteca.application.model.Reserva;
@@ -44,17 +47,20 @@ public class ReservaController {
 	    model.addAttribute("listCliente", listCliente);	    
 		List<Livro> listLivro = livroRepository.findAll();
 	    model.addAttribute("listLivro", listLivro);	    
-		return reservasPaginacao(1, "clienteId", "asc", model);
+		Integer ativo = 1;
+		return reservasPaginacao(1, "clienteId", "asc", model, ativo);
 	}
 	
-	@GetMapping("/novaReserva") 
-	public String novaReserva(Model model) {
+	@GetMapping("/realizarEmprestimo") 
+	public String realizarEmprestimo(Model model) {
 		Reserva reserva = new Reserva();
 		model.addAttribute("reserva", reserva);
 		List<Cliente> listCliente = clienteRepository.findAll();
 	    model.addAttribute("listCliente", listCliente);
 		List<Livro> listLivro = livroRepository.findAll();
 	    model.addAttribute("listLivro", listLivro);
+	    LocalDate now = LocalDate.now();
+	    model.addAttribute("now", now);
 		return "salvarReserva";
 	}
 	
@@ -64,6 +70,7 @@ public class ReservaController {
 		return "redirect:/indexReserva";
 	}
 	
+	/*
 	@GetMapping("/atualizarReserva/{id}")
 	public String atualizarReserva(@PathVariable ( value = "id") Long id, Model model) {
 		Reserva reserva = reservaService.getReservaById(id);
@@ -72,21 +79,42 @@ public class ReservaController {
 	    model.addAttribute("listCliente", listCliente);
 		List<Livro> listLivro = livroRepository.findAll();
 	    model.addAttribute("listLivro", listLivro);
+	    LocalDate now = LocalDate.now();
+	    model.addAttribute("now", now);
 		return "atualizarReserva";
 	}
+	*/
+	
 	
 	@GetMapping("/deletarReserva/{id}")
 	public String deletarReserva(@PathVariable (value = "id") Long id) {
 		try {
-			reservaService.deletarReservaById(id);
+			Reserva reserva = reservaService.getReservaById(id);
+			reserva.setAtivo(0);
+			reservaService.salvarReserva(reserva);
 			return "redirect:/indexReserva";
 		}catch (Exception $e)  {			
 			return "redirect:/mensagemReserva";	
 		}
 	}
+	
+	@GetMapping("/ativarReserva/{id}")
+	public String ativarReserva(@PathVariable (value = "id") Long id) {		
+		Reserva reserva = reservaService.getReservaById(id);
+		reserva.setAtivo(1);
+		reservaService.salvarReserva(reserva);
+		return "redirect:/indexReserva";		
+	}
+	
+	@RequestMapping("/indexReserva/{pesquisa}")
+    public String pesquisar(Model model, @Param("ativo") Integer ativo, @Param("pesquisa") String pesquisa) {
+        List<Reserva> listaReservas = reservaService.pesquisar(ativo, pesquisa);
+        model.addAttribute("listaReservas", listaReservas);
+		return "indexReserva";
+    }
 
 	@GetMapping("/mensagemReserva") 
-	public String mensagemAutor(Model model) {
+	public String mensagemReserva(Model model) {
 		return "mensagemReserva";	
 	}
 	
@@ -94,10 +122,14 @@ public class ReservaController {
 	public String reservasPaginacao(@PathVariable (value = "pageNo") int pageNoReserva, 
 			                           @RequestParam("sortField") String sortFieldReserva,
 		                        	   @RequestParam("sortDir") String sortDirReserva,
-		                         	   Model model) {
-		int pageSizeReserva = 5;
+		                         	   Model model,
+		                         	   @Param("ativo") Integer ativo) {
+		int pageSizeReserva = 7;
+		if (ativo == null) {
+			ativo = 1;
+		}
 		
-		Page<Reserva> pageReserva = reservaService.findPaginated(pageNoReserva, pageSizeReserva, sortFieldReserva, sortDirReserva);
+		Page<Reserva> pageReserva = reservaService.findPaginated(pageNoReserva, pageSizeReserva, sortFieldReserva, sortDirReserva, ativo);
 		List<Reserva> listaReservas = pageReserva.getContent();
 		
 		model.addAttribute("currentPage", pageNoReserva);

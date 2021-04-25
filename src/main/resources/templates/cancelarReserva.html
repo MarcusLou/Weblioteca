@@ -42,12 +42,13 @@
 						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
 						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-calendar2-week-fill"></i> Reservas</a> 
 						<a class="dropdown-item" th:href="@{/novaReserva}"><i class="bi bi-calendar2-plus-fill "></i> Nova Reserva</a> 
-						<a class="dropdown-item" th:href="@{/cancelarReserva}"><i class="bi bi-calendar2-x"></i> Cancelar Reserva</a> 
 					</div>
 				</li>
 			</ul>
-			<form class="form-inline"  th:action="@{/indexReserva/{pesquisa}}" >			
+			
+			<form class="form-inline"  th:action="@{/cancelarReserva/{pesquisa}}" >			
 		  		<div class="input-group ">
+						    		
 					<select name="ativo" id="ativo" th:value="${ativo}" class="form-control "  required>
 	                	<optgroup label="Selecione">
 	                	<option value="1" >Ativos</option>
@@ -69,24 +70,21 @@
 		    		<button class="btn btn-outline-success my-2 my-sm-0 " type="submit"> Pesquisar <i class="bi bi-search "></i></button>				 
 				</div>
 			</form>
-		</nav>	
+		</nav>
 		<div id="ajudaAtivoReserva" class="collapse azulAjuda direita1">
             Escolha se a Reserva está ativa ou inativa no Sistema.
         </div>	
         <div id="ajudaPesquisaReserva" class="collapse azulAjuda direita2">
-            Digite um nome de Cliente, um título de Livro, ou data de reserva a pesquisar.
+            Digite um nome de Cliente, de um Livro, ou uma data de reserva a pesquisar.
         </div>
-		<hr></hr>		
-		<div class="row justify-content-between">		
-	      	<div class=" esquerda1" >	      	
-				<button type="button" onClick="history.go(-1)" class="btn btn-info" ><i class="bi bi-reply-fill  "></i> Voltar</button>
-	      	</div>
-      		<div class="centro1">
-				<h3>Reservas</h3>
+		<hr></hr>	
+		
+		<button type="button" onClick="history.go(-1)" class="btn btn-light" ><i class="bi bi-reply-fill  "></i> Voltar</button>	
+		<div class="row justify-content-between">
+		
+      		<div class="col-md-12 center">
+			<h3>Reservas </h3>
       		</div>
-	      	<div class=" direita3" >
-				<a th:href="@{/realizarEmprestimo}" class="btn btn-success mb-3 "><i class="bi bi-calendar2-plus "></i> Nova Reserva</a>
-	      	</div>
 	    </div>
 		<div class="row">
 			<div class="col-sm-12">		
@@ -102,18 +100,21 @@
 							<th class="center"><a
 								th:href="@{'/pageReserva/' + ${currentPage} + '?sortField=dataReserva&sortDir=' + ${reverseSortDir}}">
 									Data</a></th>							
+							<th class="center">Situação</th>				
 							<th class="center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="reserva : ${listaReservas}">						
-							<td th:each="cliente : ${listCliente}" th:text="*{cliente.clienteId == reserva.clienteId}? *{cliente.nome}" th:if="${cliente.clienteId} == ${reserva.clienteId}" ></td>
-							<td th:each="livro : ${listLivro}" th:text="*{livro.livroId == reserva.livroId}? *{livro.tituloLivro}" th:if="${livro.livroId} == ${reserva.livroId}" ></td>
-							<td th:text="${#temporals.format(reserva.dataReserva, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
-						    <td class="center">
-						    	<span th:if="${reserva.ativo == 1}">
-									<!--<a th:href="@{/atualizarReserva/{id}(id=${reserva.reservaId})}" class="btn btn-primary"><i class="bi bi-calendar-check  "></i> Atualizar</a>-->
-									<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar2-x  "></i> Remover</button>
+						<tr th:each="reserva : ${listaReservas}">	
+						
+							<span th:if="${reserva.ativo == 1}">
+											
+								<td th:each="cliente : ${listCliente}" th:text="*{cliente.clienteId == reserva.clienteId}? *{cliente.nome}" th:if="${cliente.clienteId} == ${reserva.clienteId}" ></td>
+								<td th:each="livro : ${listLivro}" th:text="*{livro.livroId == reserva.livroId}? *{livro.tituloLivro}" th:if="${livro.livroId} == ${reserva.livroId}" ></td>
+								<td th:text="${#temporals.format(reserva.dataReserva, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
+								<td class="center">Ativo</td>
+							    <td class="center">
+									<button type="button" class="btn btn-secondary" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar2-x  "></i> Cancelar</button>
 						    		<div class="modal fade" th:id="remover_+${reserva.reservaId}"  tabindex="-1" role="dialog" aria-hidden="true">
 						                <div class="modal-dialog modal-dialog-centered" role="document">
 							                  <div class="modal-content">
@@ -128,18 +129,23 @@
 								                    </div>
 								                    <div class="modal-footer">
 									                      <a th:href="@{/indexReserva}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-									                      <a type="button" class="btn btn-danger" th:href="@{/deletarReserva/{id}(id=${reserva.reservaId})}">Sim, desejo realmente <b>Remover!</b></a>
+									                      <a type="button" class="btn btn-danger" th:href="@{/cancelarReserva/{id}(id=${reserva.reservaId})}">Sim, desejo realmente <b>Cancelar a Reserva!</b></a>
 								                    </div>
 							                  </div>
 						                </div>
-					              	</div>
-				              	</span>
-								
-								
-								
-    							<span th:unless="${reserva.ativo == 1}">	
-						    		<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar2-x  "></i> Ativar</button>			              
-				              		<div class="modal fade" th:id="remover_+${reserva.reservaId}"  tabindex="-1" role="dialog" aria-hidden="true">
+					              	</div>							
+							    </td>
+							</span>
+							
+							
+							<span th:unless="${reserva.ativo == 1}">		
+								<td class="inativos" th:each="cliente : ${listCliente}" th:text="*{cliente.clienteId == reserva.clienteId}? *{cliente.nome}" th:if="${cliente.clienteId} == ${reserva.clienteId}" ></td>
+								<td class="inativos" th:each="livro : ${listLivro}" th:text="*{livro.livroId == reserva.livroId}? *{livro.tituloLivro}" th:if="${livro.livroId} == ${reserva.livroId}" ></td>
+								<td class="inativos" th:text="${#temporals.format(reserva.dataReserva, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
+							    <td class="center inativos">Inativo</td>	
+							    <td class="center inativos">
+									<button type="button" class="btn btn-secondary" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar2-x  "></i> Cancelar</button>
+						    		<div class="modal fade" th:id="remover_+${reserva.reservaId}"  tabindex="-1" role="dialog" aria-hidden="true">
 						                <div class="modal-dialog modal-dialog-centered" role="document">
 							                  <div class="modal-content">
 								                    <div class="modal-header">
@@ -153,15 +159,14 @@
 								                    </div>
 								                    <div class="modal-footer">
 									                      <a th:href="@{/indexReserva}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-									                      <a type="button" class="btn btn-danger" th:href="@{/deletarReserva/{id}(id=${reserva.reservaId})}">Sim, desejo realmente <b>Ativar!</b></a>
+									                      <a type="button" class="btn btn-danger" th:href="@{/cancelarReserva/{id}(id=${reserva.reservaId})}">Sim, desejo realmente <b>Cancelar a Reserva!</b></a>
 								                    </div>
 							                  </div>
 						                </div>
-					              	</div>
-				              	</span>
-				              	
-				              	
-						    </td>
+					              	</div>							
+							    </td>
+							</span>
+							
 						</tr>
 					</tbody>
 			    </table>

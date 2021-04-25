@@ -44,10 +44,19 @@
 				</li>
 			</ul>
 		</nav>
-		<hr></hr>	
-      	<div class="center">
-			<h3>Cadastrar Editora</h3>
-      	</div>
+		<hr></hr>
+		<div class="row box">		
+	      	<div class=" esquerda1" >
+				<button type="button" onClick="history.go(-1)" class="btn btn-info" ><i class="bi bi-reply-fill  "></i> Voltar</button>
+	      	</div>
+      		<div>
+				<h3>Cadastrar Editora</h3>
+      		</div>
+	      	<div class=" direita3" >
+				<a onClick="history.go(0)" class="btn btn-success"><i class="bi bi-trash "></i> Limpar</a>
+	      	</div>
+	    </div>
+		<hr></hr>
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="card-body">
@@ -55,19 +64,22 @@
 					
 						<div id="ajudaNomeEditora" class="collapse azulAjuda">
                             O nome da Editora do livro é o nome fantasia da empresa que publicou o livro...
+                            </br>
+                            Mínimo de 3 e Máximo de 80 caracteres que não contenha números! 
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{nome}" placeholder="Nome" id="nome" class="form-control col-12" required="true">
-										  
+							<input type="text" th:field="*{nome}" placeholder="Nome" id="nome" size="80" minlength="3" pattern="[A-Z]+[a-z\s]+$" class="form-control col-12" required>
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeEditora">?</button>
 						  	</div>						  	
 						</div>
 						<div id="ajudaCnpjEditora" class="collapse azulAjuda">
                             O CNPJ da editora do livro é o número de cadastro nacional de pessoa júridica que a editora tem...
+                            </br>
+                            Somente números são permitidos neste campo!
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{cnpj}" placeholder="CNPJ"   class="form-control col-12 cnpj" required="true">
+							<input type="text" th:field="*{cnpj}" placeholder="CNPJ" minlength="18" size="18" maxlength="18" class="form-control col-12 cnpj" required>
 							<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaCnpjEditora">?</button>
                         	</div>						  	
@@ -87,8 +99,6 @@
                          </div>
 					</form>				
 				</div>
-				<hr>
-				<a th:href="@{/indexEditora}">Voltar lista de editoras</a>
 			</div>
 		</div>
 		<footer class="site-footer ">
