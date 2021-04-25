@@ -16,6 +16,11 @@ import org.weblioteca.application.repository.ReservaRepository;
 public class ReservaServiceImpl implements ReservaService {
 	@Autowired
 	private ReservaRepository reservaRepository;
+
+	@Override
+	public List<Reserva> pesquisar(Integer ativo, String pesquisa){
+		return reservaRepository.pesquisar(ativo, pesquisa);	
+	}
 	
 	@Override
 	public List<Reserva> getAllReservas() {
@@ -43,9 +48,24 @@ public class ReservaServiceImpl implements ReservaService {
 	public void deletarReservaById(Long id) {
 		reservaRepository.deleteById(id);
 	}
+	
+	@Override
+	public void cancelarReservaById(Long id) {
+		reservaRepository.deleteById(id);
+	}
+	
+	@Override
+	public Page<Reserva> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Integer ativo) {
+		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
+				: Sort.by(sortField).descending();
+
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+		return this.reservaRepository.findAllAtivos(ativo, pageable);
+	}
+	
 
 	@Override
-	public Page<Reserva> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Reserva> findPaginatedC(int pageNo, int pageSize, String sortField, String sortDirection) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
 
