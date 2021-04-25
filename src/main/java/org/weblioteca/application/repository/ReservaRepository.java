@@ -13,7 +13,7 @@ import org.weblioteca.application.model.Reserva;
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 	
-	@Query("SELECT r, c, l FROM Reserva r, Cliente c, Livro l WHERE r.ativo = :ativo AND r.clienteId = c.clienteId AND r.livroId = l.livroId AND CONCAT(r.dataReserva, c.nome, l.tituloLivro) LIKE %:pesquisa%")
+	@Query("SELECT r FROM Reserva r, Cliente c, Livro l WHERE r.ativo = :ativo AND r.clienteId = c.clienteId AND r.livroId = l.livroId AND CONCAT(r.dataReserva, c.nome, l.tituloLivro) LIKE %:pesquisa%")
 	List<Reserva> pesquisar(@Param("ativo") Integer ativo, @Param("pesquisa") String pesquisa);
 
 	@Query("SELECT r FROM Reserva r WHERE r.ativo = :ativo")
