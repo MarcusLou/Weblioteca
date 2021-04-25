@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "EDITORA")
@@ -15,6 +18,9 @@ public class Editora {
 	private Long editoraId;
 	
 	private String nome;
+	@NotNull
+    @Size(min = 18, max = 18)
+	@Min(18)
 	private String cnpj;
 	private Integer ativo = 1;
 

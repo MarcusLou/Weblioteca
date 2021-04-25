@@ -67,8 +67,7 @@
                             Mínimo de 3 e Máximo de 80 caracteres que não contenha números! 
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{nome}" placeholder="Nome" id="nome" class="form-control col-12" minlength="3" size="80" pattern="[A-Z]+[a-z\s]+$" required >
-										  
+							<input type="text" th:field="*{nome}" placeholder="Nome" id="nome" class="form-control col-12" minlength="3" maxlength="80" size="80" pattern="[A-Z]+[a-z\s]+$" required >										  
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeAutor">?</button>
 						  	</div>						  	
@@ -79,7 +78,7 @@
                             A idade mínima do Autor é de 18 anos! 
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="date" th:field="*{nascimento}" placeholder="Nascimento" class="form-control col-12 "   max="2003-01-01" required >
+							<input type="date" th:field="*{nascimento}" id="nascimento" placeholder="Nascimento" class="form-control col-12" th:attr="max=${nowMinus18}" required >
 									  
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaData">?</button>
@@ -91,7 +90,7 @@
                             Mínimo de 3 e Máximo de 80 caracteres podendo ter números! 
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{origem}" placeholder="Origem" minlength="3" size="80"  class="form-control col-12" required >
+							<input type="text" th:field="*{origem}" placeholder="Origem" minlength="3"  size="80"  maxlength="80" pattern="[A-Z]+[a-z\s]+[0-9]+$"  class="form-control col-12" required >
 							<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaOrigem">?</button>
                         	</div>						  	

@@ -43,7 +43,7 @@
 					</div>
 				</li>
 			</ul>
-			<form class="form-inline"  th:action="@{/indexAutor/{pesquisa}}" >			
+			<form class="form-inline "  th:action="@{/indexAutor/{pesquisa}}" >			
 		  		<div class="input-group ">
 					<select name="ativo" id="ativo" th:value="${ativo}" class="form-control "  required>
 	                	<optgroup label="Selecione">
@@ -56,7 +56,7 @@
 		  		</div>
 		  		&nbsp;&nbsp;	
 		  		<div class="input-group ">
-			    	<input class="form-control " type="text" placeholder="Nome, Origem ou Data de Nascimento do Autor" name="pesquisa" id="pesquisa" size="50" th:value="${pesquisa}" />
+			    	<input class="form-control " type="text" placeholder="Nome, Origem ou Data de Nascimento do Autor" name="pesquisa" id="pesquisa"  size="50" maxlenght="50" minlenght="0" th:value="${pesquisa}" />
 				  	<div class="input-group-append">						  
 						<button type="button" class="btn btn-outline-info colado" data-toggle="collapse" data-target="#ajudaPesquisaAutor">?</button>
 			  		</div>
@@ -71,7 +71,7 @@
             Escolha se o Autor é ativo ou inativo no Sistema.
         </div>	
         <div id="ajudaPesquisaAutor" class="collapse azulAjuda direita2">
-            Digite nome, origem ou data de nascimento a pesquisar.
+            Digite nome, origem ou data de nascimento a pesquisar com limite de 50 caracteres.
         </div>
 		<hr></hr>	
 		<div class="row box">		

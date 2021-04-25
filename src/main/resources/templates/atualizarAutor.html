@@ -43,17 +43,17 @@
 					</div>
 				</li>
 			</ul>
-		</nav>		
-		<hr></hr>			
+		</nav>			    
+		<hr></hr>
 		<div class="row box">		
 	      	<div class=" esquerda1" >
 				<button type="button" onClick="history.go(-1)" class="btn btn-info" ><i class="bi bi-reply-fill  "></i> Voltar</button>
 	      	</div>
-      		<div >
+      		<div>
 				<h3>Atualizar Autor</h3>
       		</div>
 	    </div>
-		<hr></hr>
+		<hr></hr>	
 		<div class="row ">
 			<div class="col-sm-12">				
 				<div class="card-body ">
@@ -65,7 +65,7 @@
                             Mínimo de 3 e Máximo de 80 caracteres que não contenha números!
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{nome}" class="form-control col-12"  minlength="3" size="80" pattern="[A-Z]+[a-z\s]+$" required  >	
+							<input type="text" id="nome" class="form-control col-12" minlength="3" maxlenght="80" size="80" pattern="[A-Z]+[a-z\s]+$" th:field="*{nome}" required  >	
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaNomeAutor">?</button>
 						  	</div>						  	
@@ -75,9 +75,8 @@
                             </br>
                             A idade mínima do Autor é de 18 anos! 
                         </div>
-                        <div class="input-group mb-3">             
-                                  	
-							<input type="date" th:value="*{nascimento}" th:field="*{nascimento}" class="form-control col-12"  max="2003-01-01" required >		  
+                        <div class="input-group mb-3">
+							<input type="date" th:value="*{nascimento}" th:field="*{nascimento}" id="nascimento" class="form-control col-12" th:attr="max=${nowMinus18}" required >		  
 						  	<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaData">?</button>
                         	</div>						  	
@@ -88,7 +87,7 @@
                             Mínimo de 3 e Máximo de 80 caracteres podendo ter números! 
                         </div>
                         <div class="input-group mb-3">                        	
-							<input type="text" th:field="*{origem}" class="form-control col-12" minlength="3"  size="80" required >
+							<input type="text" th:field="*{origem}" class="form-control col-12" minlength="3" id="origem"  maxlenght="80" pattern="[A-Z]+[a-z\s]+[0-9]+$"  size="80" required >
 							<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaOrigem">?</button>
                         	</div>						  	
@@ -97,7 +96,7 @@
                              <div class="col text-center form-actions">                                 
                                  <div  id="colaps2" class="collapse"> 
                                  	<a th:href="@{/indexAutor}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-                                     <button type="submit" id="submit" class="btn btn-success" value="Atualizar Autor" data-toggle="collapse"  data-target="#colaps"   data-dismiss="modal">Sim, desejo realmente <b>Atualizar!</b></button>
+                                     <button type="submit" id="submit" class="btn btn-success" value="Atualizar Autor" data-toggle="collapse"  data-target="#colaps"  data-dismiss="modal">Sim, desejo realmente <b>Atualizar!</b></button>
                                      </br>
                                  </div>
                                  <div class="form-actions floatRight">
