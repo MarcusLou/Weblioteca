@@ -6,10 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
+import org.weblioteca.application.model.Livro;
 
 @Service
 public interface FaturaService {
 	List<Fatura> getAllFaturas();
+	
+	List<Fatura> pesquisar(String pesquisa);
 
 	void salvarFatura(Fatura fatura);
 

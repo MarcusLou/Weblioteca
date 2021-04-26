@@ -98,9 +98,11 @@ public class EmprestimoFaturarController {
 		LocalDate date = zdt.toLocalDate();
 		java.sql.Date dataSql = new java.sql.Date(data.getTime());
 		for (Reserva r: listaReservas) {
-			livro = livroService.getLivroById(r.getLivroId());
-			if ((listaLivros.contains(livro)) && (r.getDataReserva().isBefore(date))) {
-				PodeProlongar = false;
+			if (r.getAtivo()==1) {
+				livro = livroService.getLivroById(r.getLivroId());
+				if ((listaLivros.contains(livro)) && (r.getDataReserva().isBefore(date))) {
+					PodeProlongar = false;
+				}
 			}
 		}
 		if (PodeProlongar == true) {
