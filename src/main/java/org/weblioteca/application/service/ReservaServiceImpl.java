@@ -9,13 +9,19 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Reserva;
+import org.weblioteca.application.repository.EmprestimoRepository;
 import org.weblioteca.application.repository.ReservaRepository;
 
 @Service
 public class ReservaServiceImpl implements ReservaService {
 	@Autowired
 	private ReservaRepository reservaRepository;
+
+	@Autowired
+	private EmprestimoRepository emprestimoRepository;
+	
 
 	@Override
 	public List<Reserva> pesquisar(Integer ativo, String pesquisa){
@@ -30,6 +36,10 @@ public class ReservaServiceImpl implements ReservaService {
 	@Override
 	public void salvarReserva(Reserva reserva) {
 		reservaRepository.save(reserva);
+	}
+
+	public void salvarEmprestimo(Emprestimo emprestimo) {
+		emprestimoRepository.save(emprestimo);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package org.weblioteca.application.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.weblioteca.application.model.Autor;
 import org.weblioteca.application.model.Editora;
 import org.weblioteca.application.service.EditoraService;
 

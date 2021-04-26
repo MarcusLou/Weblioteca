@@ -41,26 +41,15 @@
 						<a class="dropdown-item" th:href="@{/indexcliente}"><i class="bi bi-person-bounding-box"></i> Clientes</a> 
 						<a class="dropdown-item" th:href="@{/indexLivro}"><i class="bi bi-book"></i> Livros</a>
 						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-calendar2-week-fill"></i> Reservas</a> 
-						<a class="dropdown-item" th:href="@{/novaReserva}"><i class="bi bi-calendar2-plus-fill "></i> Nova Reserva</a> 
 						<a class="dropdown-item" th:href="@{/cancelarReserva}"><i class="bi bi-calendar2-x"></i> Cancelar Reserva</a> 
 						<a class="dropdown-item" th:href="@{/emprestimoReserva}"><i class="bi bi-calendar2-check"></i> Empréstimo Reserva</a> 
 					</div>
 				</li>
 			</ul>
-			<form class="form-inline"  th:action="@{/indexReserva/{pesquisa}}" >			
+			
+			<form class="form-inline"  th:action="@{/emprestimoReserva/{pesquisa}}" >		
 		  		<div class="input-group ">
-					<select name="ativo" id="ativo" th:value="${ativo}" class="form-control "  required>
-	                	<optgroup label="Selecione">
-	                	<option value="1" >Ativos</option>
-	                	<option value="0" >Inativos</option>
-	    			</select>
-					<div class="input-group-append">						  
-						<button type="button" class="btn btn-outline-info colado" data-toggle="collapse" data-target="#ajudaAtivoReserva">?</button>
-			  		</div>
-		  		</div>
-		  		&nbsp;&nbsp;	
-		  		<div class="input-group ">
-			    	<input class="form-control " type="text" placeholder="Nome Cliente, Nome Livro ou Data de Reserva" name="pesquisa" id="pesquisa" size="50" maxlenght="50" minlenght="0" th:value="${pesquisa}" />
+			    	<input class="form-control " type="text" placeholder="Nome Cliente, Nome Livro ou Data de Reserva" name="pesquisa" id="pesquisa"  size="50" maxlenght="50" minlenght="0" th:value="${pesquisa}" />
 				  	<div class="input-group-append">						  
 						<button type="button" class="btn btn-outline-info colado" data-toggle="collapse" data-target="#ajudaPesquisaReserva">?</button>
 			  		</div>
@@ -70,24 +59,18 @@
 		    		<button class="btn btn-outline-success my-2 my-sm-0 " type="submit"> Pesquisar <i class="bi bi-search "></i></button>				 
 				</div>
 			</form>
-		</nav>	
-		<div id="ajudaAtivoReserva" class="collapse azulAjuda direita1">
-            Escolha se a Reserva está ativa ou inativa no Sistema.
-        </div>	
+		</nav>
         <div id="ajudaPesquisaReserva" class="collapse azulAjuda direita2">
-            Digite um nome de Cliente, um título de Livro, ou data de reserva a pesquisar com limite de 50 caracteres.
+            Digite um nome de Cliente, de um Livro, ou uma data de reserva a pesquisar com limite de 50 caracteres.
         </div>
-		<hr></hr>		
+		<hr></hr>
 		<div class="row box">		
-	      	<div class=" esquerda1" >	      	
+	      	<div class=" esquerda1" >
 				<button type="button" onClick="history.go(-1)" class="btn btn-info" ><i class="bi bi-reply-fill  "></i> Voltar</button>
 	      	</div>
-      		<div>
+      		<div >
 				<h3>Reservas</h3>
       		</div>
-	      	<div class=" direita3" >
-				<a th:href="@{/realizarEmprestimo}" class="btn btn-success "><i class="bi bi-calendar2-plus "></i> Nova Reserva</a>
-	      	</div>
 	    </div>
 		<hr></hr>	
 		<div class="row">
@@ -96,26 +79,25 @@
 					<thead class="table-info">
 						<tr>
 							<th class="center"><a
-								th:href="@{'/pageReserva/' + ${currentPage} + '?sortField=clienteId&sortDir=' + ${reverseSortDir}}">
+								th:href="@{'/pageEmprestimoReserva/' + ${currentPage} + '?sortField=clienteId&sortDir=' + ${reverseSortDir}}">
 									Nome</a></th>
 							<th class="center"><a
-								th:href="@{'/pageReserva/' + ${currentPage} + '?sortField=livroId&sortDir=' + ${reverseSortDir}}">
+								th:href="@{'/pageEmprestimoReserva/' + ${currentPage} + '?sortField=livroId&sortDir=' + ${reverseSortDir}}">
 									Livro</a></th>
 							<th class="center"><a
-								th:href="@{'/pageReserva/' + ${currentPage} + '?sortField=dataReserva&sortDir=' + ${reverseSortDir}}">
+								th:href="@{'/pageEmprestimoReserva/' + ${currentPage} + '?sortField=dataReserva&sortDir=' + ${reverseSortDir}}">
 									Data</a></th>							
 							<th class="center">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="reserva : ${listaReservas}">						
-							<td th:each="cliente : ${listCliente}" th:text="*{cliente.clienteId == reserva.clienteId}? *{cliente.nome}" th:if="${cliente.clienteId} == ${reserva.clienteId}" ></td>
-							<td th:each="livro : ${listLivro}" th:text="*{livro.livroId == reserva.livroId}? *{livro.tituloLivro}" th:if="${livro.livroId} == ${reserva.livroId}" ></td>
-							<td th:text="${#temporals.format(reserva.dataReserva, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
-						    <td class="center">
-						    	<span th:if="${reserva.ativo == 1}">
-									<a th:href="@{/atualizarReserva/{id}(id=${reserva.reservaId})}" class="btn btn-primary"><i class="bi bi-calendar-check  "></i> Atualizar</a>
-									<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar2-x  "></i> Remover</button>
+						<tr th:each="reserva : ${listaReservas}">							
+							<span th:if="${reserva.ativo == 1}">											
+								<td th:each="cliente : ${listCliente}" th:text="*{cliente.clienteId == reserva.clienteId}? *{cliente.nome}" th:if="${cliente.clienteId} == ${reserva.clienteId}" ></td>
+								<td th:each="livro : ${listLivro}" th:text="*{livro.livroId == reserva.livroId}? *{livro.tituloLivro}" th:if="${livro.livroId} == ${reserva.livroId}" ></td>
+								<td th:text="${#temporals.format(reserva.dataReserva, 'dd/MM/yyyy', new java.util.Locale('pt', 'BR'))}"></td>
+								<td class="center">
+									<button type="button" class="btn btn-success" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar2-check"></i> Emprestar</button>
 						    		<div class="modal fade" th:id="remover_+${reserva.reservaId}"  tabindex="-1" role="dialog" aria-hidden="true">
 						                <div class="modal-dialog modal-dialog-centered" role="document">
 							                  <div class="modal-content">
@@ -126,41 +108,17 @@
 									                      </button>
 								                    </div>
 								                    <div class="modal-body">
-								                      	<p>Tem certeza que quer remover essa reserva?</p>
+								                      	<p>Tem certeza que quer efetivar esta reserva para Empréstimo?</p>
 								                    </div>
 								                    <div class="modal-footer">
-									                      <a th:href="@{/indexReserva}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-									                      <a type="button" class="btn btn-danger" th:href="@{/deletarReserva/{id}(id=${reserva.reservaId})}">Sim, desejo realmente <b>Remover!</b></a>
+									                      <a th:href="@{/emprestimoReserva}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
+									                      <a type="button" class="btn btn-success" th:href="@{/emprestarReserva/{id}(id=${reserva.reservaId})}">Sim, desejo realmente <b>Emprestar!</b></a>
 								                    </div>
 							                  </div>
 						                </div>
-					              	</div>
-				              	</span>
-    							<span th:unless="${reserva.ativo == 1}">	
-						    		<button type="button" class="btn btn-secondary" data-toggle="modal" th:attr="data-target='#remover_'+${reserva.reservaId}" ><i class="bi bi-calendar-check  "></i> Ativar</button>			              
-				              		<div class="modal fade" th:id="remover_+${reserva.reservaId}"  tabindex="-1" role="dialog" aria-hidden="true">
-						                <div class="modal-dialog modal-dialog-centered" role="document">
-							                  <div class="modal-content">
-								                    <div class="modal-header">
-									                      <h5 class="modal-title" id="modalConfirmacao">Confirmação</h5>
-									                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									                         <span aria-hidden="true">&times;</span>
-									                      </button>
-								                    </div>
-								                    <div class="modal-body">
-								                      	<p>Tem certeza que quer remover essa reserva?</p>
-								                    </div>
-								                    <div class="modal-footer">
-									                      <a th:href="@{/indexReserva}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-									                      <a type="button" class="btn btn-success" th:href="@{/ativarReserva/{id}(id=${reserva.reservaId})}">Sim, desejo realmente <b>Ativar!</b></a>
-								                    </div>
-							                  </div>
-						                </div>
-					              	</div>
-				              	</span>
-				              	
-				              	
-						    </td>
+					              	</div>							
+							    </td>
+							</span>
 						</tr>
 					</tbody>
 			    </table>

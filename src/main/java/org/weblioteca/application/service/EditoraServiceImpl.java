@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.weblioteca.application.model.Autor;
 import org.weblioteca.application.model.Editora;
 import org.weblioteca.application.repository.EditoraRepository;
 
