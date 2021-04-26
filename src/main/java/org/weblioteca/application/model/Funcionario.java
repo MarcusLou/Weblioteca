@@ -1,6 +1,6 @@
 package org.weblioteca.application.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +20,7 @@ public class Funcionario {
 	private String funcao;
 	private String cpf;
 	private String telefone;
-	private Date dataAdmissao;
+	private LocalDate dataAdmissao;
 	private double salario;
 	private String login;
 	private String senha;
@@ -76,11 +76,11 @@ public class Funcionario {
 		this.telefone = telefone;
 	}
 
-	public Date getDataAdmissao() {
+	public LocalDate getDataAdmissao() {
 		return dataAdmissao;
 	}
 
-	public void setDataAdmissao(Date dataAdmissao) {
+	public void setDataAdmissao(LocalDate dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
 
