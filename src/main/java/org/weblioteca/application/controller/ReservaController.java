@@ -70,7 +70,7 @@ public class ReservaController {
 		return "redirect:/indexReserva";
 	}
 	
-	/*
+	
 	@GetMapping("/atualizarReserva/{id}")
 	public String atualizarReserva(@PathVariable ( value = "id") Long id, Model model) {
 		Reserva reserva = reservaService.getReservaById(id);
@@ -83,7 +83,6 @@ public class ReservaController {
 	    model.addAttribute("now", now);
 		return "atualizarReserva";
 	}
-	*/
 	
 	
 	@GetMapping("/deletarReserva/{id}")
@@ -100,17 +99,25 @@ public class ReservaController {
 	
 	@GetMapping("/ativarReserva/{id}")
 	public String ativarReserva(@PathVariable (value = "id") Long id) {		
-		Reserva reserva = reservaService.getReservaById(id);
-		reserva.setAtivo(1);
-		reservaService.salvarReserva(reserva);
-		return "redirect:/indexReserva";		
+		try {
+			Reserva reserva = reservaService.getReservaById(id);
+			reserva.setAtivo(1);
+			reservaService.salvarReserva(reserva);
+			return "redirect:/indexReserva";	
+		}catch (Exception $e)  {			
+			return "redirect:/mensagemReserva";	
+		}	
 	}
 	
 	@RequestMapping("/indexReserva/{pesquisa}")
     public String pesquisar(Model model, @Param("ativo") Integer ativo, @Param("pesquisa") String pesquisa) {
+		List<Cliente> listCliente = clienteRepository.findAll();
+	    model.addAttribute("listCliente", listCliente);	    
+		List<Livro> listLivro = livroRepository.findAll();
+	    model.addAttribute("listLivro", listLivro);	    
         List<Reserva> listaReservas = reservaService.pesquisar(ativo, pesquisa);
         model.addAttribute("listaReservas", listaReservas);
-		return "indexReserva";
+        return "indexReserva";
     }
 
 	@GetMapping("/mensagemReserva") 
@@ -141,6 +148,10 @@ public class ReservaController {
 		model.addAttribute("reverseSortDir", sortDirReserva.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listaReservas", listaReservas);
+		List<Cliente> listCliente = clienteRepository.findAll();
+	    model.addAttribute("listCliente", listCliente);	    
+		List<Livro> listLivro = livroRepository.findAll();
+	    model.addAttribute("listLivro", listLivro);	  
 		
 		return "indexReserva";
 	}

@@ -1,5 +1,6 @@
 package org.weblioteca.application.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class AutorController {
 	public String novoAutor(Model model) {
 		Autor autor = new Autor();
 		model.addAttribute("autor", autor);
+	    LocalDate nowMinus18 = LocalDate.now().minusYears(18);
+		model.addAttribute("nowMinus18", nowMinus18);
 		return "salvarAutor";
 	}
 
@@ -44,6 +47,8 @@ public class AutorController {
 	public String atualizarAutor(@PathVariable ( value = "id") Long id, Model model) {
 		Autor autor = autorService.getAutorById(id);
 		model.addAttribute("autor", autor);
+	    LocalDate nowMinus18 = LocalDate.now().minusYears(18);
+		model.addAttribute("nowMinus18", nowMinus18);
 		return "atualizarAutor";
 	}
 	/*
@@ -86,7 +91,6 @@ public class AutorController {
     public String pesquisar(Model model, @Param("ativo") Integer ativo, @Param("pesquisa") String pesquisa) {
         List<Autor> listaAutores = autorService.pesquisar(ativo, pesquisa);
         model.addAttribute("listaAutores", listaAutores);
-		//return autoresPaginacao(1, "nome", "asc", model, ativo);
         return "indexAutor";
     }
 	

@@ -62,18 +62,44 @@
 			<div class="col-sm-12">
 			<h3>Pesquisar cliente</h3>
 			
-			<form class="form-inline">
+			<form th:action="@{/pesquisarcliente/${nome}}" class="form-inline">
   				<div class="form-group mx-sm-3 mb-2">
-   					<input type="text" class="form-control" id="nomeCliente" placeholder="Nome cliente">
+   					<input type="text"  name="nome" id="nome" th:value="${nome}" class="form-control" >
   				</div>
+  				
+  				<!-- PESQUISAR CLIENTE TESTE -->
+  				
   				<div class="form-group mx-sm-3 mb-2">
-  					<button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+  					<input type="submit" value="Pesquisar" class="btn btn-primary mb-2">
   				</div>
+  				
+  				<!-- PESQUISAR CLIENTE TESTE -->
+  				
   				<div class="form-group mx-sm-3 mb-2">
 	  				<a th:href="@{/novocliente}" class="btn btn-primary mb-2">Novo Cliente</a>
   				</div>
 			</form>
 			
+			   <!-- Table Clientes Pesquisados -->
+			   
+			   <table border="1" class = "table table-striped">
+					<thead class="table-info">
+						<tr>
+							<th>Nome</a></th>
+							<th>Sexo</a></th>
+							<th>Cpf</a></th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr th:each="pesCliente : ${LstClientes}">
+						<td th:text="${pesCliente.nome}"></td>
+						<td th:text="${pesCliente.sexo}"></td>
+						<td th:text="${pesCliente.cpf}"></td>
+				   </tr>
+				   </tbody>
+		    	</table>
+			 <!-- Table Clientes Pesquisados -->  
+			 
 				<table border="1" class = "table table-striped">
 					<thead class="table-info">
 						<tr>

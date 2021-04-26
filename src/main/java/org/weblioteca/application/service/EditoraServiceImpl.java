@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.weblioteca.application.model.Autor;
 import org.weblioteca.application.model.Editora;
 import org.weblioteca.application.repository.EditoraRepository;
 
@@ -20,6 +21,11 @@ public class EditoraServiceImpl implements EditoraService {
 	@Override
 	public List<Editora> getAllEditoras() {
 		return editoraRepository.findAll();
+	}
+
+	@Override
+	public List<Editora> pesquisar(Integer ativo, String pesquisa){
+		return editoraRepository.pesquisar(ativo, pesquisa);	
 	}
 	
 	@Override
@@ -51,11 +57,11 @@ public class EditoraServiceImpl implements EditoraService {
 	}
 
 	@Override
-	public Page<Editora> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+	public Page<Editora> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, Integer ativo) {
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
 
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-		return this.editoraRepository.findAll(pageable);
+		return this.editoraRepository.findAllAtivos(ativo, pageable);
 	}
 }
