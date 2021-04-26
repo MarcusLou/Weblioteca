@@ -4,18 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.weblioteca.application.service.EmprestimoFaturarService;
 import org.weblioteca.application.service.FaturaService;
 import org.weblioteca.application.model.Cliente;
 import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Fatura;
+import org.weblioteca.application.model.Livro;
 import org.weblioteca.application.repository.ClienteRepository;
 
 @Controller
@@ -83,6 +86,15 @@ public class FaturaController {
 		}
 		
 	}
+	
+	@RequestMapping("/indexFaturar/{pesquisa}")
+    public String pesquisar(Model model, @Param("pesquisa") String pesquisa) {
+        List<Fatura> listaFatura = faturaService.pesquisar(pesquisa);
+		List<Cliente> listCliente = clienteRepository.findAll();
+	    model.addAttribute("listCliente", listCliente);	
+        model.addAttribute("listaFatura", listaFatura);
+        return "indexFaturar";
+    }
 	
 	@GetMapping("/mensagemFatura") 
 	public String mensagemFatura(Model model) {

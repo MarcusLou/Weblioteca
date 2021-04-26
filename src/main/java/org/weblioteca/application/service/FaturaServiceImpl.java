@@ -53,4 +53,9 @@ public class FaturaServiceImpl implements FaturaService {
 		return this.faturaRepository.findAll(pageable);
 	}
 
+	@Override
+	public List<Fatura> pesquisar(String pesquisa) {
+		return faturaRepository.pesquisar(pesquisa);
+	}
+
 }
