@@ -54,9 +54,9 @@ public class EmprestimoFaturaControllerTest {
 		Emprestimo emprestimo = new Emprestimo();
 		emprestimo.setCliente(cliente1);
 		emprestimo.setEmprestimoId(Long.valueOf(99));
-		emprestimo.setDataDevolucao(java.sql.Date.valueOf("2021-04-18"));
-		emprestimo.setDataDevolvido(java.sql.Date.valueOf("2021-04-19"));
-		emprestimo.setDataEmprestimo(java.sql.Date.valueOf("2021-04-11"));
+		emprestimo.setDataDevolucao(LocalDate.of(2021,04,18));
+		emprestimo.setDataDevolvido(LocalDate.of(2021,04,19));
+		emprestimo.setDataEmprestimo(LocalDate.of(2021,04,11));
 		emprestimo.setValorTotal(10);
 		EmprestimoFaturarController controller = new EmprestimoFaturarController();
 		

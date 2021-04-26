@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.weblioteca.application.builder.ReservaBuilder;
 import org.weblioteca.application.model.Cliente;
 import org.weblioteca.application.model.Emprestimo;
 import org.weblioteca.application.model.Reserva;
@@ -48,9 +49,6 @@ public class ReservaController {
 	@Autowired
 	ReservaService reservaService;
 
-	private List<Livro> listaExemplar;
-
-	private Emprestimo emprestimo;
 	
 	@GetMapping("/indexReserva")
 	public String viewHomePage(Model model) {		
@@ -74,6 +72,8 @@ public class ReservaController {
 	    model.addAttribute("now", now);	    
 		return "salvarReserva";
 	}
+	
+
 	
 	@PostMapping("/salvarReserva")
 	public String salvarReserva(@ModelAttribute("reserva") Reserva reserva) {
@@ -250,4 +250,6 @@ public class ReservaController {
 		
 		return "indexReserva";
 	}
+
+	
 }

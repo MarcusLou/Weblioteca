@@ -1,5 +1,6 @@
 package org.weblioteca.application.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +40,6 @@ public class EmprestimoReservaController {
 	
 	@Autowired
 	ReservaService reservaService;
-
-	private List<Livro> listaExemplar;
-
-	private Emprestimo emprestimo;
 	
 	@GetMapping("/emprestimoReserva")
 	public String viewHomePage(Model model) {		
@@ -61,10 +58,10 @@ public class EmprestimoReservaController {
 			Reserva reserva = reservaService.getReservaById(id);
 			reserva.setAtivo(0);
 			reservaService.salvarReserva(reserva);
-			emprestimo = null;
+			Emprestimo emprestimo = new Emprestimo();
 			emprestimo.setCliente(getClienteById(reserva.getClienteId()));
-			listaExemplar = null;
-			listaExemplar.set(0, getLivroById(reserva.getLivroId()));
+			List<Livro> listaExemplar = new ArrayList<>();
+			listaExemplar.add(getLivroById(reserva.getLivroId()));
 			emprestimo.setExemplar(listaExemplar);
 			emprestimo.setDataEmprestimo(reserva.getDataReserva());
 			emprestimo.setDataDevolucao(reserva.getDataReserva().plusDays(7));
