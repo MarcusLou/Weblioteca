@@ -63,10 +63,46 @@
 				<h1>Weblioteca Management System</h1>
 				<hr>
 				<h2>Salvar Funcionário</h2>
-				<form action="#" th:action="@{/salvarfuncionario}" th:object="${funcionario}" method="POST">
-					<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{sexo}" placeholder="Sexo" class="form-control mb-4 col-4">
-					<input type="text" th:field="*{funcao}" placeholder="função"   class="form-control mb-4 col-4">
+				<form class="needs-validation" novalidate action="#" th:action="@{/salvarfuncionario}" th:object="${funcionario}" method="POST">
+					<div>
+						<label for="nome">Nome:</label>
+						<input type="text" th:field="*{nome}" placeholder="Digite o seu nome" class="form-control mb-4 col-4" aria-describedby="passwordHelpBlock">
+					</div>
+					
+					<div>
+						<label for="sexo">Sexo:</label>
+						<input type="text" th:field="*{sexo}" placeholder="Masculino ou feminino" class="form-control mb-4 col-4">
+					</div>
+					<div>
+						<label for="funcao">Função:</label>
+						<input type="text" th:field="*{funcao}" placeholder="Gerente, atendente"   class="form-control mb-4 col-4">
+					</div>
+					
+					<div>
+						<label for="cpf">Cpf:</label>
+						<input type="text" th:field="*{cpf}" placeholder="Digite seu cpf, 11 digitos"   class="form-control mb-4 col-4">
+					</div>
+					
+					<div>
+						<label for="">Telefone:</label>
+						<input type="text" th:field="*{telefone}" placeholder="Digite seu telefone"   class="form-control mb-4 col-4">
+					</div>
+					
+					<div>
+						<label for="">Salário:</label>
+						<input type="text" th:field="*{salario}" placeholder="Digite seu salário"   class="form-control mb-4 col-4">
+					</div>
+					
+					<div>
+						<label for="">Login:</label>
+						<input type="text" th:field="*{login}" placeholder="Digite seu login"   class="form-control mb-4 col-4">
+					</div>
+					
+					<div>
+						<label for="">Senha:</label>
+						<input type="password" th:field="*{senha}" placeholder="Digite sua senha"   class="form-control mb-4 col-4">
+					</div>
+					
 					<button type="submit" class="btn btn-info col-2">Salvar Funcionário</button>
 				</form>
 				<hr>
