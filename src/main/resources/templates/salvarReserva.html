@@ -43,6 +43,7 @@
 						<a class="dropdown-item" th:href="@{/indexReserva}"><i class="bi bi-calendar2-week-fill"></i> Reservas</a> 
 						<a class="dropdown-item" th:href="@{/novaReserva}"><i class="bi bi-calendar2-plus-fill "></i> Nova Reserva</a> 
 						<a class="dropdown-item" th:href="@{/cancelarReserva}"><i class="bi bi-calendar2-x"></i> Cancelar Reserva</a> 
+						<a class="dropdown-item" th:href="@{/emprestimoReserva}"><i class="bi bi-calendar2-check"></i> Empréstimo Reserva</a> 
 					</div>
 				</li>
 			</ul>
@@ -70,7 +71,7 @@
                             É obrigatório para se fazer uma Reserva!
                         </div>
                         <div class="input-group mb-3">  
-							<select th:field="*{clienteId}" class="form-control col-12" id="clienteId" required>
+							<select th:field="*{clienteId}" class="form-control col-12" id="clienteId" title="Escolha uma opção disponível para o Cliente" required>
 		                            <option value="">Selecione um cliente</option>
 		    						<option th:each="cliente : ${listCliente}" th:value="${cliente.clienteId}"  th:text="${cliente.nome}"></option>
 		    				</select>
@@ -84,7 +85,7 @@
                             É obrigatório para se fazer uma Reserva!
                         </div>	
                         <div class="input-group mb-3"> 						
-							<select th:field="*{livroId}" class="form-control col-12" id="livroId" required>
+							<select th:field="*{livroId}" class="form-control col-12" id="livroId" title="Escolha uma opção disponível para o Livro" required>
 		                            <option value="">Selecione um livro</option>
 		    						<option th:each="livro : ${listLivro}" th:value="${livro.livroId}" th:text="${livro.tituloLivro}"></option>
 		    				</select>
@@ -98,7 +99,7 @@
                             É obrigatório para se fazer uma Reserva e a data não pode ser anterior ao dia de hoje!
                         </div>		
                         <div class="input-group mb-3"> 					
-							<input type="date" th:field="*{dataReserva}" id="dataReserva" th:attr="min=${now}" class="form-control col-12 " required>				
+							<input type="date" th:field="*{dataReserva}" id="dataReserva" th:attr="min=${now}" class="form-control col-12 " title="Escolha uma data disponivel para a Reserva. Disponível de Hoje em diante." required>				
 							<div class="input-group-append">						  
 								<button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#ajudaDataReserva">?</button>
 					  		</div>		

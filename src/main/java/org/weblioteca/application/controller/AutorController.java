@@ -94,11 +94,11 @@ public class AutorController {
         return "indexAutor";
     }
 	
-
+/*
 	@GetMapping("/mensagemAutor") 
 	public String mensagemAutor(Model model) {
 		return "mensagemAutor";	
-	}
+	}*/
 	
 	@GetMapping("/pageAutor/{pageNo}")
 	public String autoresPaginacao(@PathVariable (value = "pageNo") int pageNoAutor, 

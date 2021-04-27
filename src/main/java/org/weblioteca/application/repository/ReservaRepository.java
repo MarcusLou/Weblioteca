@@ -18,5 +18,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
 	@Query("SELECT r FROM Reserva r WHERE r.ativo = :ativo")
 	Page<Reserva> findAllAtivos(@Param("ativo") Integer ativo, Pageable pageable);
+
+	
 	
 }
