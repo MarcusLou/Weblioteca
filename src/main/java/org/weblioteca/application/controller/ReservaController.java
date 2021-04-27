@@ -92,17 +92,17 @@ public class ReservaController {
 				return "redirect:/mensagemReservaLivroEmprestimo";	
 			}else {
 				reservaService.salvarReserva(reserva);				
-					Livro exemplar = getLivroById(reserva.getLivroId());
-					List<Livro> listaExemplar = new ArrayList<>();
-					listaExemplar.add(exemplar);
-					Emprestimo novoEmprestimo = new Emprestimo();
-					novoEmprestimo.setExemplar(listaExemplar); 
-					long count = emprestimoRepository.count(Example.of(novoEmprestimo));
-					System.out.printf("Conta: %d", count);
-					int quantidade = livro.getQuantidade();
-					if(quantidade <= count) {
-						livro.setDisponivelEmprestimo(false);
-					}
+				Livro exemplar = getLivroById(reserva.getLivroId());
+				List<Livro> listaExemplar = new ArrayList<>();
+				listaExemplar.add(exemplar);
+				Emprestimo novoEmprestimo = new Emprestimo();
+				novoEmprestimo.setExemplar(listaExemplar); 
+				long count = emprestimoRepository.count(Example.of(novoEmprestimo));
+				System.out.printf("Conta: %d", count);
+				int quantidade = livro.getQuantidade();
+				if(quantidade <= count) {
+					livro.setDisponivelEmprestimo(false);
+				}
 				return "redirect:/indexReserva";
 			}
 		}else {
@@ -214,11 +214,11 @@ public class ReservaController {
         model.addAttribute("listaReservas", listaReservas);
         return "indexReserva";
     }
-
+/*
 	@GetMapping("/mensagemReserva") 
 	public String mensagemReserva(Model model) {
 		return "mensagemReserva";	
-	}
+	}*/
 	
 	@GetMapping("/pageReserva/{pageNo}")
 	public String reservasPaginacao(@PathVariable (value = "pageNo") int pageNoReserva, 

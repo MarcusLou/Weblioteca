@@ -2,6 +2,8 @@ package org.weblioteca.application.builder;
 
 import java.time.LocalDate;
 
+import org.weblioteca.application.model.Cliente;
+import org.weblioteca.application.model.Livro;
 import org.weblioteca.application.model.Reserva;
 
 
@@ -38,6 +40,16 @@ public class ReservaBuilder {
     
     public Reserva get() {
         return this.reserva;
+    }
+    
+    public Reserva criarReserva(Cliente cliente, Livro livro) {    	
+    	Reserva reserva = ReservaBuilder.builder()
+    			.ClienteId(cliente.getClienteId())
+    			.LivroId(livro.getLivroId())
+    			.DataReserva(LocalDate.now())
+    			.Ativo(1)
+    			.get();    	
+    	return reserva;
     }
 
 }

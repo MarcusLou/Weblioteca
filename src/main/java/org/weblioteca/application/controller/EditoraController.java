@@ -87,11 +87,11 @@ public class EditoraController {
         model.addAttribute("listaEditoras", listaEditoras);
         return "indexEditora";
     }
-	
+	/*
 	@GetMapping("/mensagemEditora") 
 	public String mensagemEditora(Model model) {
 		return "mensagemEditora";	
-	}
+	}*/
 	
 	@GetMapping("/pageEditora/{pageNo}")
 	public String editorasPaginacao(@PathVariable (value = "pageNo") int pageNoEditora, 

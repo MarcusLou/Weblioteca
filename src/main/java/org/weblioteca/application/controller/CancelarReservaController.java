@@ -67,11 +67,11 @@ public class CancelarReservaController {
         model.addAttribute("listaReservas", listaReservas);
 		return "cancelarReserva";
     }
-
+/*
 	@GetMapping("/mensagemCancelarReserva") 
 	public String mensagemReserva(Model model) {
 		return "mensagemCancelarReserva";	
-	}
+	}*/
 	
 	@GetMapping("/pageCancelarReserva/{pageNo}")
 	public String cancelarReservasPaginacao(@PathVariable (value = "pageNo") int pageNoReserva, 
