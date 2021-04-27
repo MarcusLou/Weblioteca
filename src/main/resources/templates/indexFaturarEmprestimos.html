@@ -51,8 +51,8 @@
 	      	
       		<div class="col-md-9 center">
 				<h3>Emprestimos a serem Faturados</h3>
-      		</div>
-	    </div>
+      		</div>			
+	    </div>		   
 	    <hr></hr>
 		<div class="row" >
 			<div class="col-sm-12">				
@@ -82,7 +82,7 @@
 					  		<td th:text="${emprestimo.dataDevolvido}"></td>
 						    <td class="center">								
 								<button type="button" class="btn btn-success" data-toggle="modal" th:attr="data-target='#faturar_'+${emprestimo.emprestimoId}" ><i class="bi bi-journal-check-fill "></i> Faturar</button>
-						    	
+							  							  						    	
 						    	<div class="modal fade" th:id="faturar_+${emprestimo.emprestimoId}"  tabindex="-1" role="dialog" aria-hidden="true">
 					                <div class="modal-dialog modal-dialog-centered" role="document">
 						                  <div class="modal-content">
@@ -93,7 +93,7 @@
 								                      </button>
 							                    </div>
 							                    <div class="modal-body">
-							                      	<p>Tem certeza que quer faturar esse empréstimo?</p>
+							                      	<p>Tem certeza que quer faturar esse empréstimo? (O processo de empréstimo será finalizado e não poderão ser feitas novas alterações)</p>
 							                    </div>
 							                    <div class="modal-footer">
 								                      <a th:href="@{/indexFaturarEmprestimos}" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
